@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ColegioLibrarySystem.Models
 {
-    internal class BookCopy
+    public class BookCopy
     {
         public int copyID { get; set; }
         public int bookID { get; set; }
