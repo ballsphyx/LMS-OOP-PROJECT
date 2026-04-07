@@ -17,7 +17,8 @@ namespace ColegioLibrarySystem.Services
         }
         public void AddBook(Book book)
         {
-            //add validation logic here//
+            if (string.IsNullOrEmpty(book.title) || string.IsNullOrEmpty(book.author))
+                throw new ArgumentException("Book title and author cannot be empty.");
             _bookRepository.AddBook(book);
         }
         public void UpdateBook(Book book)

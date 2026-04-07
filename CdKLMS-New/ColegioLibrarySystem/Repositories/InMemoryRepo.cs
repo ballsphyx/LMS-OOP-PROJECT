@@ -11,10 +11,11 @@ namespace ColegioLibrarySystem.Repositories
     public class InMemoryRepo : IBookRepository
     {
         private readonly List<Book> _books;
+        private readonly List<BookCopy> _booksCopy;
         private int _nextBookID = 1;
         public void AddBook(Book book)
         {
-            book.bookID = _nextBookID++;
+            book.bookID = _nextBookID++;    
             _books.Add(book);
         }
 
