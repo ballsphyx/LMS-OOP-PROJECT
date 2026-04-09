@@ -13,10 +13,16 @@ namespace ColegioLibrarySystem.Repositories
         private readonly List<Book> _books;
         private readonly List<BookCopy> _booksCopy;
         private int _nextBookID = 1;
+        private int _nextCopyID = 1;
         public void AddBook(Book book)
         {
             book.bookID = _nextBookID++;    
             _books.Add(book);
+        }
+        public void AddBookCopy(BookCopy copy)
+        {
+            copy.copyID = _nextCopyID++;
+            _booksCopy.Add(copy);
         }
 
         public void UpdateBook(Book book)

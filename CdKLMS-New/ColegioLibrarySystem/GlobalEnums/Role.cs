@@ -8,6 +8,8 @@ namespace ColegioLibrarySystem.GlobalEnums
 {
     public enum Roles
     {
-
+        Admin,
+        Student,
+        Teacher
     }
 }
