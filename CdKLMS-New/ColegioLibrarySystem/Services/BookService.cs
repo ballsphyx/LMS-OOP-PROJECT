@@ -51,11 +51,11 @@ namespace ColegioLibrarySystem.Services
         }
         public Book GetBookByID(int bookID)
         {
-            return _bookRepository.GetBookByID(bookID);
+            throw new NotImplementedException();
         }
         public List<Book> GetAllBooks()
         {
-            return _bookRepository.GetAllBooks();
+            throw new NotImplementedException();
         }
     }
 }
