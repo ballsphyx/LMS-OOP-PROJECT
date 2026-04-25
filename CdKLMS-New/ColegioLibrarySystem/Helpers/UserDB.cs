@@ -9,7 +9,7 @@ using MySql.Data.MySqlClient;
 
 namespace ColegioLibrarySystem.Helpers
 {
-    internal class UserDB
+    public class UserDB
     {
         private readonly DatabaseHelper _databaseHelper;
 
@@ -18,17 +18,17 @@ namespace ColegioLibrarySystem.Helpers
             _databaseHelper = databaseHelper;
         }
 
-        public bool RegisterUser(string username, string password, string fullName, string role)
+        public bool RegisterUser(Users users)
         {
             string query = @"INSERT INTO USERS (username, password, full_name, role)
                      VALUES (@Username, @Password, @FullName, @Role)";
 
             var parameters = new MySqlParameter[]
             {
-                new MySqlParameter("@Username", username),
-                new MySqlParameter("@Password", password),
-                new MySqlParameter("@FullName", fullName),
-                new MySqlParameter("@Role", role)
+                new MySqlParameter("@Username", users.Username),
+                new MySqlParameter("@Password", users.Password),
+                new MySqlParameter("@FullName", users.FullName),
+                new MySqlParameter("@Role", users.Role)
             };
 
             return _databaseHelper.ExecuteNonQuery(query, parameters) > 0;
@@ -42,18 +42,18 @@ namespace ColegioLibrarySystem.Helpers
             };
             return _databaseHelper.ExecuteNonQuery(query, param) > 0;
         }
-        public bool UpdateUser(int userID, string username, string password, string fullName, string role)
+        public bool UpdateUser(Users user)
         {
             string query = @"UPDATE USERS SET username = @Username, password = @Password, full_name = @FullName, role = @Role
                              WHERE ID = @UserID";
 
             var parameters = new MySqlParameter[]
             {
-                new MySqlParameter("@UserID", userID),
-                new MySqlParameter("@Username", username),
-                new MySqlParameter("@Password", password),
-                new MySqlParameter("@FullName", fullName),
-                new MySqlParameter("@Role", role)
+                new MySqlParameter("@UserID", user.Id),
+                new MySqlParameter("@Username", user.Username),
+                new MySqlParameter("@Password", user.Password),
+                new MySqlParameter("@FullName", user.FullName),
+                new MySqlParameter("@Role", user.Role)
             };
 
             return _databaseHelper.ExecuteNonQuery(query, parameters) > 0;
@@ -73,12 +73,22 @@ namespace ColegioLibrarySystem.Helpers
             string query = "SELECT ID, username, full_name, role FROM USERS";
             return _databaseHelper.ExecuteQuery(query);
         }
-        public DataTable GetUsers()
+        public DataTable GetUsersByID(int id)
         {
             string query = "SELECT ID, username, full_name, role FROM USERS WHERE ID = @UserID";
             var parameters = new MySqlParameter[]
             {
-                new MySqlParameter("@UserID", Session.UserID)
+                new MySqlParameter("@UserID", id)
+            };
+            return _databaseHelper.ExecuteQuery(query, parameters);
+        }
+        public DataTable GetUsersByCredentials(string username, string password)
+        {
+            string query = "SELECT ID, username, full_name, role FROM USERS WHERE username = @Username AND password = @Password";
+            var parameters = new MySqlParameter[]
+            {
+                new MySqlParameter("@Username", username),
+                new MySqlParameter("@Password", password)
             };
             return _databaseHelper.ExecuteQuery(query, parameters);
         }

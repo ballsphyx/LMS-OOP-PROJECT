@@ -29,6 +29,7 @@ namespace ColegioLibrarySystem.Service
         }
         public bool DeleteBook(int bookID)
         {
+            //put validation logic here//
             return _bookDB.DeleteBook(bookID);
         }
         public DataTable GetAllBooks()
