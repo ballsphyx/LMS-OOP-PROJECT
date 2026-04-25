@@ -9,6 +9,6 @@ namespace ColegioLibrarySystem.GlobalEnums
     public enum Status
     {
         Available,
-        Borrowed,
+        Unavailable,
     }
 }

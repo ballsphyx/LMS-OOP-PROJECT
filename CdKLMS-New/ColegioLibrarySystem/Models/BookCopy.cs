@@ -11,6 +11,12 @@ namespace ColegioLibrarySystem.Models
     {
         public int copyID { get; set; }
         public int bookID { get; set; }
-        public Status isAvailable { get; set; }
+        public Status isAvailable { get; set; } 
+        public BookCopy(int copyID, int bookID)
+        {
+            this.copyID = copyID;
+            this.bookID = bookID;
+            isAvailable = Status.Available;
+        }
     }
 }

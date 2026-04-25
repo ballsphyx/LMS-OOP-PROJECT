@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ColegioLibrarySystem.GlobalEnums
+namespace ColegioLibrarySystem.Service
 {
-    public enum Roles
+    internal class UserManagement
     {
-        Admin,
-        Student,
-        Teacher,
-        None
     }
 }

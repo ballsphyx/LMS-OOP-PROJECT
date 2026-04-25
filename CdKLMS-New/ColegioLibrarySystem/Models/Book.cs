@@ -11,10 +11,17 @@ namespace ColegioLibrarySystem.Models
         public int bookID { get; set; }
         public string title { get; set; }
         public string author { get; set; }
-        public string Catgory { get; set; }
+        public string category { get; set; }
         public DateTime publicationDate { get; set; }
-        public int totalCopies => Copies.Count;
-        int available => Copies.Count(c => c.isAvailable == Status.Available);
-        public List<BookCopy> Copies { get; set; } = new List<BookCopy>();
+        public int totalCopies;
+        public Book(int bookID, string title, string author, string category, DateTime publicationDate, int totalCopies)
+        {
+            this.bookID = bookID;
+            this.title = title;
+            this.author = author;
+            this.category = category;
+            this.publicationDate = publicationDate;
+            this.totalCopies = totalCopies;
+        }
     }
 }
