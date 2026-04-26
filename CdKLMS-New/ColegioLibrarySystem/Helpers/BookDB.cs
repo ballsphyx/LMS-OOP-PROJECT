@@ -44,7 +44,6 @@ namespace ColegioLibrarySystem.Helpers
             var parameters = new MySqlParameter[]
             {
                 new MySqlParameter("@BookID", copy.bookID),
-                new MySqlParameter("@CopyNumber", copy.copyID),
                 new MySqlParameter("@Status", copy.isAvailable)
             };
             int rowsAffected = _databaseHelper.ExecuteNonQuery(query, parameters);
