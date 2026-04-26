@@ -19,17 +19,37 @@ namespace ColegioLibrarySystem.Service
         }
         public bool AddBook(int bookID, string title, string author, string category, DateTime publicationDate, int totalCopies)
         {
+            if (_bookDB.GetBookByID(bookID).Rows.Count > 0) return false;
             Book newBook = new Book(bookID, title, author, category, publicationDate, totalCopies);
             return _bookDB.AddBook(newBook);
         }
+        public bool AddBookCopy(int bookID)
+        {
+            //validate that book exists before adding copy//
+            if (_bookDB.GetBookByID(bookID).Rows.Count == 0)
+            {
+                return false;
+            }
+            BookCopy newCopy = new BookCopy(bookID);
+            return _bookDB.AddBookCopy(newCopy);
+        }
         public bool UpdateBook(int bookID, string title, string author, string category, DateTime publicationDate, int totalCopies)
         {
+            //validate that book exists before updating//
+            if (_bookDB.GetBookByID(bookID).Rows.Count == 0)
+            {
+                return false;
+            }
             Book updatedBook = new Book(bookID, title, author, category, publicationDate, totalCopies);
             return _bookDB.UpdateBook(updatedBook);
         }
         public bool DeleteBook(int bookID)
         {
-            //put validation logic here//
+            //validate that book exists before deleting//
+            if (_bookDB.GetBookByID(bookID).Rows.Count == 0)
+            {
+                return false;
+            }
             return _bookDB.DeleteBook(bookID);
         }
         public DataTable GetAllBooks()

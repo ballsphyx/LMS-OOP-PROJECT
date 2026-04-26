@@ -7,7 +7,7 @@ using ColegioLibrarySystem.GlobalEnums;
 
 namespace ColegioLibrarySystem.Models
 {
-    public class Users
+    public class User
     {
         public int Id { get; set; }
         public string Username { get; set; }
@@ -15,7 +15,7 @@ namespace ColegioLibrarySystem.Models
         public string FullName { get; set; }
         public Roles Role { get; set; }
 
-        public Users(int id, string username, string password, string fullName, Roles role)
+        public User(int id, string username, string password, string fullName, Roles role)
         {
             Id = id;
             Username = username;
@@ -23,7 +23,7 @@ namespace ColegioLibrarySystem.Models
             FullName = fullName;
             Role = role;
         }
-        public Users()
+        public User()
         {
 
         }

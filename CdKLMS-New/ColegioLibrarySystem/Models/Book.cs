@@ -8,20 +8,20 @@ namespace ColegioLibrarySystem.Models
 {
     public class Book
     {
-        public int bookID { get; set; }
-        public string title { get; set; }
-        public string author { get; set; }
-        public string category { get; set; }
-        public DateTime publicationDate { get; set; }
-        public int totalCopies;
+        public int BookID { get; set; }
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public string Category { get; set; }
+        public DateTime PublicationDate { get; set; }
+        public int TotalCopies { get; set; }
         public Book(int bookID, string title, string author, string category, DateTime publicationDate, int totalCopies)
         {
-            this.bookID = bookID;
-            this.title = title;
-            this.author = author;
-            this.category = category;
-            this.publicationDate = publicationDate;
-            this.totalCopies = totalCopies;
+            this.BookID = bookID;
+            this.Title = title;
+            this.Author = author;
+            this.Category = category;
+            this.PublicationDate = publicationDate;
+            this.TotalCopies = totalCopies;
         }
     }
 }
