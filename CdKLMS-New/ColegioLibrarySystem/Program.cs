@@ -1,6 +1,6 @@
 using System;
 using System.Windows.Forms;
-using ColegioLibrarySystem.Views; 
+using ColegioLibrarySystem;
 
 namespace ColegioLibrarySystem
 {
@@ -11,7 +11,7 @@ namespace ColegioLibrarySystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            Application.Run(new librarymanagement.LoginForm());
         }
     }
 }
