@@ -1,4 +1,4 @@
-using ColegioLibrarySystem.Service;
+//using ColegioLibrarySystem.Service;
 using librarymanagement.views;
 using ColegioLibrarySystem.GlobalEnums;
 using ColegioLibrarySystem.Models;
@@ -7,11 +7,10 @@ namespace librarymanagement
 {
     public partial class LoginForm : Form
     {
-        private readonly UserManagement userManagement;
-        public LoginForm(UserManagement userManagement)
+        public LoginForm()
         {
             InitializeComponent();
-            this.userManagement = userManagement;
+            //this.userManagement = userManagement;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -36,25 +35,25 @@ namespace librarymanagement
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var user = userManagement.GetUserByCredentials(textBox1.Text, textBox2.Text);
-            if (user == null)
-            {
-                MessageBox.Show("Invalid username or password");
-                return;
-            }
-            Session.Login(user);
-            if (user.Role == Roles.Admin)
-            {
-                AdminDashboard ad = new AdminDashboard();
-                ad.Show();
-                this.Hide();
-            }
-            else
-            {
-                UserDashboard userD = new UserDashboard(user.FullName);
-                userD.Show();
-                this.Hide();
-            }
+            ////var user = userManagement.GetUserByCredentials(textBox1.Text, textBox2.Text);
+            //if (user == null)
+            //{
+            //    MessageBox.Show("Invalid username or password");
+            //    return;
+            //}
+            //Session.Login(user);
+            //if (user.Role == Roles.Admin)
+            //{
+            //    AdminDashboard ad = new AdminDashboard();
+            //    ad.Show();
+            //    this.Hide();
+            //}
+            //else
+            //{
+            //    UserDashboard userD = new UserDashboard(user.FullName);
+            //    userD.Show();
+            //    this.Hide();
+            //}
         }
 
         private void button2_Click(object sender, EventArgs e)
