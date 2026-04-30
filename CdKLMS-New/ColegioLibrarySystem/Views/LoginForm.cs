@@ -1,12 +1,17 @@
+using ColegioLibrarySystem.Service;
 using librarymanagement.views;
+using ColegioLibrarySystem.GlobalEnums;
+using ColegioLibrarySystem.Models;
 
 namespace librarymanagement
 {
     public partial class LoginForm : Form
     {
-        public LoginForm()
+        private readonly UserManagement userManagement;
+        public LoginForm(UserManagement userManagement)
         {
             InitializeComponent();
+            this.userManagement = userManagement;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -30,23 +35,25 @@ namespace librarymanagement
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {            if (textBox1.Text == "admin" && textBox2.Text == "admin")
-            if (textBox1.Text == "admin" && textBox2.Text == "admin")
+        {
+            var user = userManagement.GetUserByCredentials(textBox1.Text, textBox2.Text);
+            if (user == null)
+            {
+                MessageBox.Show("Invalid username or password");
+                return;
+            }
+            Session.Login(user);
+            if (user.Role == Roles.Admin)
             {
                 AdminDashboard ad = new AdminDashboard();
                 ad.Show();
                 this.Hide();
             }
-            else if (textBox1.Text == "user" && textBox2.Text == "user")
-            {
-                UserDashboard userD = new UserDashboard("User");
-                userD.Show();
-                this.Hide();
-
-            }
             else
             {
-                MessageBox.Show("Invalid username or password");
+                UserDashboard userD = new UserDashboard(user.FullName);
+                userD.Show();
+                this.Hide();
             }
         }
 

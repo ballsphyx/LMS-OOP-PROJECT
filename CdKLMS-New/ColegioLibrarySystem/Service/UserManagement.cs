@@ -20,11 +20,11 @@ namespace ColegioLibrarySystem.Service
             _borrowDB = borrowDB;
         }
 
-        public bool RegisterUser(int userID, string username, string password, string fullName, Roles role)
+        public bool RegisterUser(string username, string password, string fullName, Roles role)
         {
-            if (_userDB.GetUsersByID(userID).Rows.Count > 0)
+            if (_userDB.GetUsersByFullName(fullName).Rows.Count > 0)
                 return false;
-            Models.User newUser = new Models.User(userID, username, password, fullName, role);
+            Models.User newUser = new Models.User(0, username, password, fullName, role);
             return _userDB.RegisterUser(newUser);
         }
         public bool DeleteUser(int userID)

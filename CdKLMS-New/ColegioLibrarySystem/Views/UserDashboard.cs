@@ -36,8 +36,8 @@ namespace librarymanagement.views
 
             if (dialogResult == DialogResult.Yes)
             {
-                LoginForm login = new LoginForm();
-                login.Show();
+                //LoginForm login = new LoginForm();
+                //login.Show();
 
                 this.Close();
 

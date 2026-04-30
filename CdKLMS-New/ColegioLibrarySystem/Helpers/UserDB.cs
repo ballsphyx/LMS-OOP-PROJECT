@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -79,6 +79,15 @@ namespace ColegioLibrarySystem.Helpers
             var parameters = new MySqlParameter[]
             {
                 new MySqlParameter("@UserID", id)
+            };
+            return _databaseHelper.ExecuteQuery(query, parameters);
+        }
+        public DataTable GetUsersByFullName(string name)
+        {
+            string query = "SELECT ID, username, full_name, role FROM USERS WHERE full_name LIKE @Name";
+            var parameters = new MySqlParameter[]
+            {
+                new MySqlParameter("@Name", name)
             };
             return _databaseHelper.ExecuteQuery(query, parameters);
         }
