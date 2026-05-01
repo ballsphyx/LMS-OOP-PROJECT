@@ -9,23 +9,12 @@ namespace ColegioLibrarySystem.Models
 {
     public class User
     {
-        public int Id { get; set; }
-        public string Username { get; set; }
+        public int UserId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
-        public string FullName { get; set; }
         public Roles Role { get; set; }
-
-        public User(int id, string username, string password, string fullName, Roles role)
-        {
-            Id = id;
-            Username = username;
-            Password = password;
-            FullName = fullName;
-            Role = role;
-        }
-        public User()
-        {
-
-        }
+        public List<BorrowRecord> BorrowRecords { get; set; }
     }
 }

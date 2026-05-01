@@ -8,16 +8,13 @@ namespace ColegioLibrarySystem.Models
 {
     public class BorrowRecord
     {
-        public int BorrowId { get; set; }
-        public int BookID { get; set; }
-        public int CopyID { get; set; }
-        public int UserID { get; set; }
+        public int BorrowRecordId { get; set; }
         public DateTime BorrowDate { get; set; }
+        public DateTime DueDate { get; set; }
         public DateTime? ReturnDate { get; set; }
-        public BorrowRecord()
-        {
-
-        }
-
+        public int BookCopyId { get; set; }
+        public BookCopy BookCopy { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
     }
 }

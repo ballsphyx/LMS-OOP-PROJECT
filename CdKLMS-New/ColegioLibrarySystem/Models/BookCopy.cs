@@ -9,13 +9,12 @@ namespace ColegioLibrarySystem.Models
 {
     public class BookCopy
     {
-        public int CopyId { get; set; }
-        public int BookId { get; set; }
+        public int BookCopyId { get; set; }
         public Status CopyStatus { get; set; } 
-        public BookCopy(int bookID)
-        {
-            this.BookId = bookID;
-            CopyStatus = Status.Available;
-        }
+
+        public int BookId { get; set; }
+        public Book Book { get; set; }
+
+        public List<BorrowRecord> BorrowRecords { get; set; }
     }
 }
