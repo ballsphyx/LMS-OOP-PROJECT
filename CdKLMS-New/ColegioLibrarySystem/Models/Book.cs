@@ -14,6 +14,7 @@ namespace ColegioLibrarySystem.Models
         public string Category { get; set; }
         public DateTime PublicationDate { get; set; }
         public int TotalCopies { get; set; }
+        public List<BookCopy> BookCopies { get; set; }
         public Book(int bookID, string title, string author, string category, DateTime publicationDate, int totalCopies)
         {
             this.BookID = bookID;

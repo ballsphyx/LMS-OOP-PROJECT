@@ -14,6 +14,7 @@ namespace ColegioLibrarySystem.Models
         public string Password { get; set; }
         public string FullName { get; set; }
         public Roles Role { get; set; }
+        public List<BorrowRecord> BorrowRecords { get; set; }
 
         public User(int id, string username, string password, string fullName, Roles role)
         {

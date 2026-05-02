@@ -64,20 +64,45 @@ namespace ColegioLibrarySystem.Helpers
             return _databaseHelper.ExecuteNonQuery(query, param) > 0;
         }
 
-        public DataTable GetAllBooks()
+        public List<Book> GetAllBooks()
         {
             string query = "SELECT * FROM BOOKS";
-            return _databaseHelper.ExecuteQuery(query);
+            DataTable dt = _databaseHelper.ExecuteQuery(query);
+            List<Book> books = new List<Book>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                books.Add(new Book(
+                    Convert.ToInt32(row["bookId"]),
+                    row["title"].ToString(),
+                    row["author"].ToString(),
+                    row["category"].ToString(),
+                    Convert.ToDateTime(row["publicationDate"]),
+                    Convert.ToInt32(row["totalCopies"])
+                ));
+            }
+            return books;
         }
 
-        public DataTable GetBookByID(int bookID)
+
+        public Book GetBookByID(int bookID)
         {
             string query = "SELECT * FROM BOOKS WHERE bookId = @bookID";
             var param = new MySqlParameter[]
             {
                 new MySqlParameter("@bookID", bookID)
             };
-            return _databaseHelper.ExecuteQuery(query, param);
+            DataTable dt = _databaseHelper.ExecuteQuery(query, param);
+            if (dt.Rows.Count == 0) return null;
+
+            DataRow row = dt.Rows[0];
+
+            return new Book(Convert.ToInt32(row["bookId"]),
+                    row["title"].ToString(),
+                    row["author"].ToString(),
+                    row["category"].ToString(),
+                    Convert.ToDateTime(row["publicationDate"]),
+                    Convert.ToInt32(row["totalCopies"]));
         }
 
         public bool UpdateBook(Book book)
