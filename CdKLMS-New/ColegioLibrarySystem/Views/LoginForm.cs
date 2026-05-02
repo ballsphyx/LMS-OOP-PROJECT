@@ -7,11 +7,12 @@ namespace librarymanagement
 {
     public partial class LoginForm : Form
     {
-        private readonly UserManagement userManagement;
-        public LoginForm(UserManagement userManagement)
+
+        private readonly AppServices _services;
+        public LoginForm(AppServices services)
         {
             InitializeComponent();
-            this.userManagement = userManagement;
+            this._services = services;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -36,7 +37,7 @@ namespace librarymanagement
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var user = userManagement.GetUserByCredentials(textBox1.Text, textBox2.Text);
+            var user = _services.UserManagement.GetUserByCredentials(textBox1.Text, textBox2.Text);
             if (user == null)
             {
                 MessageBox.Show("Invalid username or password");
@@ -45,13 +46,13 @@ namespace librarymanagement
             Session.Login(user);
             if (user.Role == Roles.Admin)
             {
-                AdminDashboard ad = new AdminDashboard();
+                AdminDashboard ad = new AdminDashboard(_services);
                 ad.Show();
                 this.Hide();
             }
             else
             {
-                UserDashboard userD = new UserDashboard(user.FullName);
+                UserDashboard userD = new UserDashboard(_services);
                 userD.Show();
                 this.Hide();
             }

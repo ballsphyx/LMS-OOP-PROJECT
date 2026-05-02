@@ -6,14 +6,17 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using ColegioLibrarySystem.Service;
 
 namespace librarymanagement.views
 {
     public partial class adminDashpanUser : Form
     {
-        public adminDashpanUser()
+        private readonly AppServices _services;
+        public adminDashpanUser(AppServices services)
         {
             InitializeComponent();
+            _services = services;
         }
 
         private void adminDashpanUser_Load(object sender, EventArgs e)

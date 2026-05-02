@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ColegioLibrarySystem.Service;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,9 +11,11 @@ namespace librarymanagement.views
 {
     public partial class adminDashpanBooks : Form
     {
-        public adminDashpanBooks()
+        private readonly AppServices _services;
+        public adminDashpanBooks(AppServices services)
         {
             InitializeComponent();
+            _services = services;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

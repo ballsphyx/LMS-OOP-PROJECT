@@ -5,14 +5,18 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using ColegioLibrarySystem.Service;
 
 namespace librarymanagement.views
 {
     public partial class AdminDashboard : Form
     {
-        public AdminDashboard()
+        private readonly AppServices _services;
+
+        public AdminDashboard(AppServices services)
         {
             InitializeComponent();
+            _services = services;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -28,7 +32,6 @@ namespace librarymanagement.views
         {
 
         }
-
         private void label2_Click(object sender, EventArgs e)
         {
 
@@ -46,12 +49,12 @@ namespace librarymanagement.views
 
         private void button3_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            AdminDashboard a = new AdminDashboard();
+            AdminDashboard a = new AdminDashboard(_services);
             a.TopLevel = false;
             contentpnl.Controls.Add(a);
             a.BringToFront();
@@ -60,7 +63,7 @@ namespace librarymanagement.views
 
         private void btnBooks_Click(object sender, EventArgs e)
         {
-            adminDashpanBooks b = new adminDashpanBooks();
+            adminDashpanBooks b = new adminDashpanBooks(_services);
             b.TopLevel = false;
             contentpnl.Controls.Add(b);
             b.BringToFront();
@@ -70,7 +73,7 @@ namespace librarymanagement.views
 
         private void btnUser_Click(object sender, EventArgs e)
         {
-            adminDashpanUser u = new adminDashpanUser();
+            adminDashpanUser u = new adminDashpanUser(_services);
             u.TopLevel = false;
             contentpnl.Controls.Add(u);
             u.BringToFront();
@@ -83,12 +86,10 @@ namespace librarymanagement.views
 
             if (dialogResult == DialogResult.Yes)
             {
-               // LoginForm login = new LoginForm();
-                //login.Show();
+                LoginForm login = new LoginForm(_services);
+                login.Show();
 
                 this.Close();
-
-
             }
         }
     }

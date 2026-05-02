@@ -41,8 +41,9 @@
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(907, 61);
+            panel1.Size = new Size(1037, 81);
             panel1.TabIndex = 0;
             // 
             // label1
@@ -51,9 +52,9 @@
             label1.BackColor = Color.Snow;
             label1.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(228, 0, 124);
-            label1.Location = new Point(381, 20);
+            label1.Location = new Point(435, 27);
             label1.Name = "label1";
-            label1.Size = new Size(156, 23);
+            label1.Size = new Size(198, 28);
             label1.TabIndex = 0;
             label1.Text = "My Transactions";
             // 
@@ -62,20 +63,23 @@
             dtaGrdVwTrnsc.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dtaGrdVwTrnsc.BackgroundColor = Color.Snow;
             dtaGrdVwTrnsc.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtaGrdVwTrnsc.Location = new Point(12, 79);
+            dtaGrdVwTrnsc.Location = new Point(14, 105);
+            dtaGrdVwTrnsc.Margin = new Padding(3, 4, 3, 4);
             dtaGrdVwTrnsc.Name = "dtaGrdVwTrnsc";
-            dtaGrdVwTrnsc.Size = new Size(883, 547);
+            dtaGrdVwTrnsc.RowHeadersWidth = 51;
+            dtaGrdVwTrnsc.Size = new Size(1009, 729);
             dtaGrdVwTrnsc.TabIndex = 1;
             // 
             // userTRDashpan
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Snow;
-            ClientSize = new Size(907, 638);
+            ClientSize = new Size(1037, 851);
             Controls.Add(dtaGrdVwTrnsc);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "userTRDashpan";
             Text = "userTRDashpan";
             panel1.ResumeLayout(false);

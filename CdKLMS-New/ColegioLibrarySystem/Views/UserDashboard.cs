@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ColegioLibrarySystem.Service;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,13 +12,11 @@ namespace librarymanagement.views
 {
     public partial class UserDashboard : Form
     {
-        public string UserRole = "User";
-        public UserDashboard(string role)
+        private readonly AppServices _services;
+        public UserDashboard(AppServices services)
         {
-           
-
+            _services = services;
             InitializeComponent();
-            UserRole = role;
         }
 
         private void btnBooks_Click(object sender, EventArgs e)
@@ -36,8 +35,8 @@ namespace librarymanagement.views
 
             if (dialogResult == DialogResult.Yes)
             {
-                //LoginForm login = new LoginForm();
-                //login.Show();
+                LoginForm login = new LoginForm(_services);
+                login.Show();
 
                 this.Close();
 
