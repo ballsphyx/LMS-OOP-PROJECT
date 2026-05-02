@@ -1,9 +1,11 @@
-﻿using System;
+﻿using ColegioLibrarySystem.GlobalEnums;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ColegioLibrarySystem.GlobalEnums;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ColegioLibrarySystem.Models
 {
@@ -15,18 +17,5 @@ namespace ColegioLibrarySystem.Models
         public string FullName { get; set; }
         public Roles Role { get; set; }
         public List<BorrowRecord> BorrowRecords { get; set; }
-
-        public User(int id, string username, string password, string fullName, Roles role)
-        {
-            Id = id;
-            Username = username;
-            Password = password;
-            FullName = fullName;
-            Role = role;
-        }
-        public User()
-        {
-
-        }
     }
 }

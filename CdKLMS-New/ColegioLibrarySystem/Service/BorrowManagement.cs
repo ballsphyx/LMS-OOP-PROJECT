@@ -23,20 +23,20 @@ namespace ColegioLibrarySystem.Service
         }
         public bool BorrowBook(int userID, int bookID, Roles role)
         {
-            if (_userDB.GetUsersByID(userID).Rows.Count == 0) return false;
-            if (_bookDB.GetBookByID(bookID).Rows.Count == 0) return false;
-            if (role == Roles.Student && _borrowDB.HasActiveBorrow(userID)) return false;
+            if (_userDB.GetUsersByID(userID) == null) return false; //if user does not exist, exit method
+            if (_bookDB.GetBookByID(bookID) == null) return false; //if book does not exist, exit method
+            if (role == Roles.Student && _borrowDB.HasActiveBookBorrow(userID, bookID)) return false; //if role is student and is currently borrowing the book, exit method
 
             int copyID = _bookDB.GetAvailableCopy(bookID);
             if (copyID == -1) return false;
-            if (_borrowDB.HasBorrowedCopy(userID, copyID)) return false;
 
             BorrowRecord record = new BorrowRecord
             {
                 UserID = userID,
                 BookID = bookID,
                 CopyID = copyID,
-                BorrowDate = DateTime.Now
+                BorrowDate = DateTime.Now,
+                DueDate = DateTime.Now.AddDays(7)
             };
 
             _bookDB.UpdateCopyStatus(copyID, Status.Unavailable);
@@ -64,7 +64,7 @@ namespace ColegioLibrarySystem.Service
             return success;
         }
 
-        public DataTable GetAllBorrows()
+        public DataTable GetAllBorrows() 
         {
             return _borrowDB.GetAllBorrows();
         }

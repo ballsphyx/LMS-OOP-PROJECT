@@ -20,23 +20,25 @@ namespace ColegioLibrarySystem.Helpers
 
         public bool AddBook(Book book)
         {
-            string bookQuery = @"INSERT INTO BOOKS (bookId, title, author, category, publicationDate, totalCopies)
+            string bookQuery = @"INSERT INTO BOOKS (title, author, category, publicationDate, totalCopies)
                          VALUES (@BookID, @Title, @Author, @Category, @PublicationDate, @TotalCopies)";
             var bookParams = new MySqlParameter[]
             {
-        new MySqlParameter("@BookID", book.BookID),
-        new MySqlParameter("@Title", book.Title),
-        new MySqlParameter("@Author", book.Author),
-        new MySqlParameter("@Category", book.Category),
-        new MySqlParameter("@PublicationDate", book.PublicationDate),
-        new MySqlParameter("@TotalCopies", book.TotalCopies)
+                new MySqlParameter("@Title", book.Title),
+                new MySqlParameter("@Author", book.Author),
+                new MySqlParameter("@Category", book.Category),
+                new MySqlParameter("@PublicationDate", book.PublicationDate),
+                new MySqlParameter("@TotalCopies", book.TotalCopies)
             };
 
-            int rowsAffected = _databaseHelper.ExecuteNonQuery(bookQuery, bookParams);
-            if (rowsAffected == 0) return false;
+            int newBookId = _databaseHelper.ExecuteNonQueryGetID(bookQuery, bookParams);
+            if (newBookId == 0) return false;
 
             for (int i = 0; i < book.TotalCopies; i++)
-                if (!AddBookCopy(new BookCopy(book.BookID))) return false;
+            {
+                var copy = new BookCopy { BookId = newBookId, CopyStatus = Status.Available };
+
+            }
 
             return true;
         }
@@ -84,7 +86,6 @@ namespace ColegioLibrarySystem.Helpers
             return books;
         }
 
-
         public Book GetBookByID(int bookID)
         {
             string query = "SELECT * FROM BOOKS WHERE bookId = @bookID";
@@ -93,6 +94,22 @@ namespace ColegioLibrarySystem.Helpers
                 new MySqlParameter("@bookID", bookID)
             };
             DataTable dt = _databaseHelper.ExecuteQuery(query, param);
+            if (dt.Rows.Count == 0) return null;
+
+            DataRow row = dt.Rows[0];
+
+            return new Book(Convert.ToInt32(row["bookId"]),
+                    row["title"].ToString(),
+                    row["author"].ToString(),
+                    row["category"].ToString(),
+                    Convert.ToDateTime(row["publicationDate"]),
+                    Convert.ToInt32(row["totalCopies"]));
+        }
+        public Book GetBookByTitle(string title)
+        {
+            string query = "SELECT FROM BOOKS WHERE title = @Title";
+            var param = new MySqlParameter[] { new MySqlParameter("title", title) };
+            var dt = _databaseHelper.ExecuteQuery(query,param);
             if (dt.Rows.Count == 0) return null;
 
             DataRow row = dt.Rows[0];

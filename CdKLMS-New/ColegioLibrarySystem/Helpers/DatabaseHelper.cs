@@ -67,5 +67,28 @@ namespace ColegioLibrarySystem.Helpers
             }
             return rowsAffected;
         }
+        public int ExecuteNonQueryGetID(string query, MySqlParameter[] parameters = null)
+        {
+            int newID = 0;
+            using (MySqlConnection conn = GetConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    if (parameters != null)
+                        cmd.Parameters.AddRange(parameters);
+                    try
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        newID = (int)cmd.LastInsertedId;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Database Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            return newID;
+        }
     }
 }

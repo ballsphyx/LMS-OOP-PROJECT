@@ -8,6 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using User = ColegioLibrarySystem.Models.User;
 namespace ColegioLibrarySystem.Service
 {
     public class UserManagement
@@ -22,47 +23,47 @@ namespace ColegioLibrarySystem.Service
 
         public bool RegisterUser(string username, string password, string fullName, Roles role)
         {
-            if (_userDB.GetUsersByFullName(fullName).Rows.Count > 0)
+            if (_userDB.GetUserByUsername(username) != null) //if user already exists, exit method
                 return false;
-            Models.User newUser = new Models.User(0, username, password, fullName, role);
+            User newUser = new User
+            {
+                Username = username,
+                Password = password,
+                FullName = fullName,
+                Role = role
+            };
             return _userDB.RegisterUser(newUser);
         }
         public bool DeleteUser(int userID)
         {
             if (_borrowDB.HasActiveBorrow(userID))
                 return false;
-            if (_userDB.GetUsersByID(userID).Rows.Count == 0)
+            if (_userDB.GetUsersByID(userID) == null) //if user does not exist, exit method
                 return false;
             return _userDB.DeleteUser(userID);
         }
         public bool UpdateUser(int userID, string username, string password, string fullName, Roles role)
         {
-            if (_userDB.GetUsersByID(userID).Rows.Count == 0)
+            if (_userDB.GetUsersByID(userID) == null) //if user does not exist, exit method
                 return false;
-            Models.User updatedUser = new Models.User(userID, username, password, fullName, role);
+            User updatedUser = new User
+            {
+                Username = username,
+                Password = password,
+                FullName = fullName,
+                Role = role
+            };
             return _userDB.UpdateUser(updatedUser);
         }
-        public DataTable GetAllUsers()
+        public List<User> GetAllUsers()
         {
             return _userDB.GetAllUsers();
         }
-        public Models.User GetUserByCredentials(string username, string password)
+        public User GetUserByCredentials(string username, string password)
         {
-            DataTable dt = _userDB.GetUsersByCredentials(username, password);
-
-            if (dt.Rows.Count == 0)
-                return null;
-
-            DataRow row = dt.Rows[0];
-            return new Models.User
-            {
-                Id = Convert.ToInt32(row["ID"]),
-                Username = row["username"].ToString(),
-                FullName = row["full_name"].ToString(),
-                Role = (Roles)Enum.Parse(typeof(Roles), row["role"].ToString())
-            };
+            return _userDB.GetUsersByCredentials(username, password);
         }
-        public DataTable GetUserByID(int userID)
+        public User GetUserByID(int userID)
         {
             return _userDB.GetUsersByID(userID);
         }

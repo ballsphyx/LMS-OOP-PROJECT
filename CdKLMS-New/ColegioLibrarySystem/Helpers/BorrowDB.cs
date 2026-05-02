@@ -19,21 +19,22 @@ namespace ColegioLibrarySystem.Helpers
         }
         public bool AddBorrowRecord(BorrowRecord record)
         {
-            string query = @"INSERT INTO BORROWS (user_id, book_id, copy_id, borrow_date, return_date)
-                     VALUES (@UserID, @BookID, @CopyID, @BorrowDate, NULL)";
+            string query = @"INSERT INTO BORROWRECORD (user_id, book_id, copy_id, borrow_date, due_date, return_date)
+                     VALUES (@UserID, @BookID, @CopyID, @BorrowDate, @DueDate, NULL)";
             var parameters = new MySqlParameter[]
             {
-        new MySqlParameter("@UserID", record.UserID),
-        new MySqlParameter("@BookID", record.BookID),
-        new MySqlParameter("@CopyID", record.CopyID),
-        new MySqlParameter("@BorrowDate", record.BorrowDate)
+                new MySqlParameter("@UserID", record.UserID),
+                new MySqlParameter("@BookID", record.BookID),
+                new MySqlParameter("@CopyID", record.CopyID),
+                new MySqlParameter("@BorrowDate", record.BorrowDate),
+                new MySqlParameter("@DueDate", record.DueDate),
             };
             return _databaseHelper.ExecuteNonQuery(query, parameters) > 0;
         }
 
         public bool UpdateReturnDate(BorrowRecord record)
         {
-            string query = @"UPDATE BORROWS SET return_date = @ReturnDate 
+            string query = @"UPDATE BORROWRECORD SET return_date = @ReturnDate 
                      WHERE borrow_id = @BorrowID";
             var parameters = new MySqlParameter[]
             {
@@ -45,7 +46,7 @@ namespace ColegioLibrarySystem.Helpers
 
         public bool BorrowExists(int borrowID)
         {
-            string query = "SELECT * FROM BORROWS WHERE borrow_id = @BorrowID";
+            string query = "SELECT * FROM BORROWRECORD WHERE borrow_id = @BorrowID";
             var parameters = new MySqlParameter[]
             {
                 new MySqlParameter("@BorrowID", borrowID)
@@ -54,13 +55,27 @@ namespace ColegioLibrarySystem.Helpers
             return dt.Rows.Count > 0;
         }
 
-        public bool HasActiveBorrow(int userID)
+        public bool HasEverBorrowedBook(int userID, int bookID)
         {
-            string query = @"SELECT * FROM BORROWS 
-                             WHERE user_id = @UserID AND return_date IS NULL";
+            string query = @"SELECT * FROM BORROWRECORD 
+                     WHERE user_id = @UserID AND book_id = @BookID";
             var parameters = new MySqlParameter[]
             {
-                new MySqlParameter("@UserID", userID)
+                new MySqlParameter("@UserID", userID),
+                new MySqlParameter("@BookID", bookID)
+            };
+            DataTable dt = _databaseHelper.ExecuteQuery(query, parameters);
+            return dt.Rows.Count > 0;
+        }
+        public bool HasActiveBookBorrow(int userID, int bookID)
+        {
+            string query = @"SELECT * FROM BORROWRECORD
+                     WHERE user_id = @UserID AND book_id = @BookID 
+                     AND return_date IS NULL";
+            var parameters = new MySqlParameter[]
+            {
+                new MySqlParameter("@UserID", userID),
+                new MySqlParameter("@BookID", bookID)
             };
             DataTable dt = _databaseHelper.ExecuteQuery(query, parameters);
             return dt.Rows.Count > 0;
@@ -68,7 +83,7 @@ namespace ColegioLibrarySystem.Helpers
 
         public bool HasBorrowedCopy(int userID, int copyID)
         {
-            string query = @"SELECT * FROM BORROWS 
+            string query = @"SELECT * FROM BORROWRECORD 
                              WHERE user_id = @UserID AND copy_id = @CopyID AND return_date IS NULL";
             var parameters = new MySqlParameter[]
             {
@@ -81,7 +96,7 @@ namespace ColegioLibrarySystem.Helpers
 
         public int GetCopyID(int borrowID)
         {
-            string query = "SELECT copy_id FROM BORROWS WHERE borrow_id = @BorrowID";
+            string query = "SELECT copy_id FROM BORROWRECORD WHERE borrow_id = @BorrowID";
             var parameters = new MySqlParameter[]
             {
                 new MySqlParameter("@BorrowID", borrowID)
@@ -128,6 +143,17 @@ namespace ColegioLibrarySystem.Helpers
                 new MySqlParameter("@UserID", userID)
             };
             return _databaseHelper.ExecuteQuery(query, parameters);
+        }
+        public bool HasActiveBorrow(int userID)
+        {
+            string query = @"SELECT * FROM BORROWRECORD 
+                     WHERE user_id = @UserID AND return_date IS NULL";
+            var parameters = new MySqlParameter[]
+            {
+                new MySqlParameter("@UserID", userID)
+            };
+            DataTable dt = _databaseHelper.ExecuteQuery(query, parameters);
+            return dt.Rows.Count > 0;
         }
     }
 }

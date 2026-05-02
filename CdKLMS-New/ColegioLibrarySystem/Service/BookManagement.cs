@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ColegioLibrarySystem.Helpers;
 using ColegioLibrarySystem.Models;
+using ColegioLibrarySystem.GlobalEnums;
 
 namespace ColegioLibrarySystem.Service
 {
@@ -17,10 +18,10 @@ namespace ColegioLibrarySystem.Service
         {
             _bookDB = bookDB;
         }
-        public bool AddBook(int bookID, string title, string author, string category, DateTime publicationDate, int totalCopies)
+        public bool AddBook(string title, string author, string category, DateTime publicationDate, int totalCopies)
         {
-            if (_bookDB.GetBookByID(bookID) != null) return false; //if book exists, stop method
-            Book newBook = new Book(bookID, title, author, category, publicationDate, totalCopies);
+            if (_bookDB.GetBookByTitle(title) != null) return false; //if book exists, stop method
+            Book newBook = new Book(title, author, category, publicationDate, totalCopies);
             return _bookDB.AddBook(newBook);
         }
         public bool AddBookCopy(int bookID)
@@ -29,7 +30,7 @@ namespace ColegioLibrarySystem.Service
             {
                 return false;
             }
-            BookCopy newCopy = new BookCopy(bookID);
+            BookCopy newCopy = new BookCopy { BookId = bookID, CopyStatus = Status.Available};
             return _bookDB.AddBookCopy(newCopy);
         }
         public bool UpdateBook(int bookID, string title, string author, string category, DateTime publicationDate, int totalCopies)

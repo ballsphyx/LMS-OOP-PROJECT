@@ -24,5 +24,13 @@ namespace ColegioLibrarySystem.Models
             this.PublicationDate = publicationDate;
             this.TotalCopies = totalCopies;
         }
+        public Book(string title, string author, string category, DateTime publicationDate, int totalCopies)
+        {
+            this.Title = title;
+            this.Author = author;
+            this.Category = category;
+            this.PublicationDate = publicationDate;
+            this.TotalCopies = totalCopies;
+        }
     }
 }

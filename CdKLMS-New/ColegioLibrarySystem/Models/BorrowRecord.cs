@@ -18,10 +18,5 @@ namespace ColegioLibrarySystem.Models
         public Book Book { get; set; }
         public User User { get; set; }
         public BookCopy BookCopy { get; set; }
-        public BorrowRecord()
-        {
-
-        }
-
     }
 }
