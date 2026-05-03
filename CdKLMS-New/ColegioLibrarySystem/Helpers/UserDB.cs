@@ -62,7 +62,7 @@ namespace ColegioLibrarySystem.Helpers
         public List<User> GetAllUsers()
         {
             string query = "SELECT user_id, username, full_name, role FROM USERS";
-            DataTable dt = _databaseHelper.ExecuteQuery(query, null);
+            DataTable dt = _databaseHelper.ExecuteQuery(query);
             List<User> users = new List<User>();
 
             foreach (DataRow row in dt.Rows)

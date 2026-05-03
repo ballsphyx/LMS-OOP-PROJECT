@@ -1,4 +1,5 @@
-﻿using ColegioLibrarySystem.Service;
+﻿using ColegioLibrarySystem.GlobalEnums;
+using ColegioLibrarySystem.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,7 @@ namespace librarymanagement.views
         {
             InitializeComponent();
             this._userManagement = userManagement;
+            comboRole.DataSource = Enum.GetValues(typeof(Roles));
         }
 
         private void adminDashpanUser_Load(object sender, EventArgs e)
@@ -34,15 +36,68 @@ namespace librarymanagement.views
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void AddUser(object sender, EventArgs e)
         {
-            MessageBox.Show("User Added");
-            ClearFields();
+            var name = textName.Text.Trim();
+            var username = textUserName.Text.Trim();
+            var pass = textPass.Text.Trim();
+            Roles role = (Roles)comboRole.SelectedItem;
+
+            if (String.IsNullOrEmpty(name) || String.IsNullOrEmpty(username))
+            {
+                MessageBox.Show("Fields must not be empty or blank", "Null Input",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            if (name.Any(char.IsDigit))
+            {
+                MessageBox.Show("Name must not contain any digits", "Invalid Input",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            bool success = _userManagement.RegisterUser(username, pass, name, role);
+            if (success)
+            {
+                MessageBox.Show("User Added"); 
+            }
+            else
+            {
+                MessageBox.Show("An error occured during operation", "Error!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error); 
+            }
+                ClearFields();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("User Updated");
+            var name = textName.Text.Trim();
+            var username = textUserName.Text.Trim();
+            var pass = textPass.Text.Trim();
+            Roles role = (Roles)comboRole.SelectedItem;
+
+            if (String.IsNullOrEmpty(name) || String.IsNullOrEmpty(username))
+            {
+                MessageBox.Show("Fields must not be empty or blank", "Null Input",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            if (name.Any(char.IsDigit))
+            {
+                MessageBox.Show("Name must not contain any digits", "Invalid Input",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            ////bool success = _userManagement.UpdateUser(username, pass, name, role);//
+            //if (success)
+            //{
+            //    MessageBox.Show("User Added");
+            //}
+            //else
+            //{
+            //    MessageBox.Show("An error occured during operation", "Error!",
+            //        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+            //ClearFields();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -51,10 +106,10 @@ namespace librarymanagement.views
         }
         private void ClearFields()
         {
-            textBox1.Clear();
-            textBox2.Clear();
-            textBox3.Clear();
-            comboBox1.SelectedIndex = -1;
+            textUserName.Clear();
+            textName.Clear();
+            textPass.Clear();
+            comboRole.SelectedIndex = -1;
         }
     }
 }

@@ -79,7 +79,7 @@ namespace ColegioLibrarySystem.Helpers
                     Convert.ToInt32(row["bookId"]),
                     row["title"].ToString(),
                     row["author"].ToString(),
-                    row["category"].ToString(),
+                    (Category)Enum.Parse(typeof(Category), row["category"].ToString()),
                     Convert.ToDateTime(row["publicationDate"]),
                     Convert.ToInt32(row["totalCopies"])
                 ));
@@ -102,7 +102,7 @@ namespace ColegioLibrarySystem.Helpers
             return new Book(Convert.ToInt32(row["bookId"]),
                     row["title"].ToString(),
                     row["author"].ToString(),
-                    row["category"].ToString(),
+                    (Category)Enum.Parse(typeof(Category), row["category"].ToString()),
                     Convert.ToDateTime(row["publicationDate"]),
                     Convert.ToInt32(row["totalCopies"]));
         }
@@ -118,7 +118,7 @@ namespace ColegioLibrarySystem.Helpers
             return new Book(Convert.ToInt32(row["bookId"]),
                     row["title"].ToString(),
                     row["author"].ToString(),
-                    row["category"].ToString(),
+                    (Category)Enum.Parse(typeof(Category), row["category"].ToString()),
                     Convert.ToDateTime(row["publicationDate"]),
                     Convert.ToInt32(row["totalCopies"]));
         }
