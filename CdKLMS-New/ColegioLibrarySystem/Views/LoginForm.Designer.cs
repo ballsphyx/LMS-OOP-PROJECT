@@ -111,7 +111,7 @@
             button1.ForeColor = Color.FromArgb(240, 243, 250);
             button1.Name = "button1";
             button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            button1.Click += LoginButton;
             // 
             // label4
             // 

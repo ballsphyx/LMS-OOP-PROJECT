@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ColegioLibrarySystem.Service;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,9 +12,11 @@ namespace librarymanagement.views
 {
     public partial class adminDashpanUser : Form
     {
-        public adminDashpanUser()
+        private readonly UserManagement _userManagement;
+        public adminDashpanUser(UserManagement userManagement)
         {
             InitializeComponent();
+            this._userManagement = userManagement;
         }
 
         private void adminDashpanUser_Load(object sender, EventArgs e)

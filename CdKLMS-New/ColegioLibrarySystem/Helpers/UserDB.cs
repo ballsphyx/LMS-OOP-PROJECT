@@ -36,7 +36,7 @@ namespace ColegioLibrarySystem.Helpers
         }
         public bool DeleteUser(int userID)
         {
-            string query = "DELETE FROM USERS WHERE ID = @UserID";
+            string query = "DELETE FROM USERS WHERE user_id = @UserID";
             var param = new MySqlParameter[]
             {
                 new MySqlParameter("@UserID", userID)
@@ -46,7 +46,7 @@ namespace ColegioLibrarySystem.Helpers
         public bool UpdateUser(User user)
         {
             string query = @"UPDATE USERS SET username = @Username, password = @Password, full_name = @FullName, role = @Role
-                             WHERE ID = @UserID";
+                             WHERE user_id = @UserID";
 
             var parameters = new MySqlParameter[]
             {
@@ -61,7 +61,7 @@ namespace ColegioLibrarySystem.Helpers
         }
         public List<User> GetAllUsers()
         {
-            string query = "SELECT id, username, full_name, role FROM USERS";
+            string query = "SELECT user_id, username, full_name, role FROM USERS";
             DataTable dt = _databaseHelper.ExecuteQuery(query, null);
             List<User> users = new List<User>();
 
@@ -69,7 +69,7 @@ namespace ColegioLibrarySystem.Helpers
             {
                 users.Add(new User
                 {
-                    Id = Convert.ToInt32(row["id"]),
+                    Id = Convert.ToInt32(row["user_id"]),
                     Username = row["username"].ToString(),
                     FullName = row["full_name"].ToString(),
                     Role = (Roles)Convert.ToInt32(row["role"])
@@ -80,7 +80,7 @@ namespace ColegioLibrarySystem.Helpers
         }
         public User GetUsersByCredentials(string username, string password)
         {
-            string query = "SELECT ID, username, full_name, role FROM USERS WHERE username = @Username AND password = @Password";
+            string query = "SELECT user_id, username, full_name, role FROM USERS WHERE username = @Username AND password = @Password";
             var parameters = new MySqlParameter[]
             {
                 new MySqlParameter("@Username", username),
@@ -92,7 +92,7 @@ namespace ColegioLibrarySystem.Helpers
             DataRow row = dt.Rows[0];
             return new User
             {
-                Id = Convert.ToInt32(row["id"]),
+                Id = Convert.ToInt32(row["user_id"]),
                 Username = row["username"].ToString(),
                 FullName = row["full_name"].ToString(),
                 Password = row["password"].ToString(),
@@ -102,7 +102,7 @@ namespace ColegioLibrarySystem.Helpers
         }
         public User GetUsersByID(int id)
         {
-            string query = "SELECT id, username, full_name, role FROM USERS WHERE id = @UserID";
+            string query = "SELECT user_id, username, full_name, role FROM USERS WHERE id = @UserID";
             var parameters = new MySqlParameter[]
             {
         new MySqlParameter("@UserID", id)
@@ -114,7 +114,7 @@ namespace ColegioLibrarySystem.Helpers
             DataRow row = dt.Rows[0];
             return new User
             {
-                Id = Convert.ToInt32(row["id"]),
+                Id = Convert.ToInt32(row["user_id"]),
                 Username = row["username"].ToString(),
                 FullName = row["full_name"].ToString(),
                 Role = (Roles)Convert.ToInt32(row["role"])
@@ -123,7 +123,7 @@ namespace ColegioLibrarySystem.Helpers
 
         public List<User> GetUsersByFullName(string name)
         {
-            string query = "SELECT id, username, full_name, role FROM USERS WHERE full_name LIKE @Name";
+            string query = "SELECT user_id, username, full_name, role FROM USERS WHERE full_name LIKE @Name";
             var parameters = new MySqlParameter[]
             {
         new MySqlParameter("@Name", $"%{name}%") // % wildcards for partial match
@@ -135,7 +135,7 @@ namespace ColegioLibrarySystem.Helpers
             {
                 users.Add(new User
                 {
-                    Id = Convert.ToInt32(row["id"]),
+                    Id = Convert.ToInt32(row["user_id"]),
                     Username = row["username"].ToString(),
                     FullName = row["full_name"].ToString(),
                     Role = (Roles)Convert.ToInt32(row["role"])
@@ -145,7 +145,7 @@ namespace ColegioLibrarySystem.Helpers
         }
         public User GetUserByUsername(string username)
         {
-            string query = "SELECT id, username, full_name, role FROM USERS WHERE username = @Username";
+            string query = "SELECT user_id, username, full_name, role FROM USERS WHERE username = @Username";
             var parameters = new MySqlParameter[]
             {
                 new MySqlParameter("@Username", username)
@@ -157,7 +157,7 @@ namespace ColegioLibrarySystem.Helpers
             DataRow row = dt.Rows[0];
             return new User
             {
-                Id = Convert.ToInt32(row["id"]),
+                Id = Convert.ToInt32(row["user_id"]),
                 Username = row["username"].ToString(),
                 FullName = row["full_name"].ToString(),
                 Role = (Roles)Convert.ToInt32(row["role"])

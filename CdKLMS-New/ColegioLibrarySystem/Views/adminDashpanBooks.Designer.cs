@@ -103,7 +103,7 @@
             button1.TabIndex = 11;
             button1.Text = "ADD";
             button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            button1.Click += AddBook;
             // 
             // button2
             // 
@@ -119,7 +119,7 @@
             button2.TabIndex = 12;
             button2.Text = "DELETE";
             button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            button2.Click += DeleteBook;
             // 
             // button3
             // 
@@ -135,7 +135,7 @@
             button3.TabIndex = 13;
             button3.Text = "UPDATE";
             button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
+            button3.Click += UpdateBook;
             // 
             // button4
             // 
@@ -151,7 +151,7 @@
             button4.TabIndex = 14;
             button4.Text = "CLEAR";
             button4.UseVisualStyleBackColor = false;
-            button4.Click += button4_Click;
+            button4.Click += ClearField;
             // 
             // label1
             // 

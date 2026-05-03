@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ColegioLibrarySystem.Models;
+using ColegioLibrarySystem.Service;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,9 +12,11 @@ namespace librarymanagement.views
 {
     public partial class adminDashpanBooks : Form
     {
-        public adminDashpanBooks()
+        private readonly BookManagement _bookManagement;
+        public adminDashpanBooks(BookManagement bookManagement)
         {
             InitializeComponent();
+            this._bookManagement = bookManagement;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -25,7 +29,7 @@ namespace librarymanagement.views
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void UpdateBook(object sender, EventArgs e)
         {
             MessageBox.Show("Updated Book");
         }
@@ -50,18 +54,34 @@ namespace librarymanagement.views
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void AddBook(object sender, EventArgs e)
         {
-            MessageBox.Show("Added Book");
-            ClearFields();
+            var title = textBox1.Text;
+            var author = textBox2.Text;
+            if (author.Any(char.IsDigit))
+            {
+                MessageBox.Show("Author name should not contain any numbers", "Invalid Input",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            //var success = _bookManagement.AddBook(title, author, )
+            //if (success)
+            //{
+            //    MessageBox.Show("Added Book");
+            //    ClearFields();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("An error occured during operation", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void DeleteBook(object sender, EventArgs e)
         {
             MessageBox.Show("Deleted Book");
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void ClearField(object sender, EventArgs e)
         {
             ClearFields();
         }

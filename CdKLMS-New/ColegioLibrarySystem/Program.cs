@@ -13,11 +13,18 @@ namespace ColegioLibrarySystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             DatabaseHelper databaseHelper = new DatabaseHelper();
-            BorrowDB borrowDB = new BorrowDB(databaseHelper);
-            UserDB userDB = new UserDB(databaseHelper);
+
+            BookDB bookDB = new(databaseHelper);
+            BorrowDB borrowDB = new (databaseHelper);
+            UserDB userDB = new (databaseHelper);
+
             UserManagement userManagement = new UserManagement(userDB, borrowDB);
-            Application.Run(new librarymanagement.LoginForm(userManagement));
+            BookManagement bookManagement = new BookManagement(bookDB);
+            BorrowManagement borrowManagement = new BorrowManagement (borrowDB, bookDB, userDB);
+
+            Application.Run(new librarymanagement.LoginForm(userManagement, borrowManagement, bookManagement));
         }
     }
 }

@@ -8,10 +8,14 @@ namespace librarymanagement
     public partial class LoginForm : Form
     {
         private readonly UserManagement userManagement;
-        public LoginForm(UserManagement userManagement)
+        private readonly BorrowManagement borrowManagement;
+        private readonly BookManagement bookManagement;
+        public LoginForm(UserManagement userManagement, BorrowManagement borrowManagement, BookManagement bookManagement)
         {
             InitializeComponent();
             this.userManagement = userManagement;
+            this.borrowManagement = borrowManagement;
+            this.bookManagement = bookManagement;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -34,7 +38,7 @@ namespace librarymanagement
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void LoginButton(object sender, EventArgs e)
         {
             var user = userManagement.GetUserByCredentials(textBox1.Text, textBox2.Text);
             if (user == null)
@@ -47,7 +51,7 @@ namespace librarymanagement
 
             if (user.Role == Roles.Admin)
             {
-                AdminDashboard ad = new AdminDashboard();
+                AdminDashboard ad = new AdminDashboard(userManagement, bookManagement, borrowManagement);
                 ad.Show();
                 this.Hide();
             }

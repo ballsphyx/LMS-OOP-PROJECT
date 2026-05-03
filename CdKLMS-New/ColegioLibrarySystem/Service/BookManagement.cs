@@ -18,10 +18,10 @@ namespace ColegioLibrarySystem.Service
         {
             _bookDB = bookDB;
         }
-        public bool AddBook(string title, string author, string category, DateTime publicationDate, int totalCopies)
+        public bool AddBook(string title, string author, Category category, DateTime publicationDate, int totalCopies, string ISBN)
         {
             if (_bookDB.GetBookByTitle(title) != null) return false; //if book exists, stop method
-            Book newBook = new Book(title, author, category, publicationDate, totalCopies);
+            Book newBook = new Book(title, author, category, publicationDate, totalCopies, ISBN);
             return _bookDB.AddBook(newBook);
         }
         public bool AddBookCopy(int bookID)
@@ -33,7 +33,7 @@ namespace ColegioLibrarySystem.Service
             BookCopy newCopy = new BookCopy { BookId = bookID, CopyStatus = Status.Available};
             return _bookDB.AddBookCopy(newCopy);
         }
-        public bool UpdateBook(int bookID, string title, string author, string category, DateTime publicationDate, int totalCopies)
+        public bool UpdateBook(int bookID, string title, string author, Category category, DateTime publicationDate, int totalCopies)
         {
             if (_bookDB.GetBookByID(bookID) == null) //if book does not exist, stop method
             {

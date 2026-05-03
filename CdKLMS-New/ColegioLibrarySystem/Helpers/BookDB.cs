@@ -20,13 +20,14 @@ namespace ColegioLibrarySystem.Helpers
 
         public bool AddBook(Book book)
         {
-            string bookQuery = @"INSERT INTO BOOKS (title, author, category, publicationDate, totalCopies)
-                         VALUES (@BookID, @Title, @Author, @Category, @PublicationDate, @TotalCopies)";
+            string bookQuery = @"INSERT INTO BOOKS (title, author, category, isbn, publicationDate, totalCopies)
+                         VALUES (@BookID, @Title, @Author, @Category, @ISBN, @PublicationDate, @TotalCopies)";
             var bookParams = new MySqlParameter[]
             {
                 new MySqlParameter("@Title", book.Title),
                 new MySqlParameter("@Author", book.Author),
                 new MySqlParameter("@Category", book.Category),
+                new MySqlParameter("@ISBN", book.ISBN),
                 new MySqlParameter("@PublicationDate", book.PublicationDate),
                 new MySqlParameter("@TotalCopies", book.TotalCopies)
             };
