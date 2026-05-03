@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ColegioLibrarySystem.Helpers;
 using ColegioLibrarySystem.Models;
+using ColegioLibrarySystem.GlobalEnums;
 
 namespace ColegioLibrarySystem.Service
 {
@@ -17,26 +18,24 @@ namespace ColegioLibrarySystem.Service
         {
             _bookDB = bookDB;
         }
-        public bool AddBook(int bookID, string title, string author, string category, DateTime publicationDate, int totalCopies)
+        public bool AddBook(string title, string author, string category, DateTime publicationDate, int totalCopies)
         {
-            if (_bookDB.GetBookByID(bookID).Rows.Count > 0) return false;
-            Book newBook = new Book(bookID, title, author, category, publicationDate, totalCopies);
+            if (_bookDB.GetBookByTitle(title) != null) return false; //if book exists, stop method
+            Book newBook = new Book(title, author, category, publicationDate, totalCopies);
             return _bookDB.AddBook(newBook);
         }
         public bool AddBookCopy(int bookID)
         {
-            //validate that book exists before adding copy//
-            if (_bookDB.GetBookByID(bookID).Rows.Count == 0)
+            if (_bookDB.GetBookByID(bookID) == null) //if book does not exist, stop method. Cannot add a copy of a book that does not exist
             {
                 return false;
             }
-            BookCopy newCopy = new BookCopy(bookID);
+            BookCopy newCopy = new BookCopy { BookId = bookID, CopyStatus = Status.Available};
             return _bookDB.AddBookCopy(newCopy);
         }
         public bool UpdateBook(int bookID, string title, string author, string category, DateTime publicationDate, int totalCopies)
         {
-            //validate that book exists before updating//
-            if (_bookDB.GetBookByID(bookID).Rows.Count == 0)
+            if (_bookDB.GetBookByID(bookID) == null) //if book does not exist, stop method
             {
                 return false;
             }
@@ -45,18 +44,18 @@ namespace ColegioLibrarySystem.Service
         }
         public bool DeleteBook(int bookID)
         {
-            //validate that book exists before deleting//
-            if (_bookDB.GetBookByID(bookID).Rows.Count == 0)
+            if (_bookDB.GetBookByID(bookID) == null) //if book does not exist, stop method
             {
+                
                 return false;
             }
             return _bookDB.DeleteBook(bookID);
         }
-        public DataTable GetAllBooks()
+        public List<Book> GetAllBooks()
         {
             return _bookDB.GetAllBooks();
         }
-        public DataTable GetBookByID(int bookID)
+        public Book GetBookByID(int bookID)
         {
             return _bookDB.GetBookByID(bookID);
         }

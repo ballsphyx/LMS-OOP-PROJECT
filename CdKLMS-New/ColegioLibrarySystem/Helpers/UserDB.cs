@@ -1,11 +1,12 @@
-﻿    using System;
+﻿using ColegioLibrarySystem.GlobalEnums;
+using ColegioLibrarySystem.Models;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ColegioLibrarySystem.Models;
-using MySql.Data.MySqlClient;
 
 namespace ColegioLibrarySystem.Helpers
 {
@@ -58,12 +59,26 @@ namespace ColegioLibrarySystem.Helpers
 
             return _databaseHelper.ExecuteNonQuery(query, parameters) > 0;
         }
-        public DataTable GetAllUsers()
+        public List<User> GetAllUsers()
         {
-            string query = "SELECT ID, username, full_name, role FROM USERS";
-            return _databaseHelper.ExecuteQuery(query);
+            string query = "SELECT id, username, full_name, role FROM USERS";
+            DataTable dt = _databaseHelper.ExecuteQuery(query, null);
+            List<User> users = new List<User>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                users.Add(new User
+                {
+                    Id = Convert.ToInt32(row["id"]),
+                    Username = row["username"].ToString(),
+                    FullName = row["full_name"].ToString(),
+                    Role = (Roles)Convert.ToInt32(row["role"])
+                });
+            }
+
+            return users;
         }
-        public DataTable GetUsersByCredentials(string username, string password)
+        public User GetUsersByCredentials(string username, string password)
         {
             string query = "SELECT ID, username, full_name, role FROM USERS WHERE username = @Username AND password = @Password";
             var parameters = new MySqlParameter[]
@@ -71,25 +86,82 @@ namespace ColegioLibrarySystem.Helpers
                 new MySqlParameter("@Username", username),
                 new MySqlParameter("@Password", password)
             };
-            return _databaseHelper.ExecuteQuery(query, parameters);
+            var dt = _databaseHelper.ExecuteQuery(query, parameters);
+            if (dt.Rows.Count == 0) return null;
+
+            DataRow row = dt.Rows[0];
+            return new User
+            {
+                Id = Convert.ToInt32(row["id"]),
+                Username = row["username"].ToString(),
+                FullName = row["full_name"].ToString(),
+                Password = row["password"].ToString(),
+                Role = (Roles)Convert.ToInt32(row["role"])
+            };
+
         }
-        public DataTable GetUsersByID(int id)
+        public User GetUsersByID(int id)
         {
-            string query = "SELECT ID, username, full_name, role FROM USERS WHERE ID = @UserID";
+            string query = "SELECT id, username, full_name, role FROM USERS WHERE id = @UserID";
             var parameters = new MySqlParameter[]
             {
-                new MySqlParameter("@UserID", id)
+        new MySqlParameter("@UserID", id)
             };
-            return _databaseHelper.ExecuteQuery(query, parameters);
+            DataTable dt = _databaseHelper.ExecuteQuery(query, parameters);
+
+            if (dt.Rows.Count == 0) return null;
+
+            DataRow row = dt.Rows[0];
+            return new User
+            {
+                Id = Convert.ToInt32(row["id"]),
+                Username = row["username"].ToString(),
+                FullName = row["full_name"].ToString(),
+                Role = (Roles)Convert.ToInt32(row["role"])
+            };
         }
-        public DataTable GetUsersByFullName(string name)
+
+        public List<User> GetUsersByFullName(string name)
         {
-            string query = "SELECT ID, username, full_name, role FROM USERS WHERE full_name LIKE @Name";
+            string query = "SELECT id, username, full_name, role FROM USERS WHERE full_name LIKE @Name";
             var parameters = new MySqlParameter[]
             {
-                new MySqlParameter("@Name", name)
+        new MySqlParameter("@Name", $"%{name}%") // % wildcards for partial match
             };
-            return _databaseHelper.ExecuteQuery(query, parameters);
+            DataTable dt = _databaseHelper.ExecuteQuery(query, parameters);
+
+            List<User> users = new List<User>();
+            foreach (DataRow row in dt.Rows)
+            {
+                users.Add(new User
+                {
+                    Id = Convert.ToInt32(row["id"]),
+                    Username = row["username"].ToString(),
+                    FullName = row["full_name"].ToString(),
+                    Role = (Roles)Convert.ToInt32(row["role"])
+                });
+            }
+            return users;
+        }
+        public User GetUserByUsername(string username)
+        {
+            string query = "SELECT id, username, full_name, role FROM USERS WHERE username = @Username";
+            var parameters = new MySqlParameter[]
+            {
+                new MySqlParameter("@Username", username)
+            };
+            DataTable dt = _databaseHelper.ExecuteQuery(query, parameters);
+
+            if (dt.Rows.Count == 0) return null;
+
+            DataRow row = dt.Rows[0];
+            return new User
+            {
+                Id = Convert.ToInt32(row["id"]),
+                Username = row["username"].ToString(),
+                FullName = row["full_name"].ToString(),
+                Role = (Roles)Convert.ToInt32(row["role"])
+            };
         }
     }
 }

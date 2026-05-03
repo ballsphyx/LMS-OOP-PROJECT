@@ -42,7 +42,9 @@ namespace librarymanagement
                 MessageBox.Show("Invalid username or password");
                 return;
             }
+
             Session.Login(user);
+
             if (user.Role == Roles.Admin)
             {
                 AdminDashboard ad = new AdminDashboard();
