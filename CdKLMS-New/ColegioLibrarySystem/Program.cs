@@ -17,7 +17,7 @@ namespace ColegioLibrarySystem
             DatabaseHelper databaseHelper = new DatabaseHelper();
 
             BookDB bookDB = new(databaseHelper);
-            BorrowDB borrowDB = new (databaseHelper);
+            TransactionDB borrowDB = new (databaseHelper);
             UserDB userDB = new (databaseHelper);
 
             UserManagement userManagement = new UserManagement(userDB, borrowDB);

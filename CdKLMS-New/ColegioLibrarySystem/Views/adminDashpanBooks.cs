@@ -57,42 +57,42 @@ namespace librarymanagement.views
 
         private void AddBook(object sender, EventArgs e)
         {
-            var title = textAuthor.Text;
-            var author = textTitle.Text;
-            if (author.Any(char.IsDigit))
-            {
-                MessageBox.Show("Author name should not contain any numbers", "Invalid Input",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            var numCopies = 0;
-            if (!int.TryParse(textCopies.Text, out numCopies))
-            {
-                MessageBox.Show("Pls input a valid number", "Invalid Input", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning );
-                return;
-            }
-            var isbn = txtISBN.Text;
-            if (isbn.Any(char.IsDigit))
-            {
-                MessageBox.Show("ISBN should not contain any numbers", "Invalid Input",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            //var title = textAuthor.Text;
+            //var author = textTitle.Text;
+            //if (author.Any(char.IsDigit))
+            //{
+            //    MessageBox.Show("Author name should not contain any numbers", "Invalid Input",
+            //        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
+            //var numCopies = 0;
+            //if (!int.TryParse(textCopies.Text, out numCopies))
+            //{
+            //    MessageBox.Show("Pls input a valid number", "Invalid Input",
+            //        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
+            //var isbn = txtISBN.Text;
+            //if (isbn.Any(char.IsDigit))
+            //{
+            //    MessageBox.Show("ISBN should not contain any numbers", "Invalid Input",
+            //        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
 
-            Category cat = Category.Education; //replace later on
-            DateTime date = DateTime.Now; //replace later on
+            //Category cat = Category.Education; //replace later on
+            //DateTime date = DateTime.Now; //replace later on
 
-            var success = _bookManagement.AddBook(title, author, cat, date, numCopies, isbn);
-            if (success)
-            {
-                MessageBox.Show("Added Book");
-                ClearFields();
-            }
-            else
-            {
-                MessageBox.Show("An error occured during operation", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //var success = _bookManagement.AddBook(title, author, cat, date, numCopies, isbn);
+            //if (success)
+            //{
+            //    MessageBox.Show("Added Book");
+            //    ClearFields();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("An error occured during operation", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
         private void DeleteBook(object sender, EventArgs e)

@@ -8,7 +8,7 @@ namespace ColegioLibrarySystem.Helpers
     public class DatabaseHelper
     {
         // e adjust lang ang port if dili 3306 ang gamit sa inyong xampp
-        private string connectionString = "Server=localhost;Database=colegio_library;Uid=root;Pwd=;";
+        private string connectionString = "Server=localhost;Database=cdk_lms;Uid=root;Pwd=;";
 
         public MySqlConnection GetConnection()
         {
@@ -89,6 +89,28 @@ namespace ColegioLibrarySystem.Helpers
                 }
             }
             return newID;
+        }
+        public object ExecuteScalar(string query, MySqlParameter[] parameters = null)
+        {
+            object result = null;
+            using (MySqlConnection conn = GetConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    if (parameters != null)
+                        cmd.Parameters.AddRange(parameters);
+                    try
+                    {
+                        conn.Open();
+                        result = cmd.ExecuteScalar();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Database Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            return result;
         }
     }
 }

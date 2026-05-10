@@ -49,7 +49,7 @@ namespace librarymanagement
 
             Session.Login(user);
 
-            if (user.Role == Roles.Admin)
+            if (user.Role.RoleName == RoleEnum.Admin)
             {
                 AdminDashboard ad = new AdminDashboard(userManagement, bookManagement, borrowManagement);
                 ad.Show();

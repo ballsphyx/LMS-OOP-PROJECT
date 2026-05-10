@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace ColegioLibrarySystem.GlobalEnums
 {
-    public enum Status
+    public enum CategoryEnum //change into a class with cat_id
     {
-        Available,
-        Unavailable,
+        Criminology,
+        IT,
+        Paramedical,
+        HM,
+        Education
     }
 }

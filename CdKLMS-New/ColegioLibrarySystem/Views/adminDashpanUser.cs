@@ -18,7 +18,7 @@ namespace librarymanagement.views
         {
             InitializeComponent();
             this._userManagement = userManagement;
-            comboRole.DataSource = Enum.GetValues(typeof(Roles));
+            comboRole.DataSource = Enum.GetValues(typeof(RoleEnum));
         }
 
         private void adminDashpanUser_Load(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace librarymanagement.views
             var name = textName.Text.Trim();
             var username = textUserName.Text.Trim();
             var pass = textPass.Text.Trim();
-            Roles role = (Roles)comboRole.SelectedItem;
+            RoleEnum role = (RoleEnum)comboRole.SelectedItem;
 
             if (String.IsNullOrEmpty(name) || String.IsNullOrEmpty(username))
             {
@@ -55,17 +55,17 @@ namespace librarymanagement.views
                 return;
             }
 
-            bool success = _userManagement.RegisterUser(username, pass, name, role);
-            if (success)
-            {
-                MessageBox.Show("User Added"); 
-            }
-            else
-            {
-                MessageBox.Show("An error occured during operation", "Error!",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error); 
-            }
-                ClearFields();
+            //bool success = _userManagement.RegisterUser(username, pass, name, role);
+            //if (success)
+            //{
+            //    MessageBox.Show("User Added");
+            //}
+            //else
+            //{
+            //    MessageBox.Show("An error occured during operation", "Error!",
+            //        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+            ClearFields();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -73,7 +73,7 @@ namespace librarymanagement.views
             var name = textName.Text.Trim();
             var username = textUserName.Text.Trim();
             var pass = textPass.Text.Trim();
-            Roles role = (Roles)comboRole.SelectedItem;
+            RoleEnum role = (RoleEnum)comboRole.SelectedItem;
 
             if (String.IsNullOrEmpty(name) || String.IsNullOrEmpty(username))
             {

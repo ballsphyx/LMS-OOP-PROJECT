@@ -3,80 +3,76 @@ using ColegioLibrarySystem.Helpers;
 using ColegioLibrarySystem.Models;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ColegioLibrarySystem.Service
 {
     public class BorrowManagement
     {
-        private readonly BorrowDB _borrowDB;
+        private readonly TransactionDB _borrowDB;
         private readonly BookDB _bookDB;
         private readonly UserDB _userDB;
-        public BorrowManagement(BorrowDB borrowDB, BookDB bookDB, UserDB userDB)
+
+        public BorrowManagement(TransactionDB borrowDB, BookDB bookDB, UserDB userDB)
         {
             _borrowDB = borrowDB;
             _bookDB = bookDB;
             _userDB = userDB;
         }
-        public bool BorrowBook(int userID, int bookID, Roles role)
+
+        public bool BorrowBook(string isbn, int userId, Roles role, int quantity = 1)
         {
-            if (_userDB.GetUsersByID(userID) == null) return false; //if user does not exist, exit method
-            if (_bookDB.GetBookByID(bookID) == null) return false; //if book does not exist, exit method
-            if (role == Roles.Student && _borrowDB.HasActiveBookBorrow(userID, bookID)) return false; //if role is student and is currently borrowing the book, exit method
+            if (_userDB.GetUserByID(userId) == null) return false;
+            Book book = _bookDB.GetBookByISBN(isbn);
+            if (book == null) return false;
 
-            int copyID = _bookDB.GetAvailableCopy(bookID);
-            if (copyID == -1) return false;
-
-            BorrowRecord record = new BorrowRecord
+            if (role.RoleName == RoleEnum.Student)
             {
-                UserID = userID,
-                BookID = bookID,
-                CopyID = copyID,
+                quantity = 1;
+                if (_borrowDB.HasActiveBookBorrow(userId, book.BookID)) return false;
+            }
+
+            int availableCount = _bookDB.GetAvailableCopies(book.BookID);
+            if (availableCount < quantity) return false;
+
+            int copyId = _bookDB.GetAvailableCopyId(book.BookID);
+            if (copyId == -1) return false;
+
+            Transaction record = new Transaction
+            {
+                UserID = userId,
+                CopyID = copyId,
                 BorrowDate = DateTime.Now,
-                DueDate = DateTime.Now.AddDays(7)
+                DueDate = DateTime.Now.AddDays(7),
+                DateReturned = null,
+                Quantity = quantity
             };
 
-            _bookDB.UpdateCopyStatus(copyID, Status.Unavailable);
-            bool success = _borrowDB.AddBorrowRecord(record);
-            if (!success) _bookDB.UpdateCopyStatus(copyID, Status.Available); 
-            return success;
+            return _borrowDB.BorrowBook(record);
         }
 
-        public bool ReturnBook(int borrowID)
+        public bool ReturnBook(int transactionId)
         {
-            if (!_borrowDB.BorrowExists(borrowID)) return false;
+            if (!_borrowDB.BorrowExists(transactionId)) return false;
 
-            int copyID = _borrowDB.GetCopyID(borrowID);
-            if (copyID == -1) return false;
+            int copyId = _borrowDB.GetCopyId(transactionId);
+            if (copyId == -1) return false;
 
-            BorrowRecord record = new BorrowRecord
-            {
-                BorrowId = borrowID,
-                ReturnDate = DateTime.Now
-            };
-
-            _bookDB.UpdateCopyStatus(copyID, Status.Available);
-            bool success = _borrowDB.UpdateReturnDate(record);
-            if (!success) _bookDB.UpdateCopyStatus(copyID, Status.Unavailable); 
-            return success;
+            return _borrowDB.ReturnBook(transactionId, copyId);
         }
 
-        public DataTable GetAllBorrows() 
+        public List<Transaction> GetAllBorrows()
         {
             return _borrowDB.GetAllBorrows();
         }
 
-        public DataTable GetActiveBorrows()
+        public List<Transaction> GetActiveBorrows()
         {
             return _borrowDB.GetActiveBorrows();
         }
 
-        public DataTable GetBorrowsByUser(int userID)
+        public List<Transaction> GetBorrowsByUser(int userId)
         {
-            return _borrowDB.GetBorrowsByUser(userID);
+            return _borrowDB.GetBorrowsByUser(userId);
         }
     }
 }
