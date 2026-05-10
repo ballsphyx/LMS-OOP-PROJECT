@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ColegioLibrarySystem.GlobalEnums
 {
-    public enum Roles
+    public enum RoleEnum //change into role class with role_id
     {
         Admin,
         Student,
-        Teacher,
+        Instructor,
         None
     }
 }

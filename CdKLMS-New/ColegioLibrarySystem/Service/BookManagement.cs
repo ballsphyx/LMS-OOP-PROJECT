@@ -18,46 +18,71 @@ namespace ColegioLibrarySystem.Service
         {
             _bookDB = bookDB;
         }
-        public bool AddBook(string title, string author, string category, DateTime publicationDate, int totalCopies)
+        public bool AddBook(string title, string author, CategoryEnum category, DateTime publicationDate, int totalCopies, string isbn)
         {
-            if (_bookDB.GetBookByTitle(title) != null) return false; //if book exists, stop method
-            Book newBook = new Book(title, author, category, publicationDate, totalCopies);
+            if (_bookDB.GetBookByISBN(isbn) != null) return false;
+
+            Book newBook = new Book
+            {
+                Title = title,
+                Author = author,
+                CatId = (int)category,          // cast enum to int for DB
+                Category = new Category         // navigation property
+                {
+                    CatId = (int)category,
+                    CatName = category
+                },
+                PublicationDate = publicationDate,
+                TotalCopies = totalCopies,
+                ISBN = isbn
+            };
+
             return _bookDB.AddBook(newBook);
         }
-        public bool AddBookCopy(int bookID)
+        public bool AddBookCopy(string isbn)
         {
-            if (_bookDB.GetBookByID(bookID) == null) //if book does not exist, stop method. Cannot add a copy of a book that does not exist
-            {
-                return false;
-            }
-            BookCopy newCopy = new BookCopy { BookId = bookID, CopyStatus = Status.Available};
+            Book book = _bookDB.GetBookByISBN(isbn);
+            if (book == null) return false;
+
+            BookCopy newCopy = new BookCopy { BookId = book.BookID, CopyStatus = StatusEnum.Available };
             return _bookDB.AddBookCopy(newCopy);
         }
-        public bool UpdateBook(int bookID, string title, string author, string category, DateTime publicationDate, int totalCopies)
+        public bool UpdateBook(string isbn, string title, string author, CategoryEnum category, DateTime publicationDate, int totalCopies)
         {
-            if (_bookDB.GetBookByID(bookID) == null) //if book does not exist, stop method
+            Book book = _bookDB.GetBookByISBN(isbn);
+            if (book == null) return false;
+
+            Book updatedBook = new Book
             {
-                return false;
-            }
-            Book updatedBook = new Book(bookID, title, author, category, publicationDate, totalCopies);
+                BookID = book.BookID,  // get ID from the found book
+                Title = title,
+                Author = author,
+                CatId = (int)category,
+                Category = new Category
+                {
+                    CatId = (int)category,
+                    CatName = category
+                },
+                PublicationDate = publicationDate,
+                TotalCopies = totalCopies,
+                ISBN = isbn
+            };
+
             return _bookDB.UpdateBook(updatedBook);
         }
-        public bool DeleteBook(int bookID)
+        public bool DeleteBook(string isbn)
         {
-            if (_bookDB.GetBookByID(bookID) == null) //if book does not exist, stop method
-            {
-                
-                return false;
-            }
-            return _bookDB.DeleteBook(bookID);
+            Book book = GetBookByISBN(isbn);
+            if (book == null) return false;
+            return _bookDB.DeleteBook(isbn);
         }
         public List<Book> GetAllBooks()
         {
             return _bookDB.GetAllBooks();
         }
-        public Book GetBookByID(int bookID)
+        public Book GetBookByISBN(string isbn)
         {
-            return _bookDB.GetBookByID(bookID);
+            return _bookDB.GetBookByISBN(isbn);
         }
     }
 }

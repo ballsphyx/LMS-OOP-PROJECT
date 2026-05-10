@@ -11,8 +11,8 @@ namespace ColegioLibrarySystem.Models
     {
         public int CopyId { get; set; }
         public int BookId { get; set; }
-        public Status CopyStatus { get; set; }
-        public List<BorrowRecord> BorrowRecords { get; set; }
+        public StatusEnum CopyStatus { get; set; }
+        public List<Transaction> Transactions { get; set; }
         public Book book { get; set; }
     }
 }

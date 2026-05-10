@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ColegioLibrarySystem.GlobalEnums
 {
-    public enum Status
+    public enum StatusEnum
     {
         Available,
         Unavailable,
