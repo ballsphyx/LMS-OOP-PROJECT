@@ -15,9 +15,7 @@ namespace ColegioLibrarySystem.Helpers
         {
             _databaseHelper = databaseHelper;
         }
-
-        // Private base method - only inserts into users table
-        private int RegisterUser(User user)
+        private int RegisterUser(User user) // Private base method - only inserts into users table
         {
             string query = @"INSERT INTO users (username, password, full_name, role_id) 
                              VALUES (@Username, @Password, @FullName, @RoleId)";
@@ -176,7 +174,7 @@ namespace ColegioLibrarySystem.Helpers
 
         public User GetUserByUsername(string username)
         {
-            string query = @"SELECT user_id, username, full_name, password, role_id 
+            string query = @"SELECT * 
                              FROM users
                              WHERE username = @Username";
 

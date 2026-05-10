@@ -23,35 +23,35 @@ namespace ColegioLibrarySystem.Service
 
         public bool RegisterStudent(string username, string password, string fullName, string program, int yearLevel)
         {
-            if (_userDB.GetUserByUsername(username) != null) return false;
+            if (_userDB.GetUserByUsername(username) != null) return false; //if user already exists, exit function
 
-            Student newStudent = new Student
+            Student newStudent = new Student //create new student object to pass into function
             {
-                User = new User
+                User = new User //creates user object bcuz student is a user
                 {
                     Username = username,
                     Password = password,
                     FullName = fullName,
                     RoleId = (int)RoleEnum.Student,
-                    Role = new Roles
+                    Role = new Roles 
                     {
-                        RoleId = (int)RoleEnum.Student,
-                        RoleName = RoleEnum.Student
+                        RoleId = (int)RoleEnum.Student, //casts roleEnum type into int
+                        RoleName = RoleEnum.Student //sets roleName to Student
                     }
                 },
                 Program = program,
                 YearLevel = yearLevel
             };
 
-            return _userDB.RegisterStudent(newStudent);
+            return _userDB.RegisterStudent(newStudent); //registers into DB
         }
         public bool RegisterInstructor(string username, string password, string fullName, string department)
         {
-            if (_userDB.GetUserByUsername(username) != null) return false;
+            if (_userDB.GetUserByUsername(username) != null) return false; //if user already exists, exit function
 
-            Instructor newInstructor = new Instructor
+            Instructor newInstructor = new Instructor //create new instructor object to pass into function
             {
-                User = new User
+                User = new User //creates user object bcuz instructor is a user
                 {
                     Username = username,
                     Password = password,
@@ -59,14 +59,14 @@ namespace ColegioLibrarySystem.Service
                     RoleId = (int)RoleEnum.Instructor,
                     Role = new Roles
                     {
-                        RoleId = (int)RoleEnum.Instructor,
-                        RoleName = RoleEnum.Instructor
+                        RoleId = (int)RoleEnum.Instructor, //casts roleEnum type into int
+                        RoleName = RoleEnum.Instructor //sets roleName to Student
                     }
                 },
                 Department = department
             };
 
-            return _userDB.RegisterInstructor(newInstructor);
+            return _userDB.RegisterInstructor(newInstructor); //registers into DB
         }
         public bool RegisterAdmin(string username, string password, string fullName)
         {
@@ -92,25 +92,25 @@ namespace ColegioLibrarySystem.Service
         }
         public bool DeleteUser(string username)
         {
-            User user = _userDB.GetUserByUsername(username);
-            if (user == null) return false;
+            User user = _userDB.GetUserByUsername(username); //creates a new user object that contains the information of username
+            if (user == null) return false; //if username does not exist, then exit function
 
-            if (_borrowDB.HasActiveBorrow(user.UserId)) return false;
+            if (_borrowDB.HasActiveBorrow(user.UserId)) return false; //if user has an active borrow, exit function cuz thats a no no
 
-            return _userDB.DeleteUser(user.UserId);
+            return _userDB.DeleteUser(user.UserId); //delete from DB
         }
         public bool UpdateUser(int userID, string username, string password, string fullName, Roles role)
         {
-            User user = _userDB.GetUserByUsername(username);
-            if (user == null) return false;
-            User updatedUser = new User
+            User user = _userDB.GetUserByUsername(username); //creates a new user object that contains the information of username
+            if (user == null) return false; //if user does not exist, exit function
+            User updatedUser = new User //create a new user object with the new details to pass into our function
             {
                 Username = username,
                 Password = password,
                 FullName = fullName,
                 Role = role
             };
-            return _userDB.UpdateUser(updatedUser);
+            return _userDB.UpdateUser(updatedUser); //update to DB
         }
         public List<User> GetAllUsers()
         {

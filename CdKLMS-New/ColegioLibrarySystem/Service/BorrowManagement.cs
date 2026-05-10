@@ -21,14 +21,14 @@ namespace ColegioLibrarySystem.Service
 
         public bool BorrowBook(string isbn, int userId, Roles role, int quantity = 1)
         {
-            if (_userDB.GetUserByID(userId) == null) return false;
-            Book book = _bookDB.GetBookByISBN(isbn);
-            if (book == null) return false;
+            if (_userDB.GetUserByID(userId) == null) return false; //if user does not exist, exit function
+            Book book = _bookDB.GetBookByISBN(isbn); //find book by ISBN since isbn are unique per book
+            if (book == null) return false; //if ISBN was not found, exit function
 
-            if (role.RoleName == RoleEnum.Student)
+            if (role.RoleName == RoleEnum.Student) //if role is student, initialize quantity to only 1
             {
                 quantity = 1;
-                if (_borrowDB.HasActiveBookBorrow(userId, book.BookID)) return false;
+                if (_borrowDB.HasActiveBookBorrow(userId, book.BookID)) return false; //if student is already borrowing this book, exit function
             }
 
             int availableCount = _bookDB.GetAvailableCopies(book.BookID);
@@ -52,7 +52,7 @@ namespace ColegioLibrarySystem.Service
 
         public bool ReturnBook(int transactionId)
         {
-            if (!_borrowDB.BorrowExists(transactionId)) return false;
+            if (!_borrowDB.BorrowExists(transactionId)) return false; //if this borrow record does not exist, exit function
 
             int copyId = _borrowDB.GetCopyId(transactionId);
             if (copyId == -1) return false;

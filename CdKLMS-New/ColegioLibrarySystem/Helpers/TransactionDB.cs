@@ -108,7 +108,20 @@ namespace ColegioLibrarySystem.Helpers
             DataTable dt = _databaseHelper.ExecuteQuery(query, parameters);
             return dt.Rows.Count > 0;
         }
+        public bool HasActiveBookBorrow(int bookId)
+        {
+            string query = @"SELECT * FROM transactions t
+                     JOIN book_copies bc ON t.copy_id = bc.copy_id
+                     WHERE bc.book_id = @BookId AND t.date_returned IS NULL";
 
+            var parameters = new MySqlParameter[]
+            {
+                new MySqlParameter("@BookId", bookId)
+            };
+
+            DataTable dt = _databaseHelper.ExecuteQuery(query, parameters);
+            return dt.Rows.Count > 0;
+        }
         public bool HasActiveBorrow(int userId)
         {
             string query = @"SELECT * FROM transactions 

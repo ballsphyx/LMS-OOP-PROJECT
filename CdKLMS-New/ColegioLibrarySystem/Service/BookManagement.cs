@@ -13,14 +13,16 @@ namespace ColegioLibrarySystem.Service
     public class BookManagement
     {
         private readonly BookDB _bookDB;
+        private readonly TransactionDB _transactionDB;
 
-        public BookManagement(BookDB bookDB)
+        public BookManagement(BookDB bookDB, TransactionDB transactionDB)
         {
             _bookDB = bookDB;
+            _transactionDB = transactionDB;
         }
         public bool AddBook(string title, string author, CategoryEnum category, DateTime publicationDate, int totalCopies, string isbn)
         {
-            if (_bookDB.GetBookByISBN(isbn) != null) return false;
+            if (_bookDB.GetBookByISBN(isbn) != null) return false; //if isbn is not found, exit funciton
 
             Book newBook = new Book
             {
@@ -74,6 +76,7 @@ namespace ColegioLibrarySystem.Service
         {
             Book book = GetBookByISBN(isbn);
             if (book == null) return false;
+            if (_transactionDB.HasActiveBookBorrow(book.BookID)) return false; //admin cant delete book if it is currently borrowed
             return _bookDB.DeleteBook(isbn);
         }
         public List<Book> GetAllBooks()
