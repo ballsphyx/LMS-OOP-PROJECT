@@ -21,10 +21,10 @@ namespace ColegioLibrarySystem
             UserDB userDB = new (databaseHelper);
 
             UserManagement userManagement = new UserManagement(userDB, borrowDB);
-            BookManagement bookManagement = new BookManagement(bookDB);
-            BorrowManagement borrowManagement = new BorrowManagement (borrowDB, bookDB, userDB);
+            BookManagement bookManagement = new BookManagement(bookDB, borrowDB);
+            TransactionManagement borrowManagement = new TransactionManagement (borrowDB, bookDB, userDB);
 
-            Application.Run(new librarymanagement.LoginForm(userManagement, borrowManagement, bookManagement));
+            //Application.Run(new librarymanagement.LoginForm(userManagement, borrowManagement, bookManagement));
         }
     }
 }

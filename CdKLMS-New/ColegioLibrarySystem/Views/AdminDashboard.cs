@@ -1,5 +1,4 @@
-﻿using ColegioLibrarySystem.Service;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,15 +10,9 @@ namespace librarymanagement.views
 {
     public partial class AdminDashboard : Form
     {
-        private readonly BookManagement _bookManagement;
-        private readonly UserManagement _userManagement;
-        private readonly BorrowManagement _borrowManagement;
-        public AdminDashboard(UserManagement userManagement, BookManagement bookManagement, BorrowManagement borrowManagement)
+        public AdminDashboard()
         {
             InitializeComponent();
-            this._userManagement = userManagement;
-            this._bookManagement = bookManagement;
-            this._borrowManagement = borrowManagement;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -58,7 +51,7 @@ namespace librarymanagement.views
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            AdminDashboard a = new AdminDashboard(_userManagement, _bookManagement, _borrowManagement);
+            AdminDashboard a = new AdminDashboard();
             a.TopLevel = false;
             contentpnl.Controls.Add(a);
             a.BringToFront();
@@ -67,7 +60,7 @@ namespace librarymanagement.views
 
         private void btnBooks_Click(object sender, EventArgs e)
         {
-            adminDashpanBooks b = new adminDashpanBooks(_bookManagement);
+            adminDashpanBooks b = new adminDashpanBooks();
             b.TopLevel = false;
             contentpnl.Controls.Add(b);
             b.BringToFront();
@@ -77,7 +70,7 @@ namespace librarymanagement.views
 
         private void btnUser_Click(object sender, EventArgs e)
         {
-            adminDashpanUser u = new adminDashpanUser(_userManagement);
+            adminDashpanUser u = new adminDashpanUser();
             u.TopLevel = false;
             contentpnl.Controls.Add(u);
             u.BringToFront();
@@ -90,10 +83,12 @@ namespace librarymanagement.views
 
             if (dialogResult == DialogResult.Yes)
             {
-                LoginForm login = new LoginForm(_userManagement, _borrowManagement, _bookManagement);
+                LoginForm login = new LoginForm();
                 login.Show();
 
                 this.Close();
+
+
             }
         }
     }

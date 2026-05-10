@@ -6,13 +6,13 @@ using System.Collections.Generic;
 
 namespace ColegioLibrarySystem.Service
 {
-    public class BorrowManagement
+    public class TransactionManagement
     {
         private readonly TransactionDB _borrowDB;
         private readonly BookDB _bookDB;
         private readonly UserDB _userDB;
 
-        public BorrowManagement(TransactionDB borrowDB, BookDB bookDB, UserDB userDB)
+        public TransactionManagement(TransactionDB borrowDB, BookDB bookDB, UserDB userDB)
         {
             _borrowDB = borrowDB;
             _bookDB = bookDB;

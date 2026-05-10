@@ -1,21 +1,12 @@
-using ColegioLibrarySystem.Service;
 using librarymanagement.views;
-using ColegioLibrarySystem.GlobalEnums;
-using ColegioLibrarySystem.Models;
 
 namespace librarymanagement
 {
     public partial class LoginForm : Form
     {
-        private readonly UserManagement userManagement;
-        private readonly BorrowManagement borrowManagement;
-        private readonly BookManagement bookManagement;
-        public LoginForm(UserManagement userManagement, BorrowManagement borrowManagement, BookManagement bookManagement)
+        public LoginForm()
         {
             InitializeComponent();
-            this.userManagement = userManagement;
-            this.borrowManagement = borrowManagement;
-            this.bookManagement = bookManagement;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -38,28 +29,24 @@ namespace librarymanagement
 
         }
 
-        private void LoginButton(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            var user = userManagement.GetUserByCredentials(textBox1.Text, textBox2.Text);
-            if (user == null)
+            if (textBox1.Text == "admin" && textBox2.Text == "admin")
             {
-                MessageBox.Show("Invalid username or password");
-                return;
-            }
-
-            Session.Login(user);
-
-            if (user.Role.RoleName == RoleEnum.Admin)
-            {
-                AdminDashboard ad = new AdminDashboard(userManagement, bookManagement, borrowManagement);
+                AdminDashboard ad = new AdminDashboard();
                 ad.Show();
                 this.Hide();
             }
-            else
+            else if (textBox1.Text == "user" && textBox2.Text == "user")
             {
-                UserDashboard userD = new UserDashboard(user.FullName);
+                UserDashboard userD = new UserDashboard("User");
                 userD.Show();
                 this.Hide();
+
+            }
+            else
+            {
+                MessageBox.Show("Invalid username or password");
             }
         }
 
