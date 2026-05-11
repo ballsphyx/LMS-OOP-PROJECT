@@ -6,19 +6,13 @@
         {
             InitializeComponent();
 
-            cmbCtgryBR.Items.Add("Romance");
-            cmbCtgryBR.Items.Add("Fiction");
-            cmbCtgryBR.Items.Add("Non-Fiction");
-            cmbCtgryBR.Items.Add("Science");
-            cmbCtgryBR.Items.Add("History");
-            cmbCtgryBR.Items.Add("Biography");
-            cmbCtgryBR.Items.Add("Fantasy");
-            cmbCtgryBR.Items.Add("Mystery");
-            cmbCtgryBR.Items.Add("Horror");
-            cmbCtgryBR.Items.Add("Self-Help");
-            cmbCtgryBR.Items.Add("Philosophy");
-            cmbCtgryBR.Items.Add("Religion");
-            cmbCtgryBR.Items.Add("Technology");
+            cmbCtgryBR.Items.AddRange(new string[]
+            {
+                "Select Category","Romance","Fiction","Non-Fiction","Science","History","Biography","Fantasy","Mystery","Horror","Self-Help","Philosophy","Religion","Technology"
+
+            });
+
+            cmbCtgryBR.SelectedIndex = 0;
         }
 
         private void label3_Click(object sender, EventArgs e)

@@ -49,11 +49,11 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Snow;
-            label1.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Century Gothic", 12.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(228, 0, 124);
-            label1.Location = new Point(381, 20);
+            label1.Location = new Point(381, 27);
             label1.Name = "label1";
-            label1.Size = new Size(156, 23);
+            label1.Size = new Size(139, 19);
             label1.TabIndex = 0;
             label1.Text = "My Transactions";
             // 
@@ -62,6 +62,7 @@
             dtaGrdVwTrnsc.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dtaGrdVwTrnsc.BackgroundColor = Color.Snow;
             dtaGrdVwTrnsc.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtaGrdVwTrnsc.GridColor = Color.FromArgb(251, 174, 210);
             dtaGrdVwTrnsc.Location = new Point(12, 79);
             dtaGrdVwTrnsc.Name = "dtaGrdVwTrnsc";
             dtaGrdVwTrnsc.Size = new Size(883, 547);
