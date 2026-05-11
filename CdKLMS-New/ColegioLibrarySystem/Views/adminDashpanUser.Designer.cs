@@ -61,9 +61,8 @@
             dgvUsrAD.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvUsrAD.BackgroundColor = Color.Snow;
             dgvUsrAD.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvUsrAD.GridColor = Color.FromArgb(138, 174, 224);
-            dgvUsrAD.Location = new Point(14, 395);
-            dgvUsrAD.Margin = new Padding(3, 4, 3, 4);
+            dgvUsrAD.GridColor = Color.FromArgb(251, 174, 210);
+            dgvUsrAD.Location = new Point(12, 296);
             dgvUsrAD.Name = "dgvUsrAD";
             dgvUsrAD.RowHeadersWidth = 51;
             dgvUsrAD.Size = new Size(1025, 453);
@@ -136,13 +135,15 @@
             // cmbDept
             // 
             cmbDept.BackColor = Color.Snow;
+            cmbDept.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbDept.ForeColor = Color.FromArgb(228, 0, 124);
             cmbDept.FormattingEnabled = true;
             cmbDept.Location = new Point(91, 35);
             cmbDept.Margin = new Padding(3, 4, 3, 4);
             cmbDept.Name = "cmbDept";
-            cmbDept.Size = new Size(225, 28);
+            cmbDept.Size = new Size(197, 25);
             cmbDept.TabIndex = 37;
+            cmbDept.SelectedIndexChanged += cmbDept_SelectedIndexChanged;
             // 
             // label7
             // 
@@ -204,12 +205,13 @@
             // cmbRole
             // 
             cmbRole.BackColor = Color.Snow;
+            cmbRole.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbRole.ForeColor = Color.FromArgb(228, 0, 124);
             cmbRole.FormattingEnabled = true;
             cmbRole.Location = new Point(274, 248);
             cmbRole.Margin = new Padding(3, 4, 3, 4);
             cmbRole.Name = "cmbRole";
-            cmbRole.Size = new Size(225, 28);
+            cmbRole.Size = new Size(197, 25);
             cmbRole.TabIndex = 47;
             cmbRole.SelectedIndexChanged += cmbRole_SelectedIndexChanged;
             // 
@@ -233,7 +235,7 @@
             panel3.Location = new Point(274, 220);
             panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(316, 2);
+            panel3.Size = new Size(277, 1);
             panel3.TabIndex = 46;
             // 
             // txtUsrnmAD
@@ -256,7 +258,7 @@
             panel1.Location = new Point(274, 171);
             panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(441, 2);
+            panel1.Size = new Size(386, 1);
             panel1.TabIndex = 44;
             // 
             // txtNameAD
@@ -270,6 +272,9 @@
             txtNameAD.Name = "txtNameAD";
             txtNameAD.Size = new Size(413, 23);
             txtNameAD.TabIndex = 41;
+            txtNameAD.DoubleClick += Enter;
+            txtNameAD.Enter += txtNameAD_Enter;
+            txtNameAD.Leave += txtNameAD_Leave;
             // 
             // panel2
             // 
@@ -279,7 +284,7 @@
             panel2.Location = new Point(274, 124);
             panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(441, 2);
+            panel2.Size = new Size(386, 1);
             panel2.TabIndex = 42;
             // 
             // label1

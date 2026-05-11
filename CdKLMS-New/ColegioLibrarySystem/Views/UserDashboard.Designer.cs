@@ -60,16 +60,17 @@
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold);
+            label3.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.FromArgb(20, 18, 51);
-            label3.Location = new Point(358, 48);
+            label3.Location = new Point(331, 55);
             label3.Name = "label3";
-            label3.Size = new Size(203, 23);
+            label3.Size = new Size(172, 19);
             label3.TabIndex = 8;
             label3.Text = "Library Management";
             // 
@@ -303,6 +304,7 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(20, 18, 51);
+            panel2.Controls.Add(button5);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(236, 0);
             panel2.Name = "panel2";
@@ -313,12 +315,13 @@
             // 
             button5.FlatAppearance.BorderSize = 0;
             button5.FlatStyle = FlatStyle.Flat;
-            button5.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button5.Location = new Point(1105, 34);
+            button5.Font = new Font("Corbel", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button5.ForeColor = Color.Snow;
+            button5.Location = new Point(870, -2);
             button5.Name = "button5";
-            button5.Size = new Size(49, 56);
+            button5.Size = new Size(46, 33);
             button5.TabIndex = 12;
-            button5.Text = "X";
+            button5.Text = "x";
             button5.UseVisualStyleBackColor = true;
             button5.Click += button5_Click;
             // 
@@ -328,7 +331,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Snow;
             ClientSize = new Size(1154, 739);
-            Controls.Add(button5);
             Controls.Add(panel2);
             Controls.Add(label3);
             Controls.Add(button4);
@@ -336,6 +338,7 @@
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "UserDashboard";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "UserDashboard";
             contentpnl.ResumeLayout(false);
             contentpnl.PerformLayout();
@@ -350,6 +353,7 @@
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
