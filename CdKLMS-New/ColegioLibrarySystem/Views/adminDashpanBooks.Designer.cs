@@ -65,7 +65,7 @@
             dgvBooksAD.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvBooksAD.BackgroundColor = Color.Snow;
             dgvBooksAD.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvBooksAD.GridColor = Color.FromArgb(138, 174, 224);
+            dgvBooksAD.GridColor = Color.FromArgb(251, 174, 210);
             dgvBooksAD.Location = new Point(4, 279);
             dgvBooksAD.Name = "dgvBooksAD";
             dgvBooksAD.Size = new Size(914, 364);
@@ -188,7 +188,7 @@
             panel6.ForeColor = Color.FromArgb(212, 155, 255);
             panel6.Location = new Point(512, 176);
             panel6.Name = "panel6";
-            panel6.Size = new Size(123, 2);
+            panel6.Size = new Size(123, 1);
             panel6.TabIndex = 53;
             // 
             // label6
@@ -220,7 +220,7 @@
             panel5.ForeColor = Color.FromArgb(212, 155, 255);
             panel5.Location = new Point(555, 209);
             panel5.Name = "panel5";
-            panel5.Size = new Size(123, 2);
+            panel5.Size = new Size(123, 1);
             panel5.TabIndex = 50;
             // 
             // panel4
@@ -230,7 +230,7 @@
             panel4.ForeColor = Color.FromArgb(212, 155, 255);
             panel4.Location = new Point(555, 242);
             panel4.Name = "panel4";
-            panel4.Size = new Size(123, 2);
+            panel4.Size = new Size(123, 1);
             panel4.TabIndex = 48;
             // 
             // txtAuthAD
@@ -248,10 +248,10 @@
             // 
             panel1.BackColor = Color.White;
             panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.ForeColor = Color.FromArgb(212, 155, 255);
+            panel1.ForeColor = Color.HotPink;
             panel1.Location = new Point(201, 128);
             panel1.Name = "panel1";
-            panel1.Size = new Size(386, 2);
+            panel1.Size = new Size(386, 1);
             panel1.TabIndex = 47;
             // 
             // txtTitleAD
@@ -316,7 +316,7 @@
             panel2.ForeColor = Color.FromArgb(228, 0, 124);
             panel2.Location = new Point(201, 93);
             panel2.Name = "panel2";
-            panel2.Size = new Size(386, 2);
+            panel2.Size = new Size(386, 1);
             panel2.TabIndex = 40;
             // 
             // label1

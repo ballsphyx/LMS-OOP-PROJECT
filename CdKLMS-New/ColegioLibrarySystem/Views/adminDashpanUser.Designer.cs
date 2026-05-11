@@ -60,7 +60,7 @@
             dgvUsrAD.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvUsrAD.BackgroundColor = Color.Snow;
             dgvUsrAD.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvUsrAD.GridColor = Color.FromArgb(138, 174, 224);
+            dgvUsrAD.GridColor = Color.FromArgb(251, 174, 210);
             dgvUsrAD.Location = new Point(12, 296);
             dgvUsrAD.Name = "dgvUsrAD";
             dgvUsrAD.Size = new Size(897, 340);
@@ -221,7 +221,7 @@
             panel3.ForeColor = Color.FromArgb(212, 155, 255);
             panel3.Location = new Point(240, 165);
             panel3.Name = "panel3";
-            panel3.Size = new Size(277, 2);
+            panel3.Size = new Size(277, 1);
             panel3.TabIndex = 46;
             // 
             // txtUsrnmAD
@@ -242,7 +242,7 @@
             panel1.ForeColor = Color.FromArgb(212, 155, 255);
             panel1.Location = new Point(240, 128);
             panel1.Name = "panel1";
-            panel1.Size = new Size(386, 2);
+            panel1.Size = new Size(386, 1);
             panel1.TabIndex = 44;
             // 
             // txtNameAD
@@ -266,7 +266,7 @@
             panel2.ForeColor = Color.FromArgb(212, 155, 255);
             panel2.Location = new Point(240, 93);
             panel2.Name = "panel2";
-            panel2.Size = new Size(386, 2);
+            panel2.Size = new Size(386, 1);
             panel2.TabIndex = 42;
             // 
             // label1
