@@ -46,6 +46,7 @@ namespace ColegioLibrarySystem.Helpers
                 new MySqlParameter("@Status", StatusEnum.Borrowed.ToString()),
                 new MySqlParameter("@CopyId", record.CopyID)
             };
+            
 
             return _databaseHelper.ExecuteNonQuery(query, parameters) > 0;
         }

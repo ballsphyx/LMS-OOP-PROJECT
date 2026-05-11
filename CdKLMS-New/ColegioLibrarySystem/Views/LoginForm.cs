@@ -1,12 +1,19 @@
+using ColegioLibrarySystem.Service;
 using librarymanagement.views;
 
 namespace librarymanagement
 {
     public partial class LoginForm : Form
     {
-        public LoginForm()
+        private readonly BookManagement _bookManagement;
+        private readonly UserManagement _userManagement;
+        private readonly TransactionManagement _transactionManagement;
+        public LoginForm(UserManagement userManagement, BookManagement bookManagement, TransactionManagement transactionManagement )
         {
             InitializeComponent();
+            _userManagement = userManagement;
+            _transactionManagement = transactionManagement;
+            _bookManagement = bookManagement;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -33,7 +40,7 @@ namespace librarymanagement
         {
             if (textBox1.Text == "admin" && textBox2.Text == "admin")
             {
-                AdminDashboard ad = new AdminDashboard();
+                AdminDashboard ad = new AdminDashboard(_bookManagement, _userManagement, _transactionManagement);
                 ad.Show();
                 this.Hide();
             }
