@@ -1,4 +1,5 @@
-﻿using ColegioLibrarySystem.Service;
+﻿using ColegioLibrarySystem.GlobalEnums;
+using ColegioLibrarySystem.Service;
 
 namespace librarymanagement.views
 {
@@ -35,7 +36,7 @@ namespace librarymanagement.views
             cmbDept.Items.Add("Nursing");
             cmbDept.Items.Add("Criminology");
             cmbDept.Items.Add("Hospital Management");
-
+            cmbRole.DataSource = Enum.GetValues(typeof(RoleEnum));
             grpStudentInfo.Visible = false;
             grpInstructorInfo.Visible = false;
         }
