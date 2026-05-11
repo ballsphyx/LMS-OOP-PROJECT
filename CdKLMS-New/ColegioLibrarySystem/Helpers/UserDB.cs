@@ -137,7 +137,52 @@ namespace ColegioLibrarySystem.Helpers
 
             return MapUser(dt.Rows[0]);
         }
+        public Student GetStudentByUserId(int userId)
+        {
+            string query = @"SELECT s.student_id, s.user_id, s.course, s.year_level
+                     FROM students s
+                     WHERE s.user_id = @UserId";
 
+            var parameters = new MySqlParameter[]
+            {
+        new MySqlParameter("@UserId", userId)
+            };
+
+            DataTable dt = _databaseHelper.ExecuteQuery(query, parameters);
+            if (dt.Rows.Count == 0) return null;
+
+            DataRow row = dt.Rows[0];
+            return new Student
+            {
+                StudentId = Convert.ToInt32(row["student_id"]),
+                UserId = Convert.ToInt32(row["user_id"]),
+                Program = row["course"].ToString(),
+                YearLevel = row["year_level"].ToString()
+            };
+        }
+
+        public Instructor GetInstructorByUserId(int userId)
+        {
+            string query = @"SELECT i.instructor_id, i.user_id, i.department
+                     FROM instructors i
+                     WHERE i.user_id = @UserId";
+
+            var parameters = new MySqlParameter[]
+            {
+        new MySqlParameter("@UserId", userId)
+            };
+
+            DataTable dt = _databaseHelper.ExecuteQuery(query, parameters);
+            if (dt.Rows.Count == 0) return null;
+
+            DataRow row = dt.Rows[0];
+            return new Instructor
+            {
+                InstructorId = Convert.ToInt32(row["instructor_id"]),
+                UserId = Convert.ToInt32(row["user_id"]),
+                Department = row["department"].ToString()
+            };
+        }
         public User GetUserByID(int id)
         {
             string query = @"SELECT user_id, username, full_name, password, role_id 
