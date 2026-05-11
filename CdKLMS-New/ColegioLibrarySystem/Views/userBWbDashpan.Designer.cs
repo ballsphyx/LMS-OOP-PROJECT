@@ -43,6 +43,7 @@
             label2 = new Label();
             panel2 = new Panel();
             label1 = new Label();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)dtaGdVwBrw).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nbQntyBW).BeginInit();
             SuspendLayout();
@@ -51,6 +52,7 @@
             // 
             dtaGdVwBrw.BackgroundColor = Color.Snow;
             dtaGdVwBrw.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtaGdVwBrw.GridColor = Color.FromArgb(251, 174, 210);
             dtaGdVwBrw.Location = new Point(526, 8);
             dtaGdVwBrw.Name = "dtaGdVwBrw";
             dtaGdVwBrw.Size = new Size(372, 623);
@@ -102,7 +104,7 @@
             txtAvblBrw.ForeColor = Color.FromArgb(228, 0, 124);
             txtAvblBrw.Location = new Point(188, 254);
             txtAvblBrw.Name = "txtAvblBrw";
-            txtAvblBrw.Size = new Size(114, 19);
+            txtAvblBrw.Size = new Size(59, 19);
             txtAvblBrw.TabIndex = 46;
             // 
             // panel3
@@ -112,7 +114,7 @@
             panel3.ForeColor = Color.FromArgb(212, 155, 255);
             panel3.Location = new Point(179, 275);
             panel3.Name = "panel3";
-            panel3.Size = new Size(130, 2);
+            panel3.Size = new Size(75, 1);
             panel3.TabIndex = 47;
             // 
             // txtTTBrw
@@ -133,7 +135,7 @@
             panel1.ForeColor = Color.FromArgb(212, 155, 255);
             panel1.Location = new Point(179, 197);
             panel1.Name = "panel1";
-            panel1.Size = new Size(278, 2);
+            panel1.Size = new Size(278, 1);
             panel1.TabIndex = 45;
             // 
             // txtBkIDBrw
@@ -187,7 +189,7 @@
             panel2.ForeColor = Color.FromArgb(228, 0, 124);
             panel2.Location = new Point(179, 235);
             panel2.Name = "panel2";
-            panel2.Size = new Size(130, 2);
+            panel2.Size = new Size(130, 1);
             panel2.TabIndex = 40;
             // 
             // label1
@@ -201,12 +203,24 @@
             label1.TabIndex = 38;
             label1.Text = "Book ID:";
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.FromArgb(251, 174, 210);
+            label6.Location = new Point(12, 9);
+            label6.Name = "label6";
+            label6.Size = new Size(93, 16);
+            label6.TabIndex = 51;
+            label6.Text = "Borrow Books";
+            // 
             // userBKbDashpan
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Snow;
             ClientSize = new Size(907, 638);
+            Controls.Add(label6);
             Controls.Add(nbQntyBW);
             Controls.Add(label5);
             Controls.Add(btnBrw);
@@ -246,5 +260,6 @@
         private Label label2;
         private Panel panel2;
         private Label label1;
+        private Label label6;
     }
 }

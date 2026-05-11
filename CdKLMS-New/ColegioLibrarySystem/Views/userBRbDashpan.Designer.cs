@@ -37,6 +37,7 @@
             txtSearchBR = new TextBox();
             label3 = new Label();
             label2 = new Label();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)dtaGrdVBR).BeginInit();
             panel4.SuspendLayout();
             SuspendLayout();
@@ -46,7 +47,7 @@
             dtaGrdVBR.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dtaGrdVBR.BackgroundColor = Color.Snow;
             dtaGrdVBR.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtaGrdVBR.GridColor = Color.FromArgb(57, 88, 134);
+            dtaGrdVBR.GridColor = Color.FromArgb(251, 174, 210);
             dtaGrdVBR.Location = new Point(12, 217);
             dtaGrdVBR.Name = "dtaGrdVBR";
             dtaGrdVBR.Size = new Size(883, 409);
@@ -131,12 +132,24 @@
             label2.TabIndex = 28;
             label2.Text = "Book List";
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.FromArgb(251, 174, 210);
+            label6.Location = new Point(12, 9);
+            label6.Name = "label6";
+            label6.Size = new Size(94, 16);
+            label6.TabIndex = 52;
+            label6.Text = "Browse Books";
+            // 
             // userBRbDashpan
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Snow;
             ClientSize = new Size(907, 638);
+            Controls.Add(label6);
             Controls.Add(label2);
             Controls.Add(cmbCtgryBR);
             Controls.Add(label1);
@@ -162,5 +175,6 @@
         private TextBox txtSearchBR;
         private Label label3;
         private Label label2;
+        private Label label6;
     }
 }

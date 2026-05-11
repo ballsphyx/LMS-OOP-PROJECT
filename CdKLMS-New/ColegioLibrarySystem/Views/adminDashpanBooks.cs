@@ -6,19 +6,14 @@
         {
             InitializeComponent();
 
-            cmbCategory.Items.Add("Romance");
-            cmbCategory.Items.Add("Fiction");
-            cmbCategory.Items.Add("Non-Fiction");
-            cmbCategory.Items.Add("Science");
-            cmbCategory.Items.Add("History");
-            cmbCategory.Items.Add("Biography");
-            cmbCategory.Items.Add("Fantasy");
-            cmbCategory.Items.Add("Mystery");
-            cmbCategory.Items.Add("Horror");
-            cmbCategory.Items.Add("Self-Help");
-            cmbCategory.Items.Add("Philosophy");
-            cmbCategory.Items.Add("Religion");
-            cmbCategory.Items.Add("Technology");
+            cmbCategory.Items.AddRange(new string[] 
+            {
+                "Select Category","Romance","Fiction","Non-Fiction","Science","History","Biography","Fantasy","Mystery","Horror","Self-Help","Philosophy","Religion","Technology"
+
+            });
+
+            cmbCategory.SelectedIndex = 0;
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -85,6 +80,11 @@
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
