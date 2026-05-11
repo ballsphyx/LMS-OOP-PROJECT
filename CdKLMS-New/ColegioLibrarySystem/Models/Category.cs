@@ -1,4 +1,5 @@
 ﻿using ColegioLibrarySystem.GlobalEnums;
+using System.Xml.Linq;
 
 namespace ColegioLibrarySystem.Models
 {
@@ -6,5 +7,9 @@ namespace ColegioLibrarySystem.Models
     {
         public int CatId { get; set; }
         public CategoryEnum CatName { get; set; }
+        public override string ToString()
+        {
+            return CatName.ToString();
+        }
     }
 }

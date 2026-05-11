@@ -16,8 +16,8 @@ namespace ColegioLibrarySystem.Helpers
 
         public bool AddBook(Book book)
         {
-            string bookQuery = @"INSERT INTO books (book_title, book_author, category_id, published_year, isbn, total_copies)
-                                 VALUES (@Title, @Author, @CategoryId, @PublishedYear, @ISBN, @TotalCopies)";
+            string bookQuery = @"INSERT INTO books (book_title, book_author, category_id, published_year, isbn)
+                                 VALUES (@Title, @Author, @CategoryId, @PublishedYear, @ISBN)";
 
             var bookParams = new MySqlParameter[]
             {
@@ -25,8 +25,7 @@ namespace ColegioLibrarySystem.Helpers
                 new MySqlParameter("@Author", book.Author),
                 new MySqlParameter("@CategoryId", book.CatId),
                 new MySqlParameter("@PublishedYear", book.PublicationYear),
-                new MySqlParameter("@ISBN", book.ISBN),
-                new MySqlParameter("@TotalCopies", book.TotalCopies)
+                new MySqlParameter("@ISBN", book.ISBN)
             };
 
             int newBookId = _databaseHelper.ExecuteNonQueryGetID(bookQuery, bookParams);
@@ -62,8 +61,7 @@ namespace ColegioLibrarySystem.Helpers
                                 book_author = @Author, 
                                 category_id = @CategoryId, 
                                 published_year = @PublishedYear,
-                                isbn = @ISBN,
-                                total_copies = @TotalCopies
+                                isbn = @ISBN
                              WHERE book_id = @BookId";
 
             var parameters = new MySqlParameter[]
@@ -74,27 +72,53 @@ namespace ColegioLibrarySystem.Helpers
                 new MySqlParameter("@CategoryId", book.CatId),
                 new MySqlParameter("@PublishedYear", book.PublicationYear),
                 new MySqlParameter("@ISBN", book.ISBN),
-                new MySqlParameter("@TotalCopies", book.TotalCopies)
             };
 
             return _databaseHelper.ExecuteNonQuery(query, parameters) > 0;
         }
 
-        public bool DeleteBook(string isbn)
+        public bool DeleteBook(int bookid)
         {
-            string query = "DELETE FROM books WHERE isbn = @ISBN";
+            string query = "DELETE FROM books WHERE book_id = @BookID";
             var parameters = new MySqlParameter[]
             {
-                new MySqlParameter("@ISBN", isbn)
+                new MySqlParameter("@BookID", bookid)
             };
             return _databaseHelper.ExecuteNonQuery(query, parameters) > 0;
         }
+        public bool DeleteBookCopy(int bookid, int amount)
+        {
+            string query = "DELETE FROM book_copies WHERE book_id = @BOOKID AND status = 'Available' LIMIT " + amount;
+            var param = new MySqlParameter[]
+            {
+                new MySqlParameter("@BOOKID", bookid)
+            };
+            return _databaseHelper.ExecuteNonQuery(query, param) > 0;
+        }
 
+        //public List<Book> GetAllBooks()
+        //{
+        //    string query = @"SELECT *
+        //                     FROM books";
+
+        //    DataTable dt = _databaseHelper.ExecuteQuery(query);
+        //    return MapBooks(dt);
+        //}
         public List<Book> GetAllBooks()
         {
-            string query = @"SELECT book_id, book_title, book_author, category_id, 
-                                    published_year, isbn, total_copies
-                             FROM books";
+            string query = @"SELECT b.*,
+                             COUNT(bc.copy_id) AS TotalCopies,
+
+                                COUNT(CASE 
+                                    WHEN bc.status = 'Available' THEN 1 
+                                END) AS AvailableCopies
+
+                             FROM books b
+
+                             LEFT JOIN book_copies bc 
+                             ON b.book_id = bc.book_id
+
+                             GROUP BY b.book_id";
 
             DataTable dt = _databaseHelper.ExecuteQuery(query);
             return MapBooks(dt);
@@ -116,11 +140,22 @@ namespace ColegioLibrarySystem.Helpers
 
             return MapBook(dt.Rows[0]);
         }
+        public Book GetBookByID(int ID)
+        {
+            string query = @"SELECT * FROM books WHERE book_id = @BOOKID";
+            var param = new MySqlParameter[]
+            {
+                new MySqlParameter("@BOOKID", ID)
+            };
+            DataTable dt = _databaseHelper.ExecuteQuery(query, param);
+            if (dt.Rows.Count == 0) return null;
+
+            return MapBook(dt.Rows[0]);
+        }
 
         public List<Book> GetBooksByTitle(string title)
         {
-            string query = @"SELECT book_id, book_title, book_author, category_id, 
-                                    published_year, isbn, total_copies
+            string query = @"SELECT *
                              FROM books
                              WHERE book_title LIKE @Title";
 
@@ -135,8 +170,7 @@ namespace ColegioLibrarySystem.Helpers
 
         public List<Book> GetBooksByCategory(CategoryEnum category)
         {
-            string query = @"SELECT book_id, book_title, book_author, category_id, 
-                                    published_year, isbn, total_copies
+            string query = @"SELECT *
                              FROM books
                              WHERE category_id = @CategoryId";
 
@@ -148,8 +182,17 @@ namespace ColegioLibrarySystem.Helpers
             DataTable dt = _databaseHelper.ExecuteQuery(query, parameters);
             return MapBooks(dt);
         }
-
-        public int GetAvailableCopies(int bookId)
+        public int CountAllCopies(int bookId)
+        {
+            string query = @"SELECT COUNT(*) as numCopies FROM book_copies WHERE book_id = @BOOKID";
+            var parameters =  new MySqlParameter[]
+            {
+                new MySqlParameter("@BOOKID", bookId)
+            };
+            DataTable dt = _databaseHelper.ExecuteQuery(query, parameters);
+            return Convert.ToInt32(dt.Rows[0]["numCopies"]);
+        }
+        public int CountAvailableCopies(int bookId)
         {
             string query = @"SELECT COUNT(*) as available FROM book_copies 
                              WHERE book_id = @BookId AND status = 'Available'";
@@ -186,7 +229,7 @@ namespace ColegioLibrarySystem.Helpers
 
         private Book MapBook(DataRow row)
         {
-            return new Book
+            var book = new Book
             {
                 BookID = Convert.ToInt32(row["book_id"]),
                 Title = row["book_title"].ToString(),
@@ -198,10 +241,17 @@ namespace ColegioLibrarySystem.Helpers
                     CatName = (CategoryEnum)Convert.ToInt32(row["category_id"])
                 },
                 PublicationYear = Convert.ToInt32(row["published_year"]),
-                TotalCopies = Convert.ToInt32(row["total_copies"]),
-                ISBN = row["isbn"].ToString()
+                ISBN = row["isbn"].ToString(),
             };
+
+                if (row.Table.Columns.Contains("TotalCopies"))
+                book.TotalCopies = Convert.ToInt32(row["TotalCopies"]);
+
+                if (row.Table.Columns.Contains("AvailableCopies"))
+                book.AvailableCopies = Convert.ToInt32(row["AvailableCopies"]);
+            return book;
         }
+        
 
         private List<Book> MapBooks(DataTable dt)
         {

@@ -16,7 +16,8 @@ namespace ColegioLibrarySystem.Service
         }
         public bool AddBook(string title, string author, CategoryEnum category, int publicationYear, int totalCopies, string isbn)
         {
-            if (_bookDB.GetBookByISBN(isbn) != null) return false; //if isbn is not found, exit funciton
+            if (_bookDB.GetBookByISBN(isbn) != null)
+                throw new InvalidOperationException("A book with this ISBN already exists."); //if isbn is found, exit funciton
 
             Book newBook = new Book
             {
@@ -35,18 +36,18 @@ namespace ColegioLibrarySystem.Service
 
             return _bookDB.AddBook(newBook);
         }
-        public bool AddBookCopy(string isbn)
+        private bool AddBookCopy(int bookid)
         {
-            Book book = _bookDB.GetBookByISBN(isbn);
-            if (book == null) return false;
+            Book book = _bookDB.GetBookByID(bookid);
+            if (book == null) throw new InvalidOperationException("Book was not found");
 
             BookCopy newCopy = new BookCopy { BookId = book.BookID, CopyStatus = StatusEnum.Available };
             return _bookDB.AddBookCopy(newCopy);
         }
-        public bool UpdateBook(string isbn, string title, string author, CategoryEnum category, int publicationYear, int totalCopies)
+        public bool UpdateBook(string title, string isbn, string author, CategoryEnum category, int publicationYear, int totalCopies)
         {
             Book book = _bookDB.GetBookByISBN(isbn);
-            if (book == null) return false;
+            if (book == null) throw new InvalidOperationException("Book does not exist");
 
             Book updatedBook = new Book
             {
@@ -64,14 +65,39 @@ namespace ColegioLibrarySystem.Service
                 ISBN = isbn
             };
 
-            return _bookDB.UpdateBook(updatedBook);
+            int current = CountCopies(book.BookID);
+            int newTotal = updatedBook.TotalCopies;
+            int difference = newTotal - current;
+            if (difference > 0)
+            {
+                for (int i = 0; i < difference; i++)
+                {
+                    AddBookCopy(book.BookID); 
+                }
+            }
+            else
+            {
+                DeleteBookCopy(updatedBook.BookID, difference);
+            }
+                return _bookDB.UpdateBook(updatedBook);
         }
-        public bool DeleteBook(string isbn)
+        public bool DeleteBook(int bookid)
         {
-            Book book = GetBookByISBN(isbn);
-            if (book == null) return false;
-            if (_transactionDB.HasActiveBookBorrow(book.BookID)) return false; //admin cant delete book if it is currently borrowed
-            return _bookDB.DeleteBook(isbn);
+            Book book = GetBookByID(bookid);
+            if (book == null) 
+                throw new InvalidOperationException("Book does not exist");
+            if (_transactionDB.HasActiveBookBorrow(book.BookID))
+                throw new InvalidOperationException("Book is currently borrowed");//admin cant delete book if it is currently borrowed
+            return _bookDB.DeleteBook(bookid);
+        }
+        public int CountCopies(int bookid)
+        {
+            return _bookDB.CountAllCopies(bookid);
+        }
+        private bool DeleteBookCopy(int bookid, int amount)
+        {
+            int safeAmount = Math.Abs(amount);
+            return _bookDB.DeleteBookCopy(bookid, safeAmount);
         }
         public List<Book> GetAllBooks()
         {
@@ -80,6 +106,10 @@ namespace ColegioLibrarySystem.Service
         public Book GetBookByISBN(string isbn)
         {
             return _bookDB.GetBookByISBN(isbn);
+        }
+        public Book GetBookByID(int bookid)
+        {
+            return _bookDB.GetBookByID(bookid);
         }
     }
 }

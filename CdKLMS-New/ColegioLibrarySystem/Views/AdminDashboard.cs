@@ -1,10 +1,14 @@
-﻿using ColegioLibrarySystem.Views;
+﻿using ColegioLibrarySystem.Service;
+using ColegioLibrarySystem.Views;
 
 namespace librarymanagement.views
 {
     public partial class AdminDashboard : Form
     {
-        public AdminDashboard()
+        private readonly BookManagement _bookManagement;
+        private readonly UserManagement _userManagement;
+        private readonly TransactionManagement _transactionManagement;
+        public AdminDashboard(BookManagement bm, UserManagement um, TransactionManagement tm)
         {
             InitializeComponent();
             adminDashpan adp = new adminDashpan();
@@ -17,6 +21,9 @@ namespace librarymanagement.views
 
             adp.BringToFront();
             adp.Show();
+            _bookManagement = bm;
+            _userManagement = um;
+            _transactionManagement = tm;
         }
 
 
@@ -56,7 +63,7 @@ namespace librarymanagement.views
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            AdminDashboard a = new AdminDashboard();
+            AdminDashboard a = new AdminDashboard(_bookManagement, _userManagement, _transactionManagement);
             a.TopLevel = false;
             contentpnl.Controls.Add(a);
             a.BringToFront();
@@ -65,7 +72,7 @@ namespace librarymanagement.views
 
         private void btnBooks_Click(object sender, EventArgs e)
         {
-            adminDashpanBooks b = new adminDashpanBooks();
+            adminDashpanBooks b = new adminDashpanBooks(_bookManagement, _transactionManagement);
             b.TopLevel = false;
             contentpnl.Controls.Add(b);
             b.BringToFront();
@@ -75,26 +82,11 @@ namespace librarymanagement.views
 
         private void btnUser_Click(object sender, EventArgs e)
         {
-            adminDashpanUser u = new adminDashpanUser();
+            adminDashpanUser u = new adminDashpanUser(_userManagement, _transactionManagement);
             u.TopLevel = false;
             contentpnl.Controls.Add(u);
             u.BringToFront();
             u.Show();
-        }
-
-        private void btnlogout_Click(object sender, EventArgs e)
-        {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (dialogResult == DialogResult.Yes)
-            {
-                LoginForm login = new LoginForm();
-                login.Show();
-
-                this.Close();
-
-
-            }
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
@@ -112,12 +104,10 @@ namespace librarymanagement.views
 
             if (dialogResult == DialogResult.Yes)
             {
-                LoginForm login = new LoginForm();
+                LoginForm login = new LoginForm(_userManagement, _bookManagement, _transactionManagement);
                 login.Show();
 
                 this.Close();
-
-
             }
         }
     }

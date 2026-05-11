@@ -1,8 +1,13 @@
-﻿namespace librarymanagement.views
+﻿using ColegioLibrarySystem.Service;
+
+namespace librarymanagement.views
 {
     public partial class UserDashboard : Form
     {
         public string UserRole = "User";
+        private readonly BookManagement _bookManagement;
+        private readonly UserManagement _userManagement;
+        private readonly TransactionManagement _transactionManagement;
         public UserDashboard(string role)
         {
 
@@ -28,7 +33,7 @@
 
             if (dialogResult == DialogResult.Yes)
             {
-                LoginForm login = new LoginForm();
+                LoginForm login = new LoginForm(_userManagement, _bookManagement, _transactionManagement);
                 login.Show();
 
                 this.Close();
@@ -75,7 +80,7 @@
 
             if (dialogResult == DialogResult.Yes)
             {
-                LoginForm login = new LoginForm();
+                LoginForm login = new LoginForm(_userManagement, _bookManagement, _transactionManagement);
                 login.Show();
 
                 this.Close();

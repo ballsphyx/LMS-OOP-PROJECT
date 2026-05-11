@@ -1,10 +1,16 @@
-﻿namespace librarymanagement.views
+﻿using ColegioLibrarySystem.Service;
+
+namespace librarymanagement.views
 {
     public partial class adminDashpanUser : Form
     {
-        public adminDashpanUser()
+        private readonly UserManagement _userManagement;
+        private readonly TransactionManagement _transactionManagement;
+        public adminDashpanUser(UserManagement um, TransactionManagement tm)
         {
             InitializeComponent();
+            _userManagement = um;
+            _transactionManagement = tm;
         }
 
         private void adminDashpanUser_Load(object sender, EventArgs e)

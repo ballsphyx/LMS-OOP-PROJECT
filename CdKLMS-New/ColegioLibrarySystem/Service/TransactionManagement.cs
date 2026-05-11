@@ -6,11 +6,11 @@ namespace ColegioLibrarySystem.Service
 {
     public class TransactionManagement
     {
-        private readonly TransactionDB _borrowDB;
+        private readonly TransactionDB _transactionDB;
         private readonly BookDB _bookDB;
         public TransactionManagement(TransactionDB borrowDB, BookDB bookDB)
         {
-            _borrowDB = borrowDB;
+            _transactionDB = borrowDB;
             _bookDB = bookDB;
         }
 
@@ -27,10 +27,10 @@ namespace ColegioLibrarySystem.Service
             if (role.RoleName == RoleEnum.Student)
             {
                 quantity = 1;
-                if (_borrowDB.HasActiveBookBorrow(userId, book.BookID)) return false;
+                if (_transactionDB.HasActiveBookBorrow(userId, book.BookID)) return false;
             }
 
-            int availableCount = _bookDB.GetAvailableCopies(book.BookID);
+            int availableCount = _bookDB.CountAvailableCopies(book.BookID);
             if (availableCount < quantity) return false;
 
             List<int> copyIds = _bookDB.GetAvailableCopyIds(book.BookID, quantity);
@@ -48,7 +48,7 @@ namespace ColegioLibrarySystem.Service
                     Quantity = quantity
                 };
 
-                bool success = _borrowDB.BorrowBook(record);
+                bool success = _transactionDB.BorrowBook(record);
                 if (!success) return false;
             }
 
@@ -56,27 +56,27 @@ namespace ColegioLibrarySystem.Service
         }
         public bool ReturnBook(int transactionId)
         {
-            if (!_borrowDB.BorrowExists(transactionId)) return false; //if this borrow record does not exist, exit function
+            if (!_transactionDB.BorrowExists(transactionId)) return false; //if this borrow record does not exist, exit function
 
-            int copyId = _borrowDB.GetCopyId(transactionId);
+            int copyId = _transactionDB.GetCopyId(transactionId);
             if (copyId == -1) return false;
 
-            return _borrowDB.ReturnBook(transactionId, copyId);
+            return _transactionDB.ReturnBook(transactionId, copyId);
         }
 
         public List<Transaction> GetAllBorrows()
         {
-            return _borrowDB.GetAllBorrows();
+            return _transactionDB.GetAllBorrows();
         }
 
         public List<Transaction> GetActiveBorrows()
         {
-            return _borrowDB.GetActiveBorrows();
+            return _transactionDB.GetActiveBorrows();
         }
 
         public List<Transaction> GetBorrowsByUser(int userId)
         {
-            return _borrowDB.GetBorrowsByUser(userId);
+            return _transactionDB.GetBorrowsByUser(userId);
         }
     }
 }
