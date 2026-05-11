@@ -14,9 +14,9 @@ namespace ColegioLibrarySystem.Service
             _borrowDB = borrowDB;
         }
 
-        public bool RegisterStudent(string username, string password, string fullName, string program, int yearLevel)
+        public bool RegisterStudent(string username, string password, string fullName, string program, string yearLevel)
         {
-            if (_userDB.GetUserByUsername(username) != null) return false; //if user already exists, exit function
+            if (_userDB.GetUserByUsername(username) != null) throw new InvalidOperationException("Student already exists"); //if user already exists, exit function
 
             Student newStudent = new Student //create new student object to pass into function
             {
@@ -40,7 +40,7 @@ namespace ColegioLibrarySystem.Service
         }
         public bool RegisterInstructor(string username, string password, string fullName, string department)
         {
-            if (_userDB.GetUserByUsername(username) != null) return false; //if user already exists, exit function
+            if (_userDB.GetUserByUsername(username) != null) throw new InvalidOperationException("Instructor already exists"); //if user already exists, exit function
 
             Instructor newInstructor = new Instructor //create new instructor object to pass into function
             {
@@ -63,7 +63,7 @@ namespace ColegioLibrarySystem.Service
         }
         public bool RegisterAdmin(string username, string password, string fullName)
         {
-            if (_userDB.GetUserByUsername(username) != null) return false;
+            if (_userDB.GetUserByUsername(username) != null) throw new InvalidOperationException("Admin already exists");
 
             Admin newAdmin = new Admin
             {
@@ -104,6 +104,15 @@ namespace ColegioLibrarySystem.Service
                 Role = role
             };
             return _userDB.UpdateUser(updatedUser); //update to DB
+        }
+        public Student GetStudentByUserId(int userId)
+        {
+            return _userDB.GetStudentByUserId(userId);
+        }
+
+        public Instructor GetInstructorByUserId(int userId)
+        {
+            return _userDB.GetInstructorByUserId(userId);
         }
         public List<User> GetAllUsers()
         {

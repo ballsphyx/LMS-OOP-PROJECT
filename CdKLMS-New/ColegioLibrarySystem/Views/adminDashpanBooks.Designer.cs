@@ -35,7 +35,6 @@ namespace librarymanagement.views
             btnAddAD = new Button();
             btnDltAD = new Button();
             btnUpdtAD = new Button();
-            btnClearAD = new Button();
             txtCopies = new TextBox();
             label7 = new Label();
             cmbCategory = new ComboBox();
@@ -57,6 +56,7 @@ namespace librarymanagement.views
             panel3 = new Panel();
             pictureBox1 = new PictureBox();
             dateTimePicker = new DateTimePicker();
+            btnClearAD = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvBooksAD).BeginInit();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -126,23 +126,6 @@ namespace librarymanagement.views
             btnUpdtAD.Text = "UPDATE";
             btnUpdtAD.UseVisualStyleBackColor = false;
             btnUpdtAD.Click += button3_Click;
-            // 
-            // btnClearAD
-            // 
-            btnClearAD.BackColor = Color.HotPink;
-            btnClearAD.Cursor = Cursors.Hand;
-            btnClearAD.FlatAppearance.BorderSize = 0;
-            btnClearAD.FlatStyle = FlatStyle.Flat;
-            btnClearAD.Font = new Font("Impact", 9F);
-            btnClearAD.ForeColor = Color.FromArgb(240, 243, 250);
-            btnClearAD.Location = new Point(832, 197);
-            btnClearAD.Margin = new Padding(3, 4, 3, 4);
-            btnClearAD.Name = "btnClearAD";
-            btnClearAD.Size = new Size(86, 43);
-            btnClearAD.TabIndex = 14;
-            btnClearAD.Text = "CLEAR";
-            btnClearAD.UseVisualStyleBackColor = false;
-            btnClearAD.Click += button4_Click;
             // 
             // txtCopies
             // 
@@ -387,6 +370,23 @@ namespace librarymanagement.views
             dateTimePicker.Size = new Size(166, 26);
             dateTimePicker.TabIndex = 36;
             // 
+            // btnClearAD
+            // 
+            btnClearAD.BackColor = Color.HotPink;
+            btnClearAD.Cursor = Cursors.Hand;
+            btnClearAD.FlatAppearance.BorderSize = 0;
+            btnClearAD.FlatStyle = FlatStyle.Flat;
+            btnClearAD.Font = new Font("Impact", 9F);
+            btnClearAD.ForeColor = Color.FromArgb(240, 243, 250);
+            btnClearAD.Location = new Point(832, 197);
+            btnClearAD.Margin = new Padding(3, 4, 3, 4);
+            btnClearAD.Name = "btnClearAD";
+            btnClearAD.Size = new Size(86, 43);
+            btnClearAD.TabIndex = 14;
+            btnClearAD.Text = "CLEAR";
+            btnClearAD.UseVisualStyleBackColor = false;
+            btnClearAD.Click += button4_Click;
+            // 
             // adminDashpanBooks
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -446,7 +446,6 @@ namespace librarymanagement.views
         private Button btnAddAD;
         private Button btnDltAD;
         private Button btnUpdtAD;
-        private Button btnClearAD;
         private TextBox txtCopies;
         private Label label7;
         private ComboBox cmbCategory;
@@ -468,5 +467,6 @@ namespace librarymanagement.views
         private Panel panel3;
         private PictureBox pictureBox1;
         private DateTimePicker dateTimePicker;
+        private Button btnClearAD;
     }
 }

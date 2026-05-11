@@ -38,23 +38,23 @@ namespace librarymanagement
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "admin" && textBox2.Text == "admin")
-            {
                 AdminDashboard ad = new AdminDashboard(_bookManagement, _userManagement, _transactionManagement);
                 ad.Show();
                 this.Hide();
-            }
-            else if (textBox1.Text == "user" && textBox2.Text == "user")
-            {
-                UserDashboard userD = new UserDashboard("User");
-                userD.Show();
-                this.Hide();
+            //if (textBox1.Text == "admin" && textBox2.Text == "admin")
+            //{
+            //}
+            //else if (textBox1.Text == "user" && textBox2.Text == "user")
+            //{
+            //    UserDashboard userD = new UserDashboard("User");
+            //    userD.Show();
+            //    this.Hide();
 
-            }
-            else
-            {
-                MessageBox.Show("Invalid username or password");
-            }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Invalid username or password");
+            //}
         }
 
         private void button2_Click(object sender, EventArgs e)
