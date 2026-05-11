@@ -32,8 +32,15 @@
             label3 = new Label();
             button4 = new Button();
             contentpnl = new Panel();
+            pictureBox2 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            pictureBox7 = new PictureBox();
+            pictureBox6 = new PictureBox();
+            pictureBox5 = new PictureBox();
+            pictureBox4 = new PictureBox();
+            label4 = new Label();
             panel1 = new Panel();
-            button3 = new Button();
+            btnLogout = new Button();
             btnUser = new Button();
             label2 = new Label();
             btnBooks = new Button();
@@ -43,6 +50,13 @@
             btnTrsnc = new Button();
             panel2 = new Panel();
             button5 = new Button();
+            contentpnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -64,24 +78,102 @@
             button4.FlatAppearance.BorderSize = 0;
             button4.FlatStyle = FlatStyle.Flat;
             button4.Image = (Image)resources.GetObject("button4.Image");
-            button4.Location = new Point(244, 34);
+            button4.Location = new Point(236, 34);
             button4.Name = "button4";
-            button4.Size = new Size(93, 56);
+            button4.Size = new Size(76, 56);
             button4.TabIndex = 11;
             button4.UseVisualStyleBackColor = true;
             // 
             // contentpnl
             // 
             contentpnl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            contentpnl.Controls.Add(pictureBox2);
+            contentpnl.Controls.Add(pictureBox3);
+            contentpnl.Controls.Add(pictureBox7);
+            contentpnl.Controls.Add(pictureBox6);
+            contentpnl.Controls.Add(pictureBox5);
+            contentpnl.Controls.Add(pictureBox4);
+            contentpnl.Controls.Add(label4);
             contentpnl.Location = new Point(242, 96);
             contentpnl.Name = "contentpnl";
             contentpnl.Size = new Size(907, 638);
             contentpnl.TabIndex = 10;
             // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(516, 155);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(228, 215);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 21;
+            pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(158, 155);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(228, 215);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 16;
+            pictureBox3.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
+            pictureBox7.Location = new Point(662, 474);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(174, 87);
+            pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox7.TabIndex = 20;
+            pictureBox7.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
+            pictureBox6.Location = new Point(467, 474);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(174, 87);
+            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox6.TabIndex = 19;
+            pictureBox6.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
+            pictureBox5.Location = new Point(271, 474);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(174, 87);
+            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox5.TabIndex = 18;
+            pictureBox5.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(70, 474);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(174, 87);
+            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox4.TabIndex = 17;
+            pictureBox4.TabStop = false;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Monotype Corsiva", 15.75F, FontStyle.Italic);
+            label4.ForeColor = Color.FromArgb(228, 0, 124);
+            label4.Location = new Point(385, 77);
+            label4.Name = "label4";
+            label4.Size = new Size(129, 25);
+            label4.TabIndex = 15;
+            label4.Text = "Welcome, User!";
+            // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(20, 18, 51);
-            panel1.Controls.Add(button3);
+            panel1.Controls.Add(btnLogout);
             panel1.Controls.Add(btnUser);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(btnBooks);
@@ -93,21 +185,22 @@
             panel1.Size = new Size(236, 739);
             panel1.TabIndex = 9;
             // 
-            // button3
+            // btnLogout
             // 
-            button3.FlatAppearance.BorderSize = 0;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.ForeColor = Color.FromArgb(251, 174, 210);
-            button3.ImageAlign = ContentAlignment.MiddleLeft;
-            button3.Location = new Point(0, 680);
-            button3.Name = "button3";
-            button3.RightToLeft = RightToLeft.No;
-            button3.Size = new Size(235, 59);
-            button3.TabIndex = 4;
-            button3.Text = "Logout";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            btnLogout.FlatAppearance.BorderSize = 0;
+            btnLogout.FlatStyle = FlatStyle.Flat;
+            btnLogout.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogout.ForeColor = Color.FromArgb(251, 174, 210);
+            btnLogout.Image = (Image)resources.GetObject("btnLogout.Image");
+            btnLogout.Location = new Point(3, 675);
+            btnLogout.Name = "btnLogout";
+            btnLogout.RightToLeft = RightToLeft.No;
+            btnLogout.Size = new Size(235, 59);
+            btnLogout.TabIndex = 7;
+            btnLogout.Text = "Logout";
+            btnLogout.TextImageRelation = TextImageRelation.TextBeforeImage;
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
             // 
             // btnUser
             // 
@@ -173,7 +266,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.WhiteSmoke;
-            label1.Location = new Point(82, 152);
+            label1.Location = new Point(90, 152);
             label1.Name = "label1";
             label1.Size = new Size(56, 18);
             label1.TabIndex = 3;
@@ -244,6 +337,14 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "UserDashboard";
             Text = "UserDashboard";
+            contentpnl.ResumeLayout(false);
+            contentpnl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel3.ResumeLayout(false);
@@ -260,7 +361,6 @@
         private Panel contentpnl;
         private Panel panel1;
         private Label label2;
-        private Button button3;
         private Button btnUser;
         private Button btnBooks;
         private Panel panel3;
@@ -269,5 +369,13 @@
         private Panel panel2;
         private Button btnTrsnc;
         private Button button5;
+        private Button btnLogout;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox3;
+        private PictureBox pictureBox7;
+        private PictureBox pictureBox6;
+        private PictureBox pictureBox5;
+        private PictureBox pictureBox4;
+        private Label label4;
     }
 }

@@ -28,33 +28,261 @@
         /// </summary>
         private void InitializeComponent()
         {
+            dgvUsrAD = new DataGridView();
+            btnDlteUsrAD = new Button();
+            btnUpdtUsrAD = new Button();
+            btnAddUsrAD = new Button();
+            grpInstructorInfo = new Panel();
+            cmbDept = new ComboBox();
+            label7 = new Label();
+            grpStudentInfo = new Panel();
+            cmbYear = new ComboBox();
+            cmbCourse = new ComboBox();
+            label5 = new Label();
+            cmbRole = new ComboBox();
+            txtPassAD = new TextBox();
+            panel3 = new Panel();
+            txtUsrnmAD = new TextBox();
+            panel1 = new Panel();
+            txtNameAD = new TextBox();
+            panel2 = new Panel();
+            label1 = new Label();
             label3 = new Label();
             label2 = new Label();
             label4 = new Label();
-            label1 = new Label();
-            dataGridView1 = new DataGridView();
-            textBox3 = new TextBox();
-            panel3 = new Panel();
-            textBox1 = new TextBox();
-            panel1 = new Panel();
-            textBox2 = new TextBox();
-            panel2 = new Panel();
-            button4 = new Button();
-            button3 = new Button();
-            button1 = new Button();
-            comboBox1 = new ComboBox();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvUsrAD).BeginInit();
+            grpInstructorInfo.SuspendLayout();
+            grpStudentInfo.SuspendLayout();
             SuspendLayout();
+            // 
+            // dgvUsrAD
+            // 
+            dgvUsrAD.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvUsrAD.BackgroundColor = Color.Snow;
+            dgvUsrAD.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvUsrAD.GridColor = Color.FromArgb(138, 174, 224);
+            dgvUsrAD.Location = new Point(12, 296);
+            dgvUsrAD.Name = "dgvUsrAD";
+            dgvUsrAD.Size = new Size(897, 340);
+            dgvUsrAD.TabIndex = 19;
+            // 
+            // btnDlteUsrAD
+            // 
+            btnDlteUsrAD.BackColor = Color.FromArgb(251, 174, 210);
+            btnDlteUsrAD.Cursor = Cursors.Hand;
+            btnDlteUsrAD.FlatAppearance.BorderSize = 0;
+            btnDlteUsrAD.FlatStyle = FlatStyle.Flat;
+            btnDlteUsrAD.Font = new Font("Impact", 9F);
+            btnDlteUsrAD.ForeColor = Color.FromArgb(240, 243, 250);
+            btnDlteUsrAD.Location = new Point(728, 186);
+            btnDlteUsrAD.Name = "btnDlteUsrAD";
+            btnDlteUsrAD.Size = new Size(75, 32);
+            btnDlteUsrAD.TabIndex = 31;
+            btnDlteUsrAD.Text = "DELETE";
+            btnDlteUsrAD.UseVisualStyleBackColor = false;
+            btnDlteUsrAD.Click += button4_Click;
+            // 
+            // btnUpdtUsrAD
+            // 
+            btnUpdtUsrAD.BackColor = Color.HotPink;
+            btnUpdtUsrAD.Cursor = Cursors.Hand;
+            btnUpdtUsrAD.FlatAppearance.BorderSize = 0;
+            btnUpdtUsrAD.FlatStyle = FlatStyle.Flat;
+            btnUpdtUsrAD.Font = new Font("Impact", 9F);
+            btnUpdtUsrAD.ForeColor = Color.FromArgb(240, 243, 250);
+            btnUpdtUsrAD.Location = new Point(728, 113);
+            btnUpdtUsrAD.Name = "btnUpdtUsrAD";
+            btnUpdtUsrAD.Size = new Size(75, 32);
+            btnUpdtUsrAD.TabIndex = 30;
+            btnUpdtUsrAD.Text = "UPDATE";
+            btnUpdtUsrAD.UseVisualStyleBackColor = false;
+            btnUpdtUsrAD.Click += button3_Click;
+            // 
+            // btnAddUsrAD
+            // 
+            btnAddUsrAD.BackColor = Color.HotPink;
+            btnAddUsrAD.Cursor = Cursors.Hand;
+            btnAddUsrAD.FlatAppearance.BorderSize = 0;
+            btnAddUsrAD.FlatStyle = FlatStyle.Flat;
+            btnAddUsrAD.Font = new Font("Impact", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAddUsrAD.ForeColor = Color.FromArgb(240, 243, 250);
+            btnAddUsrAD.Location = new Point(728, 63);
+            btnAddUsrAD.Name = "btnAddUsrAD";
+            btnAddUsrAD.Size = new Size(75, 32);
+            btnAddUsrAD.TabIndex = 29;
+            btnAddUsrAD.Text = "ADD";
+            btnAddUsrAD.UseVisualStyleBackColor = false;
+            btnAddUsrAD.Click += button1_Click;
+            // 
+            // grpInstructorInfo
+            // 
+            grpInstructorInfo.BackgroundImageLayout = ImageLayout.Center;
+            grpInstructorInfo.Controls.Add(cmbDept);
+            grpInstructorInfo.Controls.Add(label7);
+            grpInstructorInfo.ForeColor = Color.Snow;
+            grpInstructorInfo.Location = new Point(145, 215);
+            grpInstructorInfo.Name = "grpInstructorInfo";
+            grpInstructorInfo.Size = new Size(386, 62);
+            grpInstructorInfo.TabIndex = 49;
+            // 
+            // cmbDept
+            // 
+            cmbDept.BackColor = Color.Snow;
+            cmbDept.ForeColor = Color.FromArgb(228, 0, 124);
+            cmbDept.FormattingEnabled = true;
+            cmbDept.Location = new Point(80, 26);
+            cmbDept.Name = "cmbDept";
+            cmbDept.Size = new Size(197, 23);
+            cmbDept.TabIndex = 37;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.FromArgb(228, 0, 124);
+            label7.Location = new Point(3, 6);
+            label7.Name = "label7";
+            label7.Size = new Size(87, 16);
+            label7.TabIndex = 34;
+            label7.Text = "Department:";
+            // 
+            // grpStudentInfo
+            // 
+            grpStudentInfo.BackgroundImageLayout = ImageLayout.Center;
+            grpStudentInfo.Controls.Add(cmbYear);
+            grpStudentInfo.Controls.Add(cmbCourse);
+            grpStudentInfo.Controls.Add(label5);
+            grpStudentInfo.ForeColor = Color.Snow;
+            grpStudentInfo.Location = new Point(145, 215);
+            grpStudentInfo.Name = "grpStudentInfo";
+            grpStudentInfo.Size = new Size(314, 62);
+            grpStudentInfo.TabIndex = 48;
+            // 
+            // cmbYear
+            // 
+            cmbYear.BackColor = Color.Snow;
+            cmbYear.ForeColor = Color.FromArgb(228, 0, 124);
+            cmbYear.FormattingEnabled = true;
+            cmbYear.Location = new Point(218, 25);
+            cmbYear.Name = "cmbYear";
+            cmbYear.Size = new Size(78, 23);
+            cmbYear.TabIndex = 39;
+            // 
+            // cmbCourse
+            // 
+            cmbCourse.BackColor = Color.Snow;
+            cmbCourse.ForeColor = Color.FromArgb(228, 0, 124);
+            cmbCourse.FormattingEnabled = true;
+            cmbCourse.Location = new Point(80, 25);
+            cmbCourse.Name = "cmbCourse";
+            cmbCourse.Size = new Size(108, 23);
+            cmbCourse.TabIndex = 38;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.FromArgb(228, 0, 124);
+            label5.Location = new Point(3, 6);
+            label5.Name = "label5";
+            label5.Size = new Size(94, 16);
+            label5.TabIndex = 34;
+            label5.Text = "Course & Year:";
+            // 
+            // cmbRole
+            // 
+            cmbRole.BackColor = Color.Snow;
+            cmbRole.ForeColor = Color.FromArgb(228, 0, 124);
+            cmbRole.FormattingEnabled = true;
+            cmbRole.Location = new Point(240, 186);
+            cmbRole.Name = "cmbRole";
+            cmbRole.Size = new Size(197, 23);
+            cmbRole.TabIndex = 47;
+            cmbRole.SelectedIndexChanged += cmbRole_SelectedIndexChanged;
+            // 
+            // txtPassAD
+            // 
+            txtPassAD.BackColor = Color.Snow;
+            txtPassAD.BorderStyle = BorderStyle.None;
+            txtPassAD.Font = new Font("Century Gothic", 9.75F);
+            txtPassAD.ForeColor = Color.FromArgb(228, 0, 124);
+            txtPassAD.Location = new Point(248, 147);
+            txtPassAD.Name = "txtPassAD";
+            txtPassAD.Size = new Size(242, 16);
+            txtPassAD.TabIndex = 45;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.White;
+            panel3.BorderStyle = BorderStyle.FixedSingle;
+            panel3.ForeColor = Color.FromArgb(212, 155, 255);
+            panel3.Location = new Point(240, 165);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(277, 2);
+            panel3.TabIndex = 46;
+            // 
+            // txtUsrnmAD
+            // 
+            txtUsrnmAD.BackColor = Color.Snow;
+            txtUsrnmAD.BorderStyle = BorderStyle.None;
+            txtUsrnmAD.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtUsrnmAD.ForeColor = Color.FromArgb(228, 0, 124);
+            txtUsrnmAD.Location = new Point(248, 107);
+            txtUsrnmAD.Name = "txtUsrnmAD";
+            txtUsrnmAD.Size = new Size(361, 19);
+            txtUsrnmAD.TabIndex = 43;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.White;
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.ForeColor = Color.FromArgb(212, 155, 255);
+            panel1.Location = new Point(240, 128);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(386, 2);
+            panel1.TabIndex = 44;
+            // 
+            // txtNameAD
+            // 
+            txtNameAD.BackColor = Color.Snow;
+            txtNameAD.BorderStyle = BorderStyle.None;
+            txtNameAD.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNameAD.ForeColor = Color.FromArgb(228, 0, 124);
+            txtNameAD.Location = new Point(248, 72);
+            txtNameAD.Name = "txtNameAD";
+            txtNameAD.Size = new Size(361, 19);
+            txtNameAD.TabIndex = 41;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.White;
+            panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.ForeColor = Color.FromArgb(212, 155, 255);
+            panel2.Location = new Point(240, 93);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(386, 2);
+            panel2.TabIndex = 42;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
+            label1.ForeColor = Color.FromArgb(228, 0, 124);
+            label1.Location = new Point(145, 182);
+            label1.Name = "label1";
+            label1.Size = new Size(39, 16);
+            label1.TabIndex = 40;
+            label1.Text = "Role:";
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             label3.ForeColor = Color.FromArgb(228, 0, 124);
-            label3.Location = new Point(97, 137);
+            label3.Location = new Point(145, 149);
             label3.Name = "label3";
             label3.Size = new Size(71, 16);
-            label3.TabIndex = 8;
+            label3.TabIndex = 38;
             label3.Text = "Password:";
             // 
             // label2
@@ -62,10 +290,10 @@
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             label2.ForeColor = Color.FromArgb(228, 0, 124);
-            label2.Location = new Point(97, 99);
+            label2.Location = new Point(145, 111);
             label2.Name = "label2";
             label2.Size = new Size(75, 16);
-            label2.TabIndex = 9;
+            label2.TabIndex = 39;
             label2.Text = "Username:";
             // 
             // label4
@@ -73,201 +301,70 @@
             label4.AutoSize = true;
             label4.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.FromArgb(228, 0, 124);
-            label4.Location = new Point(97, 63);
+            label4.Location = new Point(145, 75);
             label4.Name = "label4";
             label4.Size = new Size(50, 16);
-            label4.TabIndex = 6;
+            label4.TabIndex = 37;
             label4.Text = "Name:";
-            label4.Click += label4_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
-            label1.ForeColor = Color.FromArgb(228, 0, 124);
-            label1.Location = new Point(97, 170);
-            label1.Name = "label1";
-            label1.Size = new Size(39, 16);
-            label1.TabIndex = 11;
-            label1.Text = "Role:";
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridView1.BackgroundColor = Color.Snow;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.GridColor = Color.FromArgb(138, 174, 224);
-            dataGridView1.Location = new Point(12, 223);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(921, 413);
-            dataGridView1.TabIndex = 19;
-            // 
-            // textBox3
-            // 
-            textBox3.BackColor = Color.Snow;
-            textBox3.BorderStyle = BorderStyle.None;
-            textBox3.Font = new Font("Century Gothic", 9.75F);
-            textBox3.ForeColor = Color.FromArgb(228, 0, 124);
-            textBox3.Location = new Point(185, 135);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(242, 16);
-            textBox3.TabIndex = 25;
-            // 
-            // panel3
-            // 
-            panel3.BackColor = Color.White;
-            panel3.BorderStyle = BorderStyle.FixedSingle;
-            panel3.ForeColor = Color.FromArgb(212, 155, 255);
-            panel3.Location = new Point(177, 153);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(277, 2);
-            panel3.TabIndex = 26;
-            // 
-            // textBox1
-            // 
-            textBox1.BackColor = Color.Snow;
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.ForeColor = Color.FromArgb(228, 0, 124);
-            textBox1.Location = new Point(185, 95);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(361, 19);
-            textBox1.TabIndex = 23;
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.White;
-            panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.ForeColor = Color.FromArgb(212, 155, 255);
-            panel1.Location = new Point(177, 116);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(386, 2);
-            panel1.TabIndex = 24;
-            // 
-            // textBox2
-            // 
-            textBox2.BackColor = Color.Snow;
-            textBox2.BorderStyle = BorderStyle.None;
-            textBox2.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.ForeColor = Color.FromArgb(228, 0, 124);
-            textBox2.Location = new Point(185, 60);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(361, 19);
-            textBox2.TabIndex = 21;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.White;
-            panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.ForeColor = Color.FromArgb(212, 155, 255);
-            panel2.Location = new Point(177, 81);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(386, 2);
-            panel2.TabIndex = 22;
-            // 
-            // button4
-            // 
-            button4.BackColor = Color.HotPink;
-            button4.Cursor = Cursors.Hand;
-            button4.FlatAppearance.BorderSize = 0;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Font = new Font("Impact", 9F);
-            button4.ForeColor = Color.FromArgb(240, 243, 250);
-            button4.Location = new Point(728, 165);
-            button4.Name = "button4";
-            button4.Size = new Size(75, 32);
-            button4.TabIndex = 31;
-            button4.Text = "DELETE";
-            button4.UseVisualStyleBackColor = false;
-            button4.Click += button4_Click;
-            // 
-            // button3
-            // 
-            button3.BackColor = Color.HotPink;
-            button3.Cursor = Cursors.Hand;
-            button3.FlatAppearance.BorderSize = 0;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Impact", 9F);
-            button3.ForeColor = Color.FromArgb(240, 243, 250);
-            button3.Location = new Point(728, 113);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 32);
-            button3.TabIndex = 30;
-            button3.Text = "UPDATE";
-            button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.HotPink;
-            button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Impact", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.FromArgb(240, 243, 250);
-            button1.Location = new Point(728, 63);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 32);
-            button1.TabIndex = 29;
-            button1.Text = "ADD";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
-            // 
-            // comboBox1
-            // 
-            comboBox1.BackColor = Color.FromArgb(251, 174, 210);
-            comboBox1.ForeColor = Color.FromArgb(228, 0, 124);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(177, 174);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(197, 23);
-            comboBox1.TabIndex = 32;
             // 
             // adminDashpanUser
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Snow;
-            ClientSize = new Size(945, 648);
-            Controls.Add(comboBox1);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button1);
-            Controls.Add(textBox3);
+            ClientSize = new Size(921, 648);
+            Controls.Add(grpInstructorInfo);
+            Controls.Add(grpStudentInfo);
+            Controls.Add(cmbRole);
+            Controls.Add(txtPassAD);
             Controls.Add(panel3);
-            Controls.Add(textBox1);
+            Controls.Add(txtUsrnmAD);
             Controls.Add(panel1);
-            Controls.Add(textBox2);
+            Controls.Add(txtNameAD);
             Controls.Add(panel2);
-            Controls.Add(dataGridView1);
             Controls.Add(label1);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label4);
+            Controls.Add(btnDlteUsrAD);
+            Controls.Add(btnUpdtUsrAD);
+            Controls.Add(btnAddUsrAD);
+            Controls.Add(dgvUsrAD);
             FormBorderStyle = FormBorderStyle.None;
             Name = "adminDashpanUser";
             Text = "adminDashpanUser";
             Load += adminDashpanUser_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvUsrAD).EndInit();
+            grpInstructorInfo.ResumeLayout(false);
+            grpInstructorInfo.PerformLayout();
+            grpStudentInfo.ResumeLayout(false);
+            grpStudentInfo.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
+        private DataGridView dgvUsrAD;
+        private Button btnDlteUsrAD;
+        private Button btnUpdtUsrAD;
+        private Button btnAddUsrAD;
+        private Panel grpInstructorInfo;
+        private ComboBox cmbDept;
+        private Label label7;
+        private Panel grpStudentInfo;
+        private ComboBox cmbYear;
+        private ComboBox cmbCourse;
+        private Label label5;
+        private ComboBox cmbRole;
+        private TextBox txtPassAD;
+        private Panel panel3;
+        private TextBox txtUsrnmAD;
+        private Panel panel1;
+        private TextBox txtNameAD;
+        private Panel panel2;
+        private Label label1;
         private Label label3;
         private Label label2;
         private Label label4;
-        private Label label1;
-        private DataGridView dataGridView1;
-        private TextBox textBox3;
-        private Panel panel3;
-        private TextBox textBox1;
-        private Panel panel1;
-        private TextBox textBox2;
-        private Panel panel2;
-        private Button button4;
-        private Button button3;
-        private Button button1;
-        private ComboBox comboBox1;
     }
 }

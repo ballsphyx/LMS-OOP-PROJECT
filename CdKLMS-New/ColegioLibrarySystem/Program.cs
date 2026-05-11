@@ -21,7 +21,7 @@ namespace ColegioLibrarySystem
             BookManagement bookManagement = new BookManagement(bookDB, transactionDB);
             TransactionManagement borrowManagement = new TransactionManagement(transactionDB, bookDB);
 
-            //Application.Run(new librarymanagement.LoginForm(userManagement, borrowManagement, bookManagement));
+            Application.Run(new librarymanagement.LoginForm());
         }
     }
 }

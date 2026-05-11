@@ -5,7 +5,7 @@
         public string UserRole = "User";
         public UserDashboard(string role)
         {
-           
+
 
             InitializeComponent();
             UserRole = role;
@@ -23,6 +23,7 @@
 
         private void button3_Click(object sender, EventArgs e)
         {
+
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (dialogResult == DialogResult.Yes)
@@ -33,8 +34,7 @@
                 this.Close();
 
 
-            }
-
+            }           
         }
 
         private void btnBooks_Click_1(object sender, EventArgs e)
@@ -67,6 +67,21 @@
             contentpnl.Controls.Add(b);
             b.BringToFront();
             b.Show();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                LoginForm login = new LoginForm();
+                login.Show();
+
+                this.Close();
+
+
+            }
         }
     }
 }
