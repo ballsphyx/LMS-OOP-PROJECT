@@ -1,11 +1,24 @@
-﻿namespace librarymanagement.views
+﻿using ColegioLibrarySystem.Views;
+
+namespace librarymanagement.views
 {
     public partial class AdminDashboard : Form
     {
         public AdminDashboard()
         {
             InitializeComponent();
+            adminDashpan adp = new adminDashpan();
+
+            adp.TopLevel = false;
+            adp.Dock = DockStyle.Fill;
+
+            contentpnl.Controls.Clear();
+            contentpnl.Controls.Add(adp);
+
+            adp.BringToFront();
+            adp.Show();
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -38,7 +51,7 @@
 
         private void button3_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -70,6 +83,30 @@
         }
 
         private void btnlogout_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                LoginForm login = new LoginForm();
+                login.Show();
+
+                this.Close();
+
+
+            }
+        }
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            adminDashpan u = new adminDashpan();
+            u.TopLevel = false;
+            contentpnl.Controls.Add(u);
+            u.BringToFront();
+            u.Show();
+        }
+
+        private void btnlogout_Click_1(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 

@@ -13,12 +13,12 @@
         {
             if (role == "Student")
             {
-                txtQntyBrw.Text = "1";
-                txtQntyBrw.Enabled = false;
+                nbQntyBW.Text = "1";
+                nbQntyBW.Enabled = false;
             }
             else
             {
-                txtQntyBrw.Enabled = true;
+                nbQntyBW.Enabled = true;
             }
         }
 
