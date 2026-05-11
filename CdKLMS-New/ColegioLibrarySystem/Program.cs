@@ -1,6 +1,3 @@
-using System;
-using System.Windows.Forms;
-using ColegioLibrarySystem;
 using ColegioLibrarySystem.Helpers;
 using ColegioLibrarySystem.Service;
 
@@ -17,12 +14,12 @@ namespace ColegioLibrarySystem
             DatabaseHelper databaseHelper = new DatabaseHelper();
 
             BookDB bookDB = new(databaseHelper);
-            TransactionDB borrowDB = new (databaseHelper);
+            TransactionDB transactionDB = new (databaseHelper);
             UserDB userDB = new (databaseHelper);
 
-            UserManagement userManagement = new UserManagement(userDB, borrowDB);
-            BookManagement bookManagement = new BookManagement(bookDB, borrowDB);
-            TransactionManagement borrowManagement = new TransactionManagement (borrowDB, bookDB, userDB);
+            UserManagement userManagement = new UserManagement(userDB, transactionDB);
+            BookManagement bookManagement = new BookManagement(bookDB, transactionDB);
+            TransactionManagement borrowManagement = new TransactionManagement (transactionDB, bookDB);
 
             //Application.Run(new librarymanagement.LoginForm(userManagement, borrowManagement, bookManagement));
         }

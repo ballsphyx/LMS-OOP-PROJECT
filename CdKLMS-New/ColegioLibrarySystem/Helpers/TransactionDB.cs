@@ -1,8 +1,6 @@
 ﻿using ColegioLibrarySystem.GlobalEnums;
 using ColegioLibrarySystem.Models;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
 using System.Data;
 
 namespace ColegioLibrarySystem.Helpers
@@ -45,7 +43,7 @@ namespace ColegioLibrarySystem.Helpers
 
             var parameters = new MySqlParameter[]
             {
-                new MySqlParameter("@Status", StatusEnum.Unavailable.ToString()),
+                new MySqlParameter("@Status", StatusEnum.Borrowed.ToString()),
                 new MySqlParameter("@CopyId", record.CopyID)
             };
 
@@ -159,7 +157,7 @@ namespace ColegioLibrarySystem.Helpers
 
         public List<Transaction> GetActiveBorrows()
         {
-            string query = @"SELECT transaction_id, user_id, copy_id, borrow_date, due_date, date_returned
+            string query = @"SELECT *
                              FROM transactions
                              WHERE date_returned IS NULL";
 
@@ -169,7 +167,7 @@ namespace ColegioLibrarySystem.Helpers
 
         public List<Transaction> GetBorrowsByUser(int userId)
         {
-            string query = @"SELECT transaction_id, user_id, copy_id, borrow_date, due_date, date_returned
+            string query = @"SELECT *
                              FROM transactions
                              WHERE user_id = @UserId";
 

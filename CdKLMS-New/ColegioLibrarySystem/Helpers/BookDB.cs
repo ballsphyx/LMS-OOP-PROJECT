@@ -1,8 +1,6 @@
 ﻿using ColegioLibrarySystem.GlobalEnums;
 using ColegioLibrarySystem.Models;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
 using System.Data;
 
 namespace ColegioLibrarySystem.Helpers
@@ -164,21 +162,26 @@ namespace ColegioLibrarySystem.Helpers
             DataTable dt = _databaseHelper.ExecuteQuery(query, parameters);
             return Convert.ToInt32(dt.Rows[0]["available"]);
         }
-        public int GetAvailableCopyId(int bookId)
+        public List<int> GetAvailableCopyIds(int bookId, int quantity)
         {
             string query = @"SELECT copy_id FROM book_copies 
-                     WHERE book_id = @BookId AND status = @Status 
-                     LIMIT 1";
+                     WHERE book_id = @BookId AND status = @Status
+                     LIMIT @Quantity";
 
             var parameters = new MySqlParameter[]
             {
                 new MySqlParameter("@BookId", bookId),
-                new MySqlParameter("@Status", StatusEnum.Available.ToString())
+                new MySqlParameter("@Status", StatusEnum.Available.ToString()),
+                new MySqlParameter("@Quantity", quantity)
             };
 
             DataTable dt = _databaseHelper.ExecuteQuery(query, parameters);
-            if (dt.Rows.Count == 0) return -1;
-            return Convert.ToInt32(dt.Rows[0]["copy_id"]);
+            List<int> copyIds = new List<int>();
+            foreach (DataRow row in dt.Rows)
+            {
+                copyIds.Add(Convert.ToInt32(row["copy_id"]));
+            }
+            return copyIds;
         }
 
         private Book MapBook(DataRow row)

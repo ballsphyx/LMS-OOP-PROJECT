@@ -1,7 +1,5 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using MySql.Data.MySqlClient;
-using System.Windows.Forms;
 
 namespace ColegioLibrarySystem.Helpers
 {
