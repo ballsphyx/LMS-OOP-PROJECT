@@ -1,8 +1,6 @@
 ﻿using ColegioLibrarySystem.GlobalEnums;
 using ColegioLibrarySystem.Models;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
 using System.Data;
 
 namespace ColegioLibrarySystem.Helpers

@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Windows.Forms;
-
-namespace librarymanagement.views
+﻿namespace librarymanagement.views
 {
     public partial class UserDashboard : Form
     {

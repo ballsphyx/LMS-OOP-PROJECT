@@ -1,8 +1,6 @@
 ﻿using ColegioLibrarySystem.GlobalEnums;
 using ColegioLibrarySystem.Helpers;
 using ColegioLibrarySystem.Models;
-using System;
-using System.Collections.Generic;
 
 namespace ColegioLibrarySystem.Service
 {
@@ -10,46 +8,52 @@ namespace ColegioLibrarySystem.Service
     {
         private readonly TransactionDB _borrowDB;
         private readonly BookDB _bookDB;
-        private readonly UserDB _userDB;
-
-        public TransactionManagement(TransactionDB borrowDB, BookDB bookDB, UserDB userDB)
+        public TransactionManagement(TransactionDB borrowDB, BookDB bookDB)
         {
             _borrowDB = borrowDB;
             _bookDB = bookDB;
-            _userDB = userDB;
         }
 
-        public bool BorrowBook(string isbn, int userId, Roles role, int quantity = 1)
+        public bool BorrowBook(string isbn, int quantity = 1)
         {
-            if (_userDB.GetUserByID(userId) == null) return false; //if user does not exist, exit function
-            Book book = _bookDB.GetBookByISBN(isbn); //find book by ISBN since isbn are unique per book
-            if (book == null) return false; //if ISBN was not found, exit function
+            if (!Session.IsLoggedIn) return false;
 
-            if (role.RoleName == RoleEnum.Student) //if role is student, initialize quantity to only 1
+            int userId = Session.CurrentUser.UserId;
+            Roles role = Session.CurrentUser.Role;
+
+            Book book = _bookDB.GetBookByISBN(isbn);
+            if (book == null) return false;
+
+            if (role.RoleName == RoleEnum.Student)
             {
                 quantity = 1;
-                if (_borrowDB.HasActiveBookBorrow(userId, book.BookID)) return false; //if student is already borrowing this book, exit function
+                if (_borrowDB.HasActiveBookBorrow(userId, book.BookID)) return false;
             }
 
             int availableCount = _bookDB.GetAvailableCopies(book.BookID);
             if (availableCount < quantity) return false;
 
-            int copyId = _bookDB.GetAvailableCopyId(book.BookID);
-            if (copyId == -1) return false;
+            List<int> copyIds = _bookDB.GetAvailableCopyIds(book.BookID, quantity);
+            if (copyIds.Count < quantity) return false;
 
-            Transaction record = new Transaction
+            foreach (int copyId in copyIds)
             {
-                UserID = userId,
-                CopyID = copyId,
-                BorrowDate = DateTime.Now,
-                DueDate = DateTime.Now.AddDays(7),
-                DateReturned = null,
-                Quantity = quantity
-            };
+                Transaction record = new Transaction
+                {
+                    UserID = userId,
+                    CopyID = copyId,
+                    BorrowDate = DateTime.Now,
+                    DueDate = DateTime.Now.AddDays(7),
+                    DateReturned = null,
+                    Quantity = quantity
+                };
 
-            return _borrowDB.BorrowBook(record);
+                bool success = _borrowDB.BorrowBook(record);
+                if (!success) return false;
+            }
+
+            return true;
         }
-
         public bool ReturnBook(int transactionId)
         {
             if (!_borrowDB.BorrowExists(transactionId)) return false; //if this borrow record does not exist, exit function
