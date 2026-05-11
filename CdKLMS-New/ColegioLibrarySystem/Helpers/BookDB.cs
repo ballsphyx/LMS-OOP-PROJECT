@@ -24,7 +24,7 @@ namespace ColegioLibrarySystem.Helpers
                 new MySqlParameter("@Title", book.Title),
                 new MySqlParameter("@Author", book.Author),
                 new MySqlParameter("@CategoryId", book.CatId),
-                new MySqlParameter("@PublishedYear", book.PublicationDate),
+                new MySqlParameter("@PublishedYear", book.PublicationYear),
                 new MySqlParameter("@ISBN", book.ISBN),
                 new MySqlParameter("@TotalCopies", book.TotalCopies)
             };
@@ -72,7 +72,7 @@ namespace ColegioLibrarySystem.Helpers
                 new MySqlParameter("@Title", book.Title),
                 new MySqlParameter("@Author", book.Author),
                 new MySqlParameter("@CategoryId", book.CatId),
-                new MySqlParameter("@PublishedYear", book.PublicationDate),
+                new MySqlParameter("@PublishedYear", book.PublicationYear),
                 new MySqlParameter("@ISBN", book.ISBN),
                 new MySqlParameter("@TotalCopies", book.TotalCopies)
             };
@@ -197,7 +197,7 @@ namespace ColegioLibrarySystem.Helpers
                     CatId = Convert.ToInt32(row["category_id"]),
                     CatName = (CategoryEnum)Convert.ToInt32(row["category_id"])
                 },
-                PublicationDate = Convert.ToDateTime(row["published_year"]),
+                PublicationYear = Convert.ToInt32(row["published_year"]),
                 TotalCopies = Convert.ToInt32(row["total_copies"]),
                 ISBN = row["isbn"].ToString()
             };

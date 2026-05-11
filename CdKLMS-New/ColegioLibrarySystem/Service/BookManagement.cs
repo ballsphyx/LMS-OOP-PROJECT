@@ -14,7 +14,7 @@ namespace ColegioLibrarySystem.Service
             _bookDB = bookDB;
             _transactionDB = transactionDB;
         }
-        public bool AddBook(string title, string author, CategoryEnum category, DateTime publicationDate, int totalCopies, string isbn)
+        public bool AddBook(string title, string author, CategoryEnum category, int publicationYear, int totalCopies, string isbn)
         {
             if (_bookDB.GetBookByISBN(isbn) != null) return false; //if isbn is not found, exit funciton
 
@@ -28,7 +28,7 @@ namespace ColegioLibrarySystem.Service
                     CatId = (int)category,
                     CatName = category
                 },
-                PublicationDate = publicationDate,
+                PublicationYear = publicationYear,
                 TotalCopies = totalCopies,
                 ISBN = isbn
             };
@@ -43,7 +43,7 @@ namespace ColegioLibrarySystem.Service
             BookCopy newCopy = new BookCopy { BookId = book.BookID, CopyStatus = StatusEnum.Available };
             return _bookDB.AddBookCopy(newCopy);
         }
-        public bool UpdateBook(string isbn, string title, string author, CategoryEnum category, DateTime publicationDate, int totalCopies)
+        public bool UpdateBook(string isbn, string title, string author, CategoryEnum category, int publicationYear, int totalCopies)
         {
             Book book = _bookDB.GetBookByISBN(isbn);
             if (book == null) return false;
@@ -59,7 +59,7 @@ namespace ColegioLibrarySystem.Service
                     CatId = (int)category,
                     CatName = category
                 },
-                PublicationDate = publicationDate,
+                PublicationYear = publicationYear,
                 TotalCopies = totalCopies,
                 ISBN = isbn
             };
