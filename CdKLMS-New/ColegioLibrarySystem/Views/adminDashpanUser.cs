@@ -16,19 +16,20 @@ namespace librarymanagement.views
 
         private void adminDashpanUser_Load(object sender, EventArgs e)
         {
-            cmbRole.Items.Add("Student");
-            cmbRole.Items.Add("Instructor");
+            cmbRole.Items.AddRange(new string[]
+            {
+                "Student", "Instructor", "Admin"
+            });
 
-            cmbCourse.Items.Add("BSIT");
-            cmbCourse.Items.Add("BSED");
-            cmbCourse.Items.Add("BSCRIM");
-            cmbCourse.Items.Add("BSN");
-            cmbCourse.Items.Add("BSHM");
+            cmbCourse.Items.AddRange(new string[]
+            {
+                "BSIT","BSED","BSCRIM","BSN","BSHM"
+            });
 
-            cmbYear.Items.Add("1st Year");
-            cmbYear.Items.Add("2nd Year");
-            cmbYear.Items.Add("3rd Year");
-            cmbYear.Items.Add("4th Year");
+            cmbYear.Items.AddRange(new string[]
+            {
+                "1st Year","2nd Year","3rd Year","4th Year"
+            });
 
 
             cmbDept.Items.Add("Information Technology");
@@ -74,6 +75,10 @@ namespace librarymanagement.views
             txtPassAD.Clear();
             txtNameAD.Clear();
             cmbYear.SelectedIndex = -1;
+            cmbDept.SelectedIndex = -1;
+            cmbCourse.SelectedIndex = -1;
+            cmbRole.SelectedIndex = -1;
+           
         }
 
         private void cmbRole_SelectedIndexChanged(object sender, EventArgs e)
@@ -93,6 +98,28 @@ namespace librarymanagement.views
                 grpStudentInfo.Visible = false;
                 grpInstructorInfo.Visible = false;
             }
+
+
+        }
+
+        private void cmbDept_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNameAD_Enter(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtNameAD_Leave(object sender, EventArgs e)
+        {
+           
         }
     }
 }

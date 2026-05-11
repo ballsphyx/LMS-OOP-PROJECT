@@ -67,9 +67,8 @@ namespace librarymanagement.views
             dgvBooksAD.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvBooksAD.BackgroundColor = Color.Snow;
             dgvBooksAD.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvBooksAD.GridColor = Color.FromArgb(138, 174, 224);
-            dgvBooksAD.Location = new Point(5, 372);
-            dgvBooksAD.Margin = new Padding(3, 4, 3, 4);
+            dgvBooksAD.GridColor = Color.FromArgb(251, 174, 210);
+            dgvBooksAD.Location = new Point(4, 279);
             dgvBooksAD.Name = "dgvBooksAD";
             dgvBooksAD.RowHeadersWidth = 51;
             dgvBooksAD.Size = new Size(1045, 485);
@@ -179,6 +178,7 @@ namespace librarymanagement.views
             cmbCategory.Name = "cmbCategory";
             cmbCategory.Size = new Size(225, 29);
             cmbCategory.TabIndex = 54;
+            cmbCategory.SelectedIndexChanged += cmbCategory_SelectedIndexChanged;
             // 
             // txtISBN
             // 
@@ -200,7 +200,7 @@ namespace librarymanagement.views
             panel6.Location = new Point(585, 235);
             panel6.Margin = new Padding(3, 4, 3, 4);
             panel6.Name = "panel6";
-            panel6.Size = new Size(140, 2);
+            panel6.Size = new Size(123, 1);
             panel6.TabIndex = 53;
             // 
             // label6
@@ -234,7 +234,7 @@ namespace librarymanagement.views
             panel5.Location = new Point(634, 279);
             panel5.Margin = new Padding(3, 4, 3, 4);
             panel5.Name = "panel5";
-            panel5.Size = new Size(140, 2);
+            panel5.Size = new Size(123, 1);
             panel5.TabIndex = 50;
             // 
             // panel4
@@ -245,7 +245,7 @@ namespace librarymanagement.views
             panel4.Location = new Point(634, 323);
             panel4.Margin = new Padding(3, 4, 3, 4);
             panel4.Name = "panel4";
-            panel4.Size = new Size(140, 2);
+            panel4.Size = new Size(123, 1);
             panel4.TabIndex = 48;
             // 
             // txtAuthAD
@@ -264,11 +264,10 @@ namespace librarymanagement.views
             // 
             panel1.BackColor = Color.White;
             panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.ForeColor = Color.FromArgb(212, 155, 255);
-            panel1.Location = new Point(230, 171);
-            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.ForeColor = Color.HotPink;
+            panel1.Location = new Point(201, 128);
             panel1.Name = "panel1";
-            panel1.Size = new Size(441, 2);
+            panel1.Size = new Size(386, 1);
             panel1.TabIndex = 47;
             // 
             // txtTitleAD
@@ -335,7 +334,7 @@ namespace librarymanagement.views
             panel2.Location = new Point(230, 124);
             panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(441, 2);
+            panel2.Size = new Size(386, 1);
             panel2.TabIndex = 40;
             // 
             // label1

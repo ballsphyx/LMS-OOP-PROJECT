@@ -60,7 +60,7 @@
             dgvUsrAD.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvUsrAD.BackgroundColor = Color.Snow;
             dgvUsrAD.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvUsrAD.GridColor = Color.FromArgb(138, 174, 224);
+            dgvUsrAD.GridColor = Color.FromArgb(251, 174, 210);
             dgvUsrAD.Location = new Point(12, 296);
             dgvUsrAD.Name = "dgvUsrAD";
             dgvUsrAD.Size = new Size(897, 340);
@@ -128,12 +128,14 @@
             // cmbDept
             // 
             cmbDept.BackColor = Color.Snow;
+            cmbDept.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbDept.ForeColor = Color.FromArgb(228, 0, 124);
             cmbDept.FormattingEnabled = true;
             cmbDept.Location = new Point(80, 26);
             cmbDept.Name = "cmbDept";
-            cmbDept.Size = new Size(197, 23);
+            cmbDept.Size = new Size(197, 25);
             cmbDept.TabIndex = 37;
+            cmbDept.SelectedIndexChanged += cmbDept_SelectedIndexChanged;
             // 
             // label7
             // 
@@ -192,11 +194,12 @@
             // cmbRole
             // 
             cmbRole.BackColor = Color.Snow;
+            cmbRole.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbRole.ForeColor = Color.FromArgb(228, 0, 124);
             cmbRole.FormattingEnabled = true;
             cmbRole.Location = new Point(240, 186);
             cmbRole.Name = "cmbRole";
-            cmbRole.Size = new Size(197, 23);
+            cmbRole.Size = new Size(197, 25);
             cmbRole.TabIndex = 47;
             cmbRole.SelectedIndexChanged += cmbRole_SelectedIndexChanged;
             // 
@@ -218,7 +221,7 @@
             panel3.ForeColor = Color.FromArgb(212, 155, 255);
             panel3.Location = new Point(240, 165);
             panel3.Name = "panel3";
-            panel3.Size = new Size(277, 2);
+            panel3.Size = new Size(277, 1);
             panel3.TabIndex = 46;
             // 
             // txtUsrnmAD
@@ -239,7 +242,7 @@
             panel1.ForeColor = Color.FromArgb(212, 155, 255);
             panel1.Location = new Point(240, 128);
             panel1.Name = "panel1";
-            panel1.Size = new Size(386, 2);
+            panel1.Size = new Size(386, 1);
             panel1.TabIndex = 44;
             // 
             // txtNameAD
@@ -252,6 +255,9 @@
             txtNameAD.Name = "txtNameAD";
             txtNameAD.Size = new Size(361, 19);
             txtNameAD.TabIndex = 41;
+            txtNameAD.DoubleClick += Enter;
+            txtNameAD.Enter += txtNameAD_Enter;
+            txtNameAD.Leave += txtNameAD_Leave;
             // 
             // panel2
             // 
@@ -260,7 +266,7 @@
             panel2.ForeColor = Color.FromArgb(212, 155, 255);
             panel2.Location = new Point(240, 93);
             panel2.Name = "panel2";
-            panel2.Size = new Size(386, 2);
+            panel2.Size = new Size(386, 1);
             panel2.TabIndex = 42;
             // 
             // label1
