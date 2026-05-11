@@ -126,7 +126,7 @@ namespace librarymanagement.views
             cmbDept.SelectedIndex = -1;
             cmbCourse.SelectedIndex = -1;
             cmbRole.SelectedIndex = -1;
-           
+            _selectedUserId = _1;
         }
 
         private void cmbRole_SelectedIndexChanged(object sender, EventArgs e)
