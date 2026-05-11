@@ -128,12 +128,14 @@
             // cmbDept
             // 
             cmbDept.BackColor = Color.Snow;
+            cmbDept.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbDept.ForeColor = Color.FromArgb(228, 0, 124);
             cmbDept.FormattingEnabled = true;
             cmbDept.Location = new Point(80, 26);
             cmbDept.Name = "cmbDept";
-            cmbDept.Size = new Size(197, 23);
+            cmbDept.Size = new Size(197, 25);
             cmbDept.TabIndex = 37;
+            cmbDept.SelectedIndexChanged += cmbDept_SelectedIndexChanged;
             // 
             // label7
             // 
@@ -192,11 +194,12 @@
             // cmbRole
             // 
             cmbRole.BackColor = Color.Snow;
+            cmbRole.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbRole.ForeColor = Color.FromArgb(228, 0, 124);
             cmbRole.FormattingEnabled = true;
             cmbRole.Location = new Point(240, 186);
             cmbRole.Name = "cmbRole";
-            cmbRole.Size = new Size(197, 23);
+            cmbRole.Size = new Size(197, 25);
             cmbRole.TabIndex = 47;
             cmbRole.SelectedIndexChanged += cmbRole_SelectedIndexChanged;
             // 
@@ -252,6 +255,9 @@
             txtNameAD.Name = "txtNameAD";
             txtNameAD.Size = new Size(361, 19);
             txtNameAD.TabIndex = 41;
+            txtNameAD.DoubleClick += Enter;
+            txtNameAD.Enter += txtNameAD_Enter;
+            txtNameAD.Leave += txtNameAD_Leave;
             // 
             // panel2
             // 

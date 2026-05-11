@@ -168,6 +168,7 @@
             cmbCategory.Name = "cmbCategory";
             cmbCategory.Size = new Size(197, 25);
             cmbCategory.TabIndex = 54;
+            cmbCategory.SelectedIndexChanged += cmbCategory_SelectedIndexChanged;
             // 
             // txtISBN
             // 
