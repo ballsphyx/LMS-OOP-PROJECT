@@ -30,14 +30,13 @@ namespace librarymanagement.views
                 "1st Year","2nd Year","3rd Year","4th Year"
             });
 
-            cmbDept.Items.AddRange(new string[]
-            {
-                "Information Technology",
-                "Education",
-                "Nursing",
-                "Criminology",
-                "Hospitality Management"
-            });
+
+            cmbDept.Items.Add("Information Technology");
+            cmbDept.Items.Add("Education");
+            cmbDept.Items.Add("Nursing");
+            cmbDept.Items.Add("Criminology");
+            cmbDept.Items.Add("Hospital Management");
+
             grpStudentInfo.Visible = false;
             grpInstructorInfo.Visible = false;
         }
