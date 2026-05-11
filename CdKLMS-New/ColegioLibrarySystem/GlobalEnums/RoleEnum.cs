@@ -2,9 +2,8 @@
 {
     public enum RoleEnum //change into role class with role_id
     {
-        Admin,
-        Student,
-        Instructor,
-        None
+        Admin = 1,
+        Instructor = 2,
+        Student = 3,
     }
 }

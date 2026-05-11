@@ -2,10 +2,10 @@
 {
     public enum CategoryEnum //change into a class with cat_id
     {
-        Criminology,
-        IT,
-        Paramedical,
-        HM,
-        Education
+        Criminology = 1,
+        IT = 2,
+        Paramedical = 3,
+        HM = 4,
+        Education = 5
     }
 }
