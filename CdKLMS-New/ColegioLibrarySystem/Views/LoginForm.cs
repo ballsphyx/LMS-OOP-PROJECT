@@ -38,17 +38,17 @@ namespace librarymanagement
 
         private void button1_Click(object sender, EventArgs e)
         {
-                AdminDashboard ad = new AdminDashboard(_bookManagement, _userManagement, _transactionManagement);
-                ad.Show();
-                this.Hide();
+                //AdminDashboard ad = new AdminDashboard(_bookManagement, _userManagement, _transactionManagement);
+                //ad.Show();
+                //this.Hide();
             //if (textBox1.Text == "admin" && textBox2.Text == "admin")
             //{
             //}
             //else if (textBox1.Text == "user" && textBox2.Text == "user")
             //{
-            //    UserDashboard userD = new UserDashboard("User");
-            //    userD.Show();
-            //    this.Hide();
+            UserDashboard userD = new UserDashboard(_bookManagement, _userManagement, _transactionManagement);
+            userD.Show();
+            this.Hide();
 
             //}
             //else

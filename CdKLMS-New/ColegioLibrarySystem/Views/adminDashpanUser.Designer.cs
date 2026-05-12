@@ -86,7 +86,7 @@
             btnDlteUsrAD.TabIndex = 31;
             btnDlteUsrAD.Text = "DELETE";
             btnDlteUsrAD.UseVisualStyleBackColor = false;
-            btnDlteUsrAD.Click += button4_Click;
+            btnDlteUsrAD.Click += DeleteUser;
             // 
             // btnUpdtUsrAD
             // 
@@ -103,7 +103,7 @@
             btnUpdtUsrAD.TabIndex = 30;
             btnUpdtUsrAD.Text = "UPDATE";
             btnUpdtUsrAD.UseVisualStyleBackColor = false;
-            btnUpdtUsrAD.Click += button3_Click;
+            btnUpdtUsrAD.Click += UpdateUser;
             // 
             // btnAddUsrAD
             // 
@@ -120,7 +120,7 @@
             btnAddUsrAD.TabIndex = 29;
             btnAddUsrAD.Text = "ADD";
             btnAddUsrAD.UseVisualStyleBackColor = false;
-            btnAddUsrAD.Click += button1_Click;
+            btnAddUsrAD.Click += AddUser;
             // 
             // grpInstructorInfo
             // 

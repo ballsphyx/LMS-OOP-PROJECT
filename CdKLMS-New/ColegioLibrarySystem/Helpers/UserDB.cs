@@ -90,7 +90,7 @@ namespace ColegioLibrarySystem.Helpers
             return _databaseHelper.ExecuteNonQuery(query, parameters) > 0;
         }
 
-        public bool UpdateUser(User user)
+        private bool UpdateUser(User user)
         {
             string query = @"UPDATE users SET 
                                 username = @Username, 
@@ -109,6 +109,43 @@ namespace ColegioLibrarySystem.Helpers
             };
 
             return _databaseHelper.ExecuteNonQuery(query, parameters) > 0;
+
+        }
+        public bool UpdateStudent(Student student)
+        {
+            bool updateUser = UpdateUser(student.User);
+            if (!updateUser)
+            {
+                MessageBox.Show("updateUser failed");
+                return false;
+            }
+            string query = @"UPDATE students SET
+                                course = @Course,
+                                year_level = @YearLevel
+                                WHERE student_id = @StudentID";
+
+            var param = new MySqlParameter[]
+            {
+                new MySqlParameter("@StudentID", student.StudentId),
+                new MySqlParameter("@Course", student.Program),
+                new MySqlParameter("@YearLevel", student.YearLevel)
+            };
+            return _databaseHelper.ExecuteNonQuery(query, param) > 0;
+        }
+        public bool UpdateAdmin(Admin admin)
+        {
+            return UpdateUser(admin.User);
+        }
+        public bool UpdateInstructor(Instructor instructor)
+        {
+            bool updateUser = UpdateUser(instructor.User);
+            string query = @"UPDATE instructors SET department = @Department WHERE instructor_id = @InstructorID";
+            var param = new MySqlParameter[]
+            {
+                new MySqlParameter("@Department", instructor.Department),
+                new MySqlParameter("@InstructorID", instructor.InstructorId)
+            };
+            return _databaseHelper.ExecuteNonQuery(query, param) > 0;
         }
 
         public List<User> GetAllUsers()

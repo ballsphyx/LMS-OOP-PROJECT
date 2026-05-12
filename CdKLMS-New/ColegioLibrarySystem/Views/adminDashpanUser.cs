@@ -64,7 +64,7 @@ namespace librarymanagement.views
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void AddUser(object sender, EventArgs e)
         {
             string name = txtNameAD.Text.Trim();
             string user = txtUsrnmAD.Text.Trim();
@@ -115,15 +115,98 @@ namespace librarymanagement.views
             ClearFields();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void UpdateUser(object sender, EventArgs e)
         {
-            MessageBox.Show("User Updated");
+            string name = txtNameAD.Text.Trim();
+            string user = txtUsrnmAD.Text.Trim();
+            string pass = txtPassAD.Text.Trim();
+            var selectedRole = (RoleEnum)cmbRole.SelectedItem;
+            var year = cmbYear.Text;
+            var dept = cmbDept.Text;
+            var course = cmbCourse.Text;
+            var id = _selectedUserId;
+            string[] reqfields = { name, user, pass };
+            foreach (var fields in reqfields)
+            {
+                if (String.IsNullOrEmpty(fields))
+                {
+                    MessageBox.Show("Please fill in all required fields");
+                    ClearFields();
+                    return;
+                }
+            }
+            if (name.Any(char.IsDigit))
+            {
+                MessageBox.Show("Name must not contain any digits");
+                ClearFields();
+                return;
+            }
+            try
+            {
+                if (selectedRole == RoleEnum.Admin)
+                {
+                    _userManagement.UpdateAdmin(user, pass, name, id);
+                }
+                else if (selectedRole == RoleEnum.Instructor)
+                {
+                    _userManagement.UpdateInstructor(user, pass, name, dept, id);
+                }
+                else
+                {
+                    _userManagement.UpdateStudent(name, user, pass, course, year, id);
+                }
+                LoadUsers();
+                MessageBox.Show("User Updated");
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             ClearFields();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void DeleteUser(object sender, EventArgs e)
         {
-            MessageBox.Show("User Deleted");
+            string name = txtNameAD.Text.Trim();
+            string user = txtUsrnmAD.Text.Trim();
+            string pass = txtPassAD.Text.Trim();
+            var selectedRole = (RoleEnum)cmbRole.SelectedItem;
+            var year = cmbYear.Text;
+            var dept = cmbDept.Text;
+            var course = cmbCourse.Text;
+            string[] reqfields = { name, user, pass };
+            foreach (var fields in reqfields)
+            {
+                if (String.IsNullOrEmpty(fields))
+                {
+                    MessageBox.Show("Please fill in all required fields");
+                    ClearFields();
+                    return;
+                }
+            }
+            if (_selectedUserId == -1)
+            {
+                MessageBox.Show("Please select a user to delet");
+                return;
+            }
+            DialogResult confirm = MessageBox.Show(
+                "Are you sure you want to delete this user?",
+                "Confirm Delete",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+            if (confirm == DialogResult.Yes)
+            {
+                try
+                {
+                    _userManagement.DeleteUser(user);
+                    MessageBox.Show("Deleted User");
+                    LoadUsers();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
             ClearFields();
         }
         private void ClearFields()
