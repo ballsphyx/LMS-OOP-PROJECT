@@ -68,10 +68,10 @@ namespace librarymanagement.views
             dgvBooksAD.BackgroundColor = Color.Snow;
             dgvBooksAD.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvBooksAD.GridColor = Color.FromArgb(251, 174, 210);
-            dgvBooksAD.Location = new Point(4, 279);
+            dgvBooksAD.Location = new Point(12, 387);
             dgvBooksAD.Name = "dgvBooksAD";
             dgvBooksAD.RowHeadersWidth = 51;
-            dgvBooksAD.Size = new Size(1045, 485);
+            dgvBooksAD.Size = new Size(1029, 413);
             dgvBooksAD.TabIndex = 10;
             dgvBooksAD.CellContentClick += dataGridView1_CellContentClick;
             dgvBooksAD.SelectionChanged += dgvBooksAD_SelectionChanged;
@@ -101,7 +101,7 @@ namespace librarymanagement.views
             btnDltAD.FlatStyle = FlatStyle.Flat;
             btnDltAD.Font = new Font("Impact", 9F);
             btnDltAD.ForeColor = Color.FromArgb(240, 243, 250);
-            btnDltAD.Location = new Point(832, 285);
+            btnDltAD.Location = new Point(832, 267);
             btnDltAD.Margin = new Padding(3, 4, 3, 4);
             btnDltAD.Name = "btnDltAD";
             btnDltAD.Size = new Size(86, 43);
@@ -118,7 +118,7 @@ namespace librarymanagement.views
             btnUpdtAD.FlatStyle = FlatStyle.Flat;
             btnUpdtAD.Font = new Font("Impact", 9F);
             btnUpdtAD.ForeColor = Color.FromArgb(240, 243, 250);
-            btnUpdtAD.Location = new Point(832, 140);
+            btnUpdtAD.Location = new Point(832, 143);
             btnUpdtAD.Margin = new Padding(3, 4, 3, 4);
             btnUpdtAD.Name = "btnUpdtAD";
             btnUpdtAD.Size = new Size(86, 43);
@@ -248,7 +248,7 @@ namespace librarymanagement.views
             panel1.BackColor = Color.White;
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.ForeColor = Color.HotPink;
-            panel1.Location = new Point(201, 128);
+            panel1.Location = new Point(230, 182);
             panel1.Name = "panel1";
             panel1.Size = new Size(386, 1);
             panel1.TabIndex = 47;
@@ -378,7 +378,7 @@ namespace librarymanagement.views
             btnClearAD.FlatStyle = FlatStyle.Flat;
             btnClearAD.Font = new Font("Impact", 9F);
             btnClearAD.ForeColor = Color.FromArgb(240, 243, 250);
-            btnClearAD.Location = new Point(832, 197);
+            btnClearAD.Location = new Point(832, 204);
             btnClearAD.Margin = new Padding(3, 4, 3, 4);
             btnClearAD.Name = "btnClearAD";
             btnClearAD.Size = new Size(86, 43);
@@ -429,7 +429,10 @@ namespace librarymanagement.views
             PerformLayout();
         }
 
+        private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {

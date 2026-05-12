@@ -1,6 +1,7 @@
 ﻿using ColegioLibrarySystem.GlobalEnums;
 using ColegioLibrarySystem.Models;
 using ColegioLibrarySystem.Service;
+using System.Windows.Forms;
 
 namespace librarymanagement.views
 {
@@ -41,6 +42,7 @@ namespace librarymanagement.views
             cmbDept.Items.Add("Hospital Management");
             cmbRole.DataSource = Enum.GetValues(typeof(RoleEnum));
             LoadUsers();
+            dgvUsrAD.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             grpStudentInfo.Visible = false;
             grpInstructorInfo.Visible = false;
         }
