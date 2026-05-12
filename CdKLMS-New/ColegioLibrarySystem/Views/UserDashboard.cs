@@ -8,12 +8,12 @@ namespace librarymanagement.views
         private readonly BookManagement _bookManagement;
         private readonly UserManagement _userManagement;
         private readonly TransactionManagement _transactionManagement;
-        public UserDashboard(string role)
+        public UserDashboard(BookManagement bookManagement, UserManagement userManagement, TransactionManagement transactionManagement)
         {
-
-
             InitializeComponent();
-            UserRole = role;
+            _transactionManagement = transactionManagement;
+            _bookManagement = bookManagement;
+            _userManagement = userManagement;
         }
 
         private void btnBooks_Click(object sender, EventArgs e)
@@ -26,7 +26,7 @@ namespace librarymanagement.views
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void LogOut(object sender, EventArgs e)
         {
 
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -42,18 +42,18 @@ namespace librarymanagement.views
             }           
         }
 
-        private void btnBooks_Click_1(object sender, EventArgs e)
+        private void BrowseBooks(object sender, EventArgs e)
         {
-            userBRbDashpan b = new userBRbDashpan();
+            userBRbDashpan b = new userBRbDashpan(_bookManagement);
             b.TopLevel = false;
             contentpnl.Controls.Add(b);
             b.BringToFront();
             b.Show();
         }
 
-        private void btnUser_Click(object sender, EventArgs e)
+        private void BorrowBooks(object sender, EventArgs e)
         {
-            userBKbDashpan b = new userBKbDashpan("User");
+            userBKbDashpan b = new userBKbDashpan(_transactionManagement, _bookManagement);
             b.TopLevel = false;
             contentpnl.Controls.Add(b);
             b.BringToFront();
@@ -65,9 +65,9 @@ namespace librarymanagement.views
             Application.Exit();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Transactions(object sender, EventArgs e)
         {
-            userTRDashpan b = new userTRDashpan();
+            userTRDashpan b = new userTRDashpan(_transactionManagement);
             b.TopLevel = false;
             contentpnl.Controls.Add(b);
             b.BringToFront();

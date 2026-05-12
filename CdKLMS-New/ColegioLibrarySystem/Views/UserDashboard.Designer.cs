@@ -219,7 +219,7 @@
             btnUser.Text = "Borrow Book";
             btnUser.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnUser.UseVisualStyleBackColor = true;
-            btnUser.Click += btnUser_Click;
+            btnUser.Click += BorrowBooks;
             // 
             // label2
             // 
@@ -249,7 +249,7 @@
             btnBooks.Text = "Browse Books";
             btnBooks.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnBooks.UseVisualStyleBackColor = true;
-            btnBooks.Click += btnBooks_Click_1;
+            btnBooks.Click += BrowseBooks;
             // 
             // panel3
             // 
@@ -299,7 +299,7 @@
             btnTrsnc.Text = "Transactions";
             btnTrsnc.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnTrsnc.UseVisualStyleBackColor = true;
-            btnTrsnc.Click += button1_Click;
+            btnTrsnc.Click += Transactions;
             // 
             // panel2
             // 

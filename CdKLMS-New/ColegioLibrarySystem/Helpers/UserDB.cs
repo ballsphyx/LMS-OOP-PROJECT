@@ -90,7 +90,7 @@ namespace ColegioLibrarySystem.Helpers
             return _databaseHelper.ExecuteNonQuery(query, parameters) > 0;
         }
 
-        public bool UpdateUser(User user)
+        private bool UpdateUser(User user)
         {
             string query = @"UPDATE users SET 
                                 username = @Username, 
@@ -109,6 +109,43 @@ namespace ColegioLibrarySystem.Helpers
             };
 
             return _databaseHelper.ExecuteNonQuery(query, parameters) > 0;
+
+        }
+        public bool UpdateStudent(Student student)
+        {
+            bool updateUser = UpdateUser(student.User);
+            if (!updateUser)
+            {
+                MessageBox.Show("updateUser failed");
+                return false;
+            }
+            string query = @"UPDATE students SET
+                                course = @Course,
+                                year_level = @YearLevel
+                                WHERE student_id = @StudentID";
+
+            var param = new MySqlParameter[]
+            {
+                new MySqlParameter("@StudentID", student.StudentId),
+                new MySqlParameter("@Course", student.Program),
+                new MySqlParameter("@YearLevel", student.YearLevel)
+            };
+            return _databaseHelper.ExecuteNonQuery(query, param) > 0;
+        }
+        public bool UpdateAdmin(Admin admin)
+        {
+            return UpdateUser(admin.User);
+        }
+        public bool UpdateInstructor(Instructor instructor)
+        {
+            bool updateUser = UpdateUser(instructor.User);
+            string query = @"UPDATE instructors SET department = @Department WHERE instructor_id = @InstructorID";
+            var param = new MySqlParameter[]
+            {
+                new MySqlParameter("@Department", instructor.Department),
+                new MySqlParameter("@InstructorID", instructor.InstructorId)
+            };
+            return _databaseHelper.ExecuteNonQuery(query, param) > 0;
         }
 
         public List<User> GetAllUsers()
@@ -159,6 +196,50 @@ namespace ColegioLibrarySystem.Helpers
                 Program = row["course"].ToString(),
                 YearLevel = row["year_level"].ToString()
             };
+        }
+        public List<Student> GetAllStudents()
+        {
+            string query = @"SELECT u.user_id, u.full_name, u.username, u.password, u.role_id,
+                            s.student_id, s.course, s.year_level
+                     FROM users u
+                     JOIN students s ON u.user_id = s.user_id";
+
+            DataTable dt = _databaseHelper.ExecuteQuery(query);
+            List<Student> students = new List<Student>();
+            foreach (DataRow row in dt.Rows)
+            {
+                students.Add(new Student
+                {
+                    UserId = Convert.ToInt32(row["user_id"]),
+                    StudentId = Convert.ToInt32(row["student_id"]),
+                    Program = row["course"].ToString(),
+                    YearLevel = row["year_level"].ToString(),
+                    User = MapUser(row)
+                });
+            }
+            return students;
+        }
+
+        public List<Instructor> GetAllInstructors()
+        {
+            string query = @"SELECT u.user_id, u.full_name, u.username, u.password, u.role_id,
+                            i.instructor_id, i.department
+                     FROM users u
+                     JOIN instructors i ON u.user_id = i.user_id";
+
+            DataTable dt = _databaseHelper.ExecuteQuery(query);
+            List<Instructor> instructors = new List<Instructor>();
+            foreach (DataRow row in dt.Rows)
+            {
+                instructors.Add(new Instructor
+                {
+                    UserId = Convert.ToInt32(row["user_id"]),
+                    InstructorId = Convert.ToInt32(row["instructor_id"]),
+                    Department = row["department"].ToString(),
+                    User = MapUser(row)
+                });
+            }
+            return instructors;
         }
 
         public Instructor GetInstructorByUserId(int userId)

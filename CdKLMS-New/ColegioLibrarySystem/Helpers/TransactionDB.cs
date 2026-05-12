@@ -16,16 +16,15 @@ namespace ColegioLibrarySystem.Helpers
 
         private bool AddBorrowRecord(Transaction record)
         {
-            string query = @"INSERT INTO transactions (user_id, copy_id, borrow_date, due_date, date_returned, quantity)
-                     VALUES (@UserId, @CopyId, @BorrowDate, @DueDate, NULL, @Quantity)";
+            string query = @"INSERT INTO transactions (user_id, copy_id, borrow_date, due_date, date_returned)
+                     VALUES (@UserId, @CopyId, @BorrowDate, @DueDate, NULL)";
 
             var parameters = new MySqlParameter[]
             {
                 new MySqlParameter("@UserId", record.UserID),
                 new MySqlParameter("@CopyId", record.CopyID),
                 new MySqlParameter("@BorrowDate", record.BorrowDate),
-                new MySqlParameter("@DueDate", record.DueDate),
-                new MySqlParameter("@Quantity", record.Quantity)
+                new MySqlParameter("@DueDate", record.DueDate)
             };
 
             return _databaseHelper.ExecuteNonQuery(query, parameters) > 0;
@@ -46,7 +45,7 @@ namespace ColegioLibrarySystem.Helpers
                 new MySqlParameter("@Status", StatusEnum.Borrowed.ToString()),
                 new MySqlParameter("@CopyId", record.CopyID)
             };
-            
+
 
             return _databaseHelper.ExecuteNonQuery(query, parameters) > 0;
         }
@@ -166,19 +165,28 @@ namespace ColegioLibrarySystem.Helpers
             return MapTransactions(dt);
         }
 
-        public List<Transaction> GetBorrowsByUser(int userId)
+        public DataTable GetBorrowsByUser(int userId)
         {
-            string query = @"SELECT *
-                             FROM transactions
-                             WHERE user_id = @UserId";
+            string query = @"SELECT 
+                                b.book_title,
+                                b.isbn,
+                                COUNT(t.transaction_id) as quantity,
+                                t.borrow_date,
+                                t.due_date,
+                                MAX(t.date_returned) as date_returned
+                             FROM transactions t
+                             JOIN book_copies bc ON t.copy_id = bc.copy_id
+                             JOIN books b ON bc.book_id = b.book_id
+                             WHERE t.user_id = @UserId
+                             GROUP BY b.book_title, b.isbn, t.borrow_date, t.due_date
+                             ORDER BY t.borrow_date DESC";
 
             var parameters = new MySqlParameter[]
             {
                 new MySqlParameter("@UserId", userId)
             };
 
-            DataTable dt = _databaseHelper.ExecuteQuery(query, parameters);
-            return MapTransactions(dt);
+            return _databaseHelper.ExecuteQuery(query, parameters);
         }
 
         private Transaction MapTransaction(DataRow row)
@@ -192,8 +200,7 @@ namespace ColegioLibrarySystem.Helpers
                 DueDate = Convert.ToDateTime(row["due_date"]),
                 DateReturned = row["date_returned"] == DBNull.Value
                                ? (DateTime?)null
-                               : Convert.ToDateTime(row["date_returned"]),
-                Quantity = Convert.ToInt32(row["quantity"])
+                               : Convert.ToDateTime(row["date_returned"])
             };
         }
 

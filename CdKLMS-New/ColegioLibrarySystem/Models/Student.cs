@@ -7,5 +7,8 @@
         public string Program { get; set; }
         public string YearLevel { get; set; }
         public User User { get; set; }
+
+        public string FullName => User?.FullName;
+        public string Username => User?.Username;
     }
 }

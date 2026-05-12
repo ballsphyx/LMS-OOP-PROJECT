@@ -13,7 +13,6 @@ namespace ColegioLibrarySystem.Helpers
         {
             _databaseHelper = databaseHelper;
         }
-
         public bool AddBook(Book book)
         {
             string bookQuery = @"INSERT INTO books (book_title, book_author, category_id, published_year, isbn)

@@ -41,13 +41,10 @@ namespace librarymanagement.views
             txtISBN = new TextBox();
             panel6 = new Panel();
             label6 = new Label();
-            txtAvail = new TextBox();
-            panel5 = new Panel();
             panel4 = new Panel();
             txtAuthAD = new TextBox();
             panel1 = new Panel();
             txtTitleAD = new TextBox();
-            label5 = new Label();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
@@ -57,6 +54,8 @@ namespace librarymanagement.views
             pictureBox1 = new PictureBox();
             dateTimePicker = new DateTimePicker();
             btnClearAD = new Button();
+            cmbCatFilter = new ComboBox();
+            label8 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvBooksAD).BeginInit();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -133,7 +132,7 @@ namespace librarymanagement.views
             txtCopies.BorderStyle = BorderStyle.None;
             txtCopies.Font = new Font("Century Gothic", 9.75F);
             txtCopies.ForeColor = Color.FromArgb(228, 0, 124);
-            txtCopies.Location = new Point(645, 299);
+            txtCopies.Location = new Point(593, 262);
             txtCopies.Margin = new Padding(3, 4, 3, 4);
             txtCopies.Name = "txtCopies";
             txtCopies.Size = new Size(122, 20);
@@ -169,7 +168,7 @@ namespace librarymanagement.views
             txtISBN.BorderStyle = BorderStyle.None;
             txtISBN.Font = new Font("Century Gothic", 9.75F);
             txtISBN.ForeColor = Color.FromArgb(228, 0, 124);
-            txtISBN.Location = new Point(595, 211);
+            txtISBN.Location = new Point(593, 205);
             txtISBN.Margin = new Padding(3, 4, 3, 4);
             txtISBN.Name = "txtISBN";
             txtISBN.Size = new Size(122, 20);
@@ -180,7 +179,7 @@ namespace librarymanagement.views
             panel6.BackColor = Color.White;
             panel6.BorderStyle = BorderStyle.FixedSingle;
             panel6.ForeColor = Color.FromArgb(212, 155, 255);
-            panel6.Location = new Point(585, 235);
+            panel6.Location = new Point(592, 228);
             panel6.Margin = new Padding(3, 4, 3, 4);
             panel6.Name = "panel6";
             panel6.Size = new Size(123, 1);
@@ -191,41 +190,18 @@ namespace librarymanagement.views
             label6.AutoSize = true;
             label6.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.FromArgb(228, 0, 124);
-            label6.Location = new Point(533, 216);
+            label6.Location = new Point(533, 211);
             label6.Name = "label6";
             label6.Size = new Size(51, 19);
             label6.TabIndex = 51;
             label6.Text = "ISBN:";
-            // 
-            // txtAvail
-            // 
-            txtAvail.BackColor = Color.Snow;
-            txtAvail.BorderStyle = BorderStyle.None;
-            txtAvail.Font = new Font("Century Gothic", 9.75F);
-            txtAvail.ForeColor = Color.FromArgb(228, 0, 124);
-            txtAvail.Location = new Point(645, 255);
-            txtAvail.Margin = new Padding(3, 4, 3, 4);
-            txtAvail.Name = "txtAvail";
-            txtAvail.Size = new Size(122, 20);
-            txtAvail.TabIndex = 49;
-            // 
-            // panel5
-            // 
-            panel5.BackColor = Color.White;
-            panel5.BorderStyle = BorderStyle.FixedSingle;
-            panel5.ForeColor = Color.FromArgb(212, 155, 255);
-            panel5.Location = new Point(634, 279);
-            panel5.Margin = new Padding(3, 4, 3, 4);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(123, 1);
-            panel5.TabIndex = 50;
             // 
             // panel4
             // 
             panel4.BackColor = Color.White;
             panel4.BorderStyle = BorderStyle.FixedSingle;
             panel4.ForeColor = Color.FromArgb(212, 155, 255);
-            panel4.Location = new Point(634, 323);
+            panel4.Location = new Point(592, 285);
             panel4.Margin = new Padding(3, 4, 3, 4);
             panel4.Name = "panel4";
             panel4.Size = new Size(123, 1);
@@ -265,23 +241,12 @@ namespace librarymanagement.views
             txtTitleAD.Size = new Size(423, 23);
             txtTitleAD.TabIndex = 41;
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.FromArgb(228, 0, 124);
-            label5.Location = new Point(530, 260);
-            label5.Name = "label5";
-            label5.Size = new Size(93, 19);
-            label5.TabIndex = 44;
-            label5.Text = "Available:";
-            // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.FromArgb(228, 0, 124);
-            label4.Location = new Point(530, 304);
+            label4.Location = new Point(512, 267);
             label4.Name = "label4";
             label4.Size = new Size(72, 19);
             label4.TabIndex = 43;
@@ -387,25 +352,44 @@ namespace librarymanagement.views
             btnClearAD.UseVisualStyleBackColor = false;
             btnClearAD.Click += button4_Click;
             // 
+            // cmbCatFilter
+            // 
+            cmbCatFilter.FormattingEnabled = true;
+            cmbCatFilter.Location = new Point(832, 353);
+            cmbCatFilter.Name = "cmbCatFilter";
+            cmbCatFilter.Size = new Size(151, 28);
+            cmbCatFilter.TabIndex = 58;
+            cmbCatFilter.SelectedIndexChanged += cmbCatFilter_SelectedIndexChanged;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.FromArgb(228, 0, 124);
+            label8.Location = new Point(736, 356);
+            label8.Name = "label8";
+            label8.Size = new Size(75, 19);
+            label8.TabIndex = 59;
+            label8.Text = "Filter By:";
+            // 
             // adminDashpanBooks
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Snow;
             ClientSize = new Size(1053, 864);
+            Controls.Add(label8);
+            Controls.Add(cmbCatFilter);
             Controls.Add(txtCopies);
             Controls.Add(label7);
             Controls.Add(cmbCategory);
             Controls.Add(txtISBN);
             Controls.Add(panel6);
             Controls.Add(label6);
-            Controls.Add(txtAvail);
-            Controls.Add(panel5);
             Controls.Add(panel4);
             Controls.Add(txtAuthAD);
             Controls.Add(panel1);
             Controls.Add(txtTitleAD);
-            Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -455,13 +439,10 @@ namespace librarymanagement.views
         private TextBox txtISBN;
         private Panel panel6;
         private Label label6;
-        private TextBox txtAvail;
-        private Panel panel5;
         private Panel panel4;
         private TextBox txtAuthAD;
         private Panel panel1;
         private TextBox txtTitleAD;
-        private Label label5;
         private Label label4;
         private Label label3;
         private Label label2;
@@ -471,5 +452,7 @@ namespace librarymanagement.views
         private PictureBox pictureBox1;
         private DateTimePicker dateTimePicker;
         private Button btnClearAD;
+        private ComboBox cmbCatFilter;
+        private Label label8;
     }
 }

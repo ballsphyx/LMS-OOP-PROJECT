@@ -8,19 +8,25 @@ namespace librarymanagement.views
     public partial class adminDashpanBooks : Form
     {
         private readonly BookManagement _bookManagement;
-        private readonly TransactionManagement _transactionManagement;
         private int _selectedBookId = -1;
-        public adminDashpanBooks(BookManagement bookManagement, TransactionManagement transactionManagement)
+        public adminDashpanBooks(BookManagement bookManagement)
         {
             InitializeComponent();
 
-            _transactionManagement = transactionManagement;
             _bookManagement = bookManagement;
         }
         private void adminDashpan_Load(object sender, EventArgs e)
         {
             cmbCategory.DataSource = Enum.GetValues(typeof(CategoryEnum));
             dgvBooksAD.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            cmbCatFilter.Items.Add("All");
+            foreach (CategoryEnum category in Enum.GetValues(typeof(CategoryEnum)))
+            {
+                cmbCatFilter.Items.Add(category);
+            }
+            cmbCatFilter.SelectedIndex = 0;
+            cmbCatFilter.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbCatFilter.SelectedIndexChanged += cmbCatFilter_SelectedIndexChanged;
             LoadBooks();
         }
 
@@ -202,7 +208,6 @@ namespace librarymanagement.views
         {
             txtAuthAD.Clear();
             txtTitleAD.Clear();
-            txtAvail.Clear();
             txtCopies.Clear();
             txtISBN.Clear();
             cmbCategory.SelectedIndex = -1;
@@ -213,12 +218,13 @@ namespace librarymanagement.views
         {
 
         }
+        private List<Book> _books = new();
         private void LoadBooks()
         {
             try
             {
-                List<Book> books = _bookManagement.GetAllBooks();
-                dgvBooksAD.DataSource = books;
+                _books = _bookManagement.GetAllBooks();
+                dgvBooksAD.DataSource = _books;
             }
             catch (Exception ex)
             {
@@ -239,6 +245,30 @@ namespace librarymanagement.views
             cmbCategory.SelectedItem = selected.Category.CatName;
             dateTimePicker.Value = new DateTime(selected.PublicationYear, 1, 1);
             txtCopies.Text = selected.TotalCopies.ToString();
+        }
+
+        private void cmbCatFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbCatFilter.SelectedItem == null)
+                return;
+
+            // Show all books
+            if (cmbCatFilter.SelectedItem.ToString() == "All")
+            {
+                dgvBooksAD.DataSource = null;
+                dgvBooksAD.DataSource = _books;
+                return;
+            }
+
+            CategoryEnum selectedCategory = (CategoryEnum)cmbCatFilter.SelectedItem;
+
+            List<Book> filteredBooks = _books
+                .Where(b =>
+                    b.Category.CatName == selectedCategory)
+                .ToList();
+
+            dgvBooksAD.DataSource = null;
+            dgvBooksAD.DataSource = filteredBooks;
         }
     }
 }
