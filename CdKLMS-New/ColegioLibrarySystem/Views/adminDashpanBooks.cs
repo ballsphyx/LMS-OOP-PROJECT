@@ -20,6 +20,7 @@ namespace librarymanagement.views
         private void adminDashpan_Load(object sender, EventArgs e)
         {
             cmbCategory.DataSource = Enum.GetValues(typeof(CategoryEnum));
+            dgvBooksAD.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             LoadBooks();
         }
 

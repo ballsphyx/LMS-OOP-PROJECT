@@ -62,10 +62,10 @@
             dgvUsrAD.BackgroundColor = Color.Snow;
             dgvUsrAD.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvUsrAD.GridColor = Color.FromArgb(251, 174, 210);
-            dgvUsrAD.Location = new Point(12, 296);
+            dgvUsrAD.Location = new Point(12, 388);
             dgvUsrAD.Name = "dgvUsrAD";
             dgvUsrAD.RowHeadersWidth = 51;
-            dgvUsrAD.Size = new Size(1025, 453);
+            dgvUsrAD.Size = new Size(1029, 453);
             dgvUsrAD.TabIndex = 19;
             dgvUsrAD.SelectionChanged += dgvUsrAD_SelectionChanged;
             // 
@@ -141,7 +141,7 @@
             cmbDept.Location = new Point(91, 35);
             cmbDept.Margin = new Padding(3, 4, 3, 4);
             cmbDept.Name = "cmbDept";
-            cmbDept.Size = new Size(197, 25);
+            cmbDept.Size = new Size(197, 29);
             cmbDept.TabIndex = 37;
             cmbDept.SelectedIndexChanged += cmbDept_SelectedIndexChanged;
             // 
@@ -211,7 +211,7 @@
             cmbRole.Location = new Point(274, 248);
             cmbRole.Margin = new Padding(3, 4, 3, 4);
             cmbRole.Name = "cmbRole";
-            cmbRole.Size = new Size(197, 25);
+            cmbRole.Size = new Size(197, 29);
             cmbRole.TabIndex = 47;
             cmbRole.SelectedIndexChanged += cmbRole_SelectedIndexChanged;
             // 
