@@ -51,6 +51,8 @@
             label2 = new Label();
             label4 = new Label();
             btnClearAD = new Button();
+            cmbFilter = new ComboBox();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvUsrAD).BeginInit();
             grpInstructorInfo.SuspendLayout();
             grpStudentInfo.SuspendLayout();
@@ -348,12 +350,33 @@
             btnClearAD.UseVisualStyleBackColor = false;
             btnClearAD.Click += btnClearAD_Click;
             // 
+            // cmbFilter
+            // 
+            cmbFilter.FormattingEnabled = true;
+            cmbFilter.Location = new Point(832, 354);
+            cmbFilter.Name = "cmbFilter";
+            cmbFilter.Size = new Size(151, 28);
+            cmbFilter.TabIndex = 51;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
+            label6.ForeColor = Color.FromArgb(228, 0, 124);
+            label6.Location = new Point(751, 357);
+            label6.Name = "label6";
+            label6.Size = new Size(75, 19);
+            label6.TabIndex = 52;
+            label6.Text = "Filter By:";
+            // 
             // adminDashpanUser
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Snow;
             ClientSize = new Size(1053, 864);
+            Controls.Add(label6);
+            Controls.Add(cmbFilter);
             Controls.Add(btnClearAD);
             Controls.Add(grpInstructorInfo);
             Controls.Add(grpStudentInfo);
@@ -410,5 +433,7 @@
         private Label label2;
         private Label label4;
         private Button btnClearAD;
+        private ComboBox cmbFilter;
+        private Label label6;
     }
 }

@@ -38,6 +38,14 @@ namespace ColegioLibrarySystem.Service
 
             return _userDB.RegisterStudent(newStudent); //registers into DB
         }
+        public List<Student> GetAllStudents()
+        {
+            return _userDB.GetAllStudents();
+        }
+        public List<Instructor> GetAllInstructors()
+        {
+            return _userDB.GetAllInstructors();
+        }
         public bool RegisterInstructor(string username, string password, string fullName, string department)
         {
             if (_userDB.GetUserByUsername(username) != null) throw new InvalidOperationException("Instructor already exists"); //if user already exists, exit function
