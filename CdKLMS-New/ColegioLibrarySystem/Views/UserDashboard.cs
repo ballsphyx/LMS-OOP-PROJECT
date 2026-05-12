@@ -53,7 +53,7 @@ namespace librarymanagement.views
 
         private void BorrowBooks(object sender, EventArgs e)
         {
-            userBKbDashpan b = new userBKbDashpan("User");
+            userBKbDashpan b = new userBKbDashpan(_transactionManagement, _bookManagement);
             b.TopLevel = false;
             contentpnl.Controls.Add(b);
             b.BringToFront();
@@ -67,7 +67,7 @@ namespace librarymanagement.views
 
         private void Transactions(object sender, EventArgs e)
         {
-            userTRDashpan b = new userTRDashpan();
+            userTRDashpan b = new userTRDashpan(_transactionManagement);
             b.TopLevel = false;
             contentpnl.Controls.Add(b);
             b.BringToFront();

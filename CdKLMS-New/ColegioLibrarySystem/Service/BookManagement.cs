@@ -107,6 +107,10 @@ namespace ColegioLibrarySystem.Service
         {
             return _bookDB.GetBookByISBN(isbn);
         }
+        public List<Book> GetBookByTitle(string title)
+        {
+            return _bookDB.GetBooksByTitle(title);
+        }
         public Book GetBookByID(int bookid)
         {
             return _bookDB.GetBookByID(bookid);

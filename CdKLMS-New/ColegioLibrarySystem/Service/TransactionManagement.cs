@@ -1,6 +1,7 @@
 ﻿using ColegioLibrarySystem.GlobalEnums;
 using ColegioLibrarySystem.Helpers;
 using ColegioLibrarySystem.Models;
+using System.Data;
 
 namespace ColegioLibrarySystem.Service
 {
@@ -14,14 +15,14 @@ namespace ColegioLibrarySystem.Service
             _bookDB = bookDB;
         }
 
-        public bool BorrowBook(string isbn, int quantity = 1)
+        public bool BorrowBook(int bookID, int quantity = 1)
         {
             if (!Session.IsLoggedIn) return false;
 
             int userId = Session.CurrentUser.UserId;
             Roles role = Session.CurrentUser.Role;
 
-            Book book = _bookDB.GetBookByISBN(isbn);
+            Book book = _bookDB.GetBookByID(bookID);
             if (book == null) return false;
 
             if (role.RoleName == RoleEnum.Student)
@@ -29,7 +30,7 @@ namespace ColegioLibrarySystem.Service
                 quantity = 1;
                 if (_transactionDB.HasActiveBookBorrow(userId, book.BookID)) return false;
             }
-
+            MessageBox.Show("quantity: " + quantity);
             int availableCount = _bookDB.CountAvailableCopies(book.BookID);
             if (availableCount < quantity) return false;
 
@@ -74,7 +75,7 @@ namespace ColegioLibrarySystem.Service
             return _transactionDB.GetActiveBorrows();
         }
 
-        public List<Transaction> GetBorrowsByUser(int userId)
+        public DataTable GetBorrowsByUser(int userId)
         {
             return _transactionDB.GetBorrowsByUser(userId);
         }

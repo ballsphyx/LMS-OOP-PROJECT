@@ -8,13 +8,11 @@ namespace librarymanagement.views
     public partial class adminDashpanBooks : Form
     {
         private readonly BookManagement _bookManagement;
-        private readonly TransactionManagement _transactionManagement;
         private int _selectedBookId = -1;
-        public adminDashpanBooks(BookManagement bookManagement, TransactionManagement transactionManagement)
+        public adminDashpanBooks(BookManagement bookManagement)
         {
             InitializeComponent();
 
-            _transactionManagement = transactionManagement;
             _bookManagement = bookManagement;
         }
         private void adminDashpan_Load(object sender, EventArgs e)

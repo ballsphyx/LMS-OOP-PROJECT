@@ -104,6 +104,7 @@
             btnSearchBR.Size = new Size(58, 43);
             btnSearchBR.TabIndex = 24;
             btnSearchBR.UseVisualStyleBackColor = false;
+            btnSearchBR.Click += btnSearchBR_Click;
             // 
             // txtSearchBR
             // 

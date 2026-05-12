@@ -21,7 +21,21 @@ namespace librarymanagement.views
 
         private void btnSearchBR_Click(object sender, EventArgs e)
         {
-            //backend search logic here
+            List<Book> searchedBooks = new List<Book>();
+            if (String.IsNullOrEmpty(txtSearchBR.Text))
+            {
+                MessageBox.Show("Search must not be blank");
+                return;
+            }
+            try
+            {
+                searchedBooks = _bookManagement.GetBookByTitle(txtSearchBR.Text);
+                dtaGrdVBR.DataSource = searchedBooks;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed" + ex.Message);
+            }
         }
 
         private void cmbCtgryBR_SelectedIndexChanged(object sender, EventArgs e)
@@ -53,6 +67,7 @@ namespace librarymanagement.views
             {
                 _books = _bookManagement.GetAllBooks();
                 dtaGrdVBR.DataSource = _books;
+                dtaGrdVBR.Columns["CatId"].Visible = false;
             }
             catch (Exception ex)
             {

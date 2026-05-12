@@ -72,7 +72,7 @@ namespace librarymanagement.views
 
         private void btnBooks_Click(object sender, EventArgs e)
         {
-            adminDashpanBooks b = new adminDashpanBooks(_bookManagement, _transactionManagement);
+            adminDashpanBooks b = new adminDashpanBooks(_bookManagement);
             b.TopLevel = false;
             contentpnl.Controls.Add(b);
             b.BringToFront();

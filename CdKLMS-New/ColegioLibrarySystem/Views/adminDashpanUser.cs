@@ -155,8 +155,8 @@ namespace librarymanagement.views
                 {
                     _userManagement.UpdateStudent(name, user, pass, course, year, id);
                 }
-                LoadUsers();
                 MessageBox.Show("User Updated");
+                LoadUsers();
             }
             catch (InvalidOperationException ex)
             {
