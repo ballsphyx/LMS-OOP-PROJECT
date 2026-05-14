@@ -1,6 +1,7 @@
 ﻿using ColegioLibrarySystem.GlobalEnums;
 using ColegioLibrarySystem.Models;
 using ColegioLibrarySystem.Service;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace librarymanagement.views
@@ -19,9 +20,35 @@ namespace librarymanagement.views
             _userManagement = um;
             _transactionManagement = tm;
         }
+        private void PillButton(Button btn)
+        {
+            GraphicsPath path = new GraphicsPath();
+
+            int radius = btn.Height;
+
+            path.StartFigure();
+            path.AddArc(0, 0, radius, radius, 90, 180);
+            path.AddArc(btn.Width - radius, 0, radius, radius, 270, 180);
+            path.CloseFigure();
+
+            btn.Region = new Region(path);
+
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.BorderSize = 0;
+
+            btn.Cursor = Cursors.Hand;
+        }
 
         private void adminDashpanUser_Load(object sender, EventArgs e)
         {
+            PillButton(btnAddUsrAD);
+            PillButton(btnClearAD);
+            PillButton(btnDlteUsrAD);
+            PillButton(btnUpdtUsrAD);
+
+            RoundPanel(panel5, 40);
+
+
             cmbRole.Items.AddRange(new string[]
             {
                 "Student", "Instructor", "Admin"
@@ -52,6 +79,21 @@ namespace librarymanagement.views
             cmbFilter.SelectedIndexChanged += cmbRoleFilter_SelectedIndexChanged;
             grpStudentInfo.Visible = false;
             grpInstructorInfo.Visible = false;
+        }
+        private void RoundPanel(Panel pnl, int radius)
+        {
+            GraphicsPath path = new GraphicsPath();
+
+            path.StartFigure();
+
+            path.AddArc(new Rectangle(0, 0, radius, radius), 180, 90);
+            path.AddArc(new Rectangle(pnl.Width - radius, 0, radius, radius), 270, 90);
+            path.AddArc(new Rectangle(pnl.Width - radius, pnl.Height - radius, radius, radius), 0, 90);
+            path.AddArc(new Rectangle(0, pnl.Height - radius, radius, radius), 90, 90);
+
+            path.CloseFigure();
+
+            pnl.Region = new Region(path);
         }
 
         private void label6_Click(object sender, EventArgs e)
@@ -372,6 +414,11 @@ namespace librarymanagement.views
         private void btnClearAD_Click(object sender, EventArgs e)
         {
             ClearFields();
+        }
+
+        private void label6_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

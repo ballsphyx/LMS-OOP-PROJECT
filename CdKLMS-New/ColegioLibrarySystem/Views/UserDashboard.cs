@@ -1,4 +1,5 @@
 ﻿using ColegioLibrarySystem.Service;
+using System.Drawing.Drawing2D;
 
 namespace librarymanagement.views
 {
@@ -14,6 +15,50 @@ namespace librarymanagement.views
             _transactionManagement = transactionManagement;
             _bookManagement = bookManagement;
             _userManagement = userManagement;
+        }
+        private void RoundFormCorners(int radius)
+        {
+            GraphicsPath path = new GraphicsPath();
+
+            path.StartFigure();
+            path.AddArc(0, 0, radius, radius, 180, 90);
+            path.AddArc(this.Width - radius, 0, radius, radius, 270, 90);
+            path.AddArc(this.Width - radius, this.Height - radius, radius, radius, 0, 90);
+            path.AddArc(0, this.Height - radius, radius, radius, 90, 90);
+            path.CloseFigure();
+
+            this.Region = new Region(path);
+        }
+        private void RoundButton(Button btn, int radius)
+        {
+            GraphicsPath path = new GraphicsPath();
+
+            path.StartFigure();
+            path.AddArc(0, 0, radius, radius, 180, 90);
+            path.AddArc(btn.Width - radius, 0, radius, radius, 270, 90);
+            path.AddArc(btn.Width - radius, btn.Height - radius, radius, radius, 0, 90);
+            path.AddArc(0, btn.Height - radius, radius, radius, 90, 90);
+            path.CloseFigure();
+
+            btn.Region = new Region(path);
+
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.BorderSize = 0;
+        }
+        private void RoundPanel(Panel pnl, int radius)
+        {
+            GraphicsPath path = new GraphicsPath();
+
+            path.StartFigure();
+
+            path.AddArc(new Rectangle(0, 0, radius, radius), 180, 90);
+            path.AddArc(new Rectangle(pnl.Width - radius, 0, radius, radius), 270, 90);
+            path.AddArc(new Rectangle(pnl.Width - radius, pnl.Height - radius, radius, radius), 0, 90);
+            path.AddArc(new Rectangle(0, pnl.Height - radius, radius, radius), 90, 90);
+
+            path.CloseFigure();
+
+            pnl.Region = new Region(path);
         }
 
         private void btnBooks_Click(object sender, EventArgs e)
@@ -39,7 +84,7 @@ namespace librarymanagement.views
                 this.Close();
 
 
-            }           
+            }
         }
 
         private void BrowseBooks(object sender, EventArgs e)
@@ -87,6 +132,38 @@ namespace librarymanagement.views
 
 
             }
+        }
+
+        private void UserDashboard_Load(object sender, EventArgs e)
+        {
+            RoundFormCorners(50);
+            RoundFormCorners(50);
+            RoundPanel(contentpnl, 50);
+
+            RoundButton(btnUser, 10);
+            RoundButton(btnTrsnc, 10);
+            RoundButton(btnBooks, 10);
+            RoundButton(btnLogout, 10);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

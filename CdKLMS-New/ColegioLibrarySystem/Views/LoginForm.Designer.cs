@@ -49,7 +49,7 @@
             // label1
             // 
             resources.ApplyResources(label1, "label1");
-            label1.ForeColor = Color.FromArgb(228, 0, 124);
+            label1.ForeColor = Color.FromArgb(247, 81, 117);
             label1.Name = "label1";
             label1.Click += label1_Click;
             // 
@@ -75,7 +75,7 @@
             // label2
             // 
             resources.ApplyResources(label2, "label2");
-            label2.ForeColor = Color.FromArgb(251, 174, 210);
+            label2.ForeColor = Color.LightPink;
             label2.Name = "label2";
             // 
             // panel2
@@ -100,12 +100,12 @@
             // label3
             // 
             resources.ApplyResources(label3, "label3");
-            label3.ForeColor = Color.FromArgb(251, 174, 210);
+            label3.ForeColor = Color.LightPink;
             label3.Name = "label3";
             // 
             // button1
             // 
-            button1.BackColor = Color.HotPink;
+            button1.BackColor = Color.FromArgb(247, 81, 117);
             resources.ApplyResources(button1, "button1");
             button1.Cursor = Cursors.Hand;
             button1.ForeColor = Color.FromArgb(240, 243, 250);
@@ -117,7 +117,7 @@
             // 
             label4.AllowDrop = true;
             resources.ApplyResources(label4, "label4");
-            label4.ForeColor = Color.FromArgb(228, 0, 124);
+            label4.ForeColor = Color.FromArgb(247, 81, 117);
             label4.Name = "label4";
             label4.Click += label4_Click;
             // 
@@ -140,7 +140,7 @@
             // 
             // button2
             // 
-            button2.BackColor = Color.FromArgb(251, 174, 210);
+            button2.BackColor = Color.LightPink;
             resources.ApplyResources(button2, "button2");
             button2.Cursor = Cursors.Hand;
             button2.ForeColor = Color.FromArgb(240, 243, 250);
@@ -163,6 +163,7 @@
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "LoginForm";
+            Load += LoginForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);

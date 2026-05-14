@@ -28,72 +28,84 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
-            label1 = new Label();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             dtaGrdVwTrnsc = new DataGridView();
-            panel1.SuspendLayout();
+            panel2 = new Panel();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dtaGrdVwTrnsc).BeginInit();
             SuspendLayout();
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.Snow;
-            panel1.Controls.Add(label1);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1037, 81);
-            panel1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Snow;
-            label1.Font = new Font("Century Gothic", 12.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.FromArgb(228, 0, 124);
-            label1.Location = new Point(435, 36);
-            label1.Name = "label1";
-            label1.Size = new Size(183, 26);
-            label1.TabIndex = 0;
-            label1.Text = "My Transactions";
             // 
             // dtaGrdVwTrnsc
             // 
             dtaGrdVwTrnsc.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dtaGrdVwTrnsc.BackgroundColor = Color.Snow;
+            dtaGrdVwTrnsc.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.HotPink;
+            dataGridViewCellStyle3.SelectionBackColor = Color.Pink;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dtaGrdVwTrnsc.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dtaGrdVwTrnsc.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.HotPink;
+            dataGridViewCellStyle4.SelectionBackColor = Color.Pink;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dtaGrdVwTrnsc.DefaultCellStyle = dataGridViewCellStyle4;
             dtaGrdVwTrnsc.GridColor = Color.FromArgb(251, 174, 210);
-            dtaGrdVwTrnsc.Location = new Point(14, 105);
-            dtaGrdVwTrnsc.Margin = new Padding(3, 4, 3, 4);
+            dtaGrdVwTrnsc.Location = new Point(16, 79);
             dtaGrdVwTrnsc.Name = "dtaGrdVwTrnsc";
             dtaGrdVwTrnsc.RowHeadersWidth = 51;
-            dtaGrdVwTrnsc.Size = new Size(1009, 729);
+            dtaGrdVwTrnsc.Size = new Size(869, 590);
             dtaGrdVwTrnsc.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.LightPink;
+            panel2.Location = new Point(6, 63);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(889, 617);
+            panel2.TabIndex = 54;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Century Gothic", 12.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(247, 81, 117);
+            label1.Location = new Point(386, 25);
+            label1.Name = "label1";
+            label1.Size = new Size(139, 19);
+            label1.TabIndex = 0;
+            label1.Text = "My Transactions";
             // 
             // userTRDashpan
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Snow;
-            ClientSize = new Size(1037, 851);
+            ClientSize = new Size(900, 692);
+            Controls.Add(label1);
             Controls.Add(dtaGrdVwTrnsc);
-            Controls.Add(panel1);
+            Controls.Add(panel2);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "userTRDashpan";
             Text = "userTRDashpan";
             Load += userTRDashpan_Load;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dtaGrdVwTrnsc).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-
-        private Panel panel1;
-        private Label label1;
         private DataGridView dtaGrdVwTrnsc;
+        private Panel panel2;
+        private Label label1;
     }
 }
