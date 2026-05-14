@@ -332,6 +332,7 @@ namespace librarymanagement.views
             dateTimePicker.Location = new Point(13, 7);
             dateTimePicker.Margin = new Padding(3, 4, 3, 4);
             dateTimePicker.Name = "dateTimePicker";
+            dateTimePicker.ShowUpDown = true;
             dateTimePicker.Size = new Size(166, 26);
             dateTimePicker.TabIndex = 36;
             // 

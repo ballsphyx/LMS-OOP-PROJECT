@@ -214,10 +214,10 @@ namespace librarymanagement.views
             txtUsrnmAD.Clear();
             txtPassAD.Clear();
             txtNameAD.Clear();
-            cmbYear.SelectedIndex = -1;
-            cmbDept.SelectedIndex = -1;
-            cmbCourse.SelectedIndex = -1;
-            cmbRole.SelectedIndex = -1;
+            //cmbYear.SelectedIndex = -1;
+            //cmbDept.SelectedIndex = -1;
+            //cmbCourse.SelectedIndex = -1;
+            //cmbRole.SelectedIndex = -1;
 
         }
 
