@@ -32,9 +32,9 @@ namespace librarymanagement.views
                 searchedBooks = _bookManagement.GetBookByTitle(txtSearchBR.Text);
                 dtaGrdVBR.DataSource = searchedBooks;
             }
-            catch (Exception ex)
+            catch (InvalidOperationException ex)
             {
-                MessageBox.Show("Failed" + ex.Message);
+                MessageBox.Show("Search Failed" + ex.Message, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -69,7 +69,7 @@ namespace librarymanagement.views
                 dtaGrdVBR.DataSource = _books;
                 dtaGrdVBR.Columns["CatId"].Visible = false;
             }
-            catch (Exception ex)
+            catch (InvalidOperationException ex)
             {
                 MessageBox.Show("Failed to load books: " + ex.Message);
             }

@@ -124,7 +124,7 @@ namespace librarymanagement.views
             btnUpdtAD.TabIndex = 13;
             btnUpdtAD.Text = "UPDATE";
             btnUpdtAD.UseVisualStyleBackColor = false;
-            btnUpdtAD.Click += button3_Click;
+            btnUpdtAD.Click += UpdateBook;
             // 
             // txtCopies
             // 

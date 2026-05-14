@@ -196,7 +196,6 @@ namespace ColegioLibrarySystem.Helpers
                 UserId = Convert.ToInt32(row["user_id"]),
                 CourseID = Convert.ToInt32(row["course_id"]),
                 YearLevel = row["year_level"].ToString(),
-                User = MapUser(row),
 
                 Course = new Course
                 {
@@ -239,7 +238,7 @@ namespace ColegioLibrarySystem.Helpers
         public List<Instructor> GetAllInstructors()
         {
             string query = @"SELECT u.user_id, u.full_name, u.username, u.password, u.role_id,
-                            i.instructor_id, i.dept_id, d.dept_name
+                            i.instructor_id, i.dept_id, d.department_name
                             FROM users u
                             JOIN instructors i ON u.user_id = i.user_id
                             JOIN departments d ON i.dept_id = d.department_id";
@@ -253,8 +252,13 @@ namespace ColegioLibrarySystem.Helpers
                     UserId = Convert.ToInt32(row["user_id"]),
                     InstructorId = Convert.ToInt32(row["instructor_id"]),
                     DepartmentId = Convert.ToInt32(row["dept_id"]),
-                    DepartmentName = row["department_name"].ToString(),
-                    User = MapUser(row)
+                    User = MapUser(row),
+                    Department = new Department
+                    {
+                        DepartmentId = Convert.ToInt32(row["dept_id"]),
+                        DepartmentName = row["department_name"].ToString()
+                    }
+
                 });
             }
             return instructors;
@@ -278,11 +282,14 @@ namespace ColegioLibrarySystem.Helpers
             DataRow row = dt.Rows[0];
             return new Instructor
             {
-                InstructorId = Convert.ToInt32(row["instructor_id"]),
                 UserId = Convert.ToInt32(row["user_id"]),
+                InstructorId = Convert.ToInt32(row["instructor_id"]),
                 DepartmentId = Convert.ToInt32(row["dept_id"]),
-                DepartmentName = row["department_name"].ToString(),
-                User = MapUser(row)
+                Department = new Department
+                {
+                    DepartmentId = Convert.ToInt32(row["dept_id"]),
+                    DepartmentName = row["department_name"].ToString()
+                }
             };
         }
         public User GetUserByID(int id)

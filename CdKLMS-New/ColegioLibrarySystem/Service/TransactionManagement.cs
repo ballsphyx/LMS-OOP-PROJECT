@@ -28,11 +28,11 @@ namespace ColegioLibrarySystem.Service
             if (role.RoleName == RoleEnum.Student)
             {
                 quantity = 1;
-                if (_transactionDB.HasActiveBookBorrow(userId, book.BookID)) return false;
+                if (_transactionDB.HasActiveBookBorrow(userId, book.BookID)) throw new InvalidOperationException("Student is currently borrowing a copy of this book");
             }
             MessageBox.Show("quantity: " + quantity);
             int availableCount = _bookDB.CountAvailableCopies(book.BookID);
-            if (availableCount < quantity) return false;
+            if (availableCount < quantity) throw new InvalidOperationException("Borrow quantity is greater than available copies");
 
             List<int> copyIds = _bookDB.GetAvailableCopyIds(book.BookID, quantity);
             if (copyIds.Count < quantity) return false;
@@ -57,7 +57,7 @@ namespace ColegioLibrarySystem.Service
         }
         public bool ReturnBook(int transactionId)
         {
-            if (!_transactionDB.BorrowExists(transactionId)) return false; //if this borrow record does not exist, exit function
+            if (!_transactionDB.BorrowExists(transactionId)) throw new InvalidOperationException("Borrow record does not exist"); //if this borrow record does not exist, exit function
 
             int copyId = _transactionDB.GetCopyId(transactionId);
             if (copyId == -1) return false;

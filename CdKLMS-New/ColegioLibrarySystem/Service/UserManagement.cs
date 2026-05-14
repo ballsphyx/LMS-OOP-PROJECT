@@ -195,7 +195,9 @@ namespace ColegioLibrarySystem.Service
         }
         public User GetUserByCredentials(string username, string password)
         {
-            return _userDB.GetUserByCredentials(username, password);
+            User user = _userDB.GetUserByCredentials(username, password);
+            if (user == null) throw new InvalidOperationException("User does not exist");
+            return user;
         }
         public User GetUserByID(int userID)
         {
