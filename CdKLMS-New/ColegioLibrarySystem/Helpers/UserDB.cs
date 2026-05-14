@@ -195,9 +195,14 @@ namespace ColegioLibrarySystem.Helpers
                 StudentId = Convert.ToInt32(row["student_id"]),
                 UserId = Convert.ToInt32(row["user_id"]),
                 CourseID = Convert.ToInt32(row["course_id"]),
-                Program = row["course_name"].ToString(),
                 YearLevel = row["year_level"].ToString(),
-                User = MapUser(row)
+                User = MapUser(row),
+
+                Course = new Course
+                {
+                    CourseId = Convert.ToInt32(row["course_id"]),
+                    CourseName = row["course_name"].ToString()
+                }
             };
         }
         public List<Student> GetAllStudents()
@@ -218,9 +223,14 @@ namespace ColegioLibrarySystem.Helpers
                     UserId = Convert.ToInt32(row["user_id"]),
                     StudentId = Convert.ToInt32(row["student_id"]),
                     CourseID = Convert.ToInt32(row["course_id"]),
-                    Program = row["course_name"].ToString(),
                     YearLevel = row["year_level"].ToString(),
-                    User = MapUser(row)
+                    User = MapUser(row),
+
+                    Course = new Course
+                    {
+                        CourseId = Convert.ToInt32(row["course_id"]),
+                        CourseName = row["course_name"].ToString()
+                    }
                 });
             }
             return students;

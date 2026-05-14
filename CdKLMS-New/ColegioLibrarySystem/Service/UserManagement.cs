@@ -168,7 +168,6 @@ namespace ColegioLibrarySystem.Service
                     }
                 },
                 DepartmentId = deptId,
-                DepartmentName = department
             };
 
             return _userDB.UpdateInstructor(updatedInstructor); //registers into DB
