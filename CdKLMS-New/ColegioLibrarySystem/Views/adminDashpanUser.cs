@@ -27,10 +27,9 @@ namespace librarymanagement.views
                 "Student", "Instructor", "Admin"
             });
 
-            cmbCourse.Items.AddRange(new string[]
-            {
-                "BSIT","BSED","BSCRIM","BSN","BSHM"
-            });
+            cmbCourse.DataSource = _userManagement.GetAllCourses();
+            cmbCourse.DisplayMember = "CourseName";
+            cmbCourse.ValueMember = "CourseId";
 
             cmbYear.Items.AddRange(new string[]
             {
@@ -38,11 +37,10 @@ namespace librarymanagement.views
             });
 
 
-            cmbDept.Items.Add("Information Technology");
-            cmbDept.Items.Add("Education");
-            cmbDept.Items.Add("Nursing");
-            cmbDept.Items.Add("Criminology");
-            cmbDept.Items.Add("Hospital Management");
+            cmbDept.DataSource = _userManagement.GetDepartments();
+            cmbDept.DisplayMember = "DepartmentName";
+            cmbDept.ValueMember = "DepartmentId";
+
             cmbRole.DataSource = Enum.GetValues(typeof(RoleEnum));
             LoadUsers();
             dgvUsrAD.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -71,8 +69,8 @@ namespace librarymanagement.views
             string pass = txtPassAD.Text.Trim();
             var selectedRole = (RoleEnum)cmbRole.SelectedItem;
             var year = cmbYear.Text;
-            var dept = cmbDept.Text;
-            var course = cmbCourse.Text;
+            var dept = Convert.ToInt32(cmbDept.SelectedValue);
+            var courseid = Convert.ToInt32(cmbCourse.SelectedValue);
 
             string[] reqfields = { name, user, pass };
             foreach (var fields in reqfields)
@@ -102,7 +100,7 @@ namespace librarymanagement.views
                 }
                 else if (selectedRole == RoleEnum.Student)
                 {
-                    _userManagement.RegisterStudent(user, pass, name, course, year);
+                    _userManagement.RegisterStudent(user, pass, name, courseid, year);
                 }
                 MessageBox.Show("User Added");
                 LoadUsers();
@@ -122,8 +120,8 @@ namespace librarymanagement.views
             string pass = txtPassAD.Text.Trim();
             var selectedRole = (RoleEnum)cmbRole.SelectedItem;
             var year = cmbYear.Text;
-            var dept = cmbDept.Text;
-            var course = cmbCourse.Text;
+            var dept = Convert.ToInt32(cmbDept.SelectedValue);
+            var courseId = Convert.ToInt32(cmbCourse.SelectedValue);
             var id = _selectedUserId;
             string[] reqfields = { name, user, pass };
             foreach (var fields in reqfields)
@@ -153,7 +151,7 @@ namespace librarymanagement.views
                 }
                 else
                 {
-                    _userManagement.UpdateStudent(name, user, pass, course, year, id);
+                    _userManagement.UpdateStudent(name, user, pass, year, id, courseId);
                 }
                 MessageBox.Show("User Updated");
                 LoadUsers();
@@ -172,8 +170,8 @@ namespace librarymanagement.views
             string pass = txtPassAD.Text.Trim();
             var selectedRole = (RoleEnum)cmbRole.SelectedItem;
             var year = cmbYear.Text;
-            var dept = cmbDept.Text;
-            var course = cmbCourse.Text;
+            var dept = Convert.ToInt32(cmbDept.SelectedValue);
+            var courseId = Convert.ToInt32(cmbCourse.SelectedValue);
             string[] reqfields = { name, user, pass };
             foreach (var fields in reqfields)
             {
@@ -354,14 +352,14 @@ namespace librarymanagement.views
             {
                 grpStudentInfo.Visible = true;
                 grpInstructorInfo.Visible = false;
-                cmbCourse.SelectedItem = student.Program;
+                cmbCourse.SelectedValue = student.CourseID; 
                 cmbYear.SelectedItem = student.YearLevel;
             }
             else if (instructor != null)
             {
                 grpStudentInfo.Visible = false;
                 grpInstructorInfo.Visible = true;
-                cmbDept.SelectedItem = instructor.Department;
+                cmbDept.SelectedValue = instructor.DepartmentId;
             }
             else
             {

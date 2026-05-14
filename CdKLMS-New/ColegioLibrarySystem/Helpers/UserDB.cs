@@ -34,13 +34,13 @@ namespace ColegioLibrarySystem.Helpers
             int newUserId = RegisterUser(student.User);
             if (newUserId <= 0) return false;
 
-            string query = @"INSERT INTO students (user_id, course, year_level) 
-                             VALUES (@UserId, @Course, @YearLevel)";
+            string query = @"INSERT INTO students (user_id, course_id, year_level) 
+                             VALUES (@UserId, @CourseID, @YearLevel)";
 
             var parameters = new MySqlParameter[]
             {
                 new MySqlParameter("@UserId", newUserId),
-                new MySqlParameter("@Course", student.Program),
+                new MySqlParameter("@CourseID", student.CourseID),
                 new MySqlParameter("@YearLevel", student.YearLevel)
             };
 
@@ -68,13 +68,13 @@ namespace ColegioLibrarySystem.Helpers
             int newUserId = RegisterUser(instructor.User);
             if (newUserId <= 0) return false;
 
-            string query = @"INSERT INTO instructors (user_id, department) 
+            string query = @"INSERT INTO instructors (user_id, dept_id) 
                              VALUES (@UserId, @Department)";
 
             var parameters = new MySqlParameter[]
             {
                 new MySqlParameter("@UserId", newUserId),
-                new MySqlParameter("@Department", instructor.Department)
+                new MySqlParameter("@Department", instructor.DepartmentId)
             };
 
             return _databaseHelper.ExecuteNonQuery(query, parameters) > 0;
@@ -120,14 +120,14 @@ namespace ColegioLibrarySystem.Helpers
                 return false;
             }
             string query = @"UPDATE students SET
-                                course = @Course,
+                                course_id = @CourseID,
                                 year_level = @YearLevel
                                 WHERE student_id = @StudentID";
 
             var param = new MySqlParameter[]
             {
                 new MySqlParameter("@StudentID", student.StudentId),
-                new MySqlParameter("@Course", student.Program),
+                new MySqlParameter("@CourseID", student.CourseID),
                 new MySqlParameter("@YearLevel", student.YearLevel)
             };
             return _databaseHelper.ExecuteNonQuery(query, param) > 0;
@@ -139,10 +139,10 @@ namespace ColegioLibrarySystem.Helpers
         public bool UpdateInstructor(Instructor instructor)
         {
             bool updateUser = UpdateUser(instructor.User);
-            string query = @"UPDATE instructors SET department = @Department WHERE instructor_id = @InstructorID";
+            string query = @"UPDATE instructors SET dept_id = @Department WHERE instructor_id = @InstructorID";
             var param = new MySqlParameter[]
             {
-                new MySqlParameter("@Department", instructor.Department),
+                new MySqlParameter("@Department", instructor.DepartmentId),
                 new MySqlParameter("@InstructorID", instructor.InstructorId)
             };
             return _databaseHelper.ExecuteNonQuery(query, param) > 0;
@@ -176,13 +176,14 @@ namespace ColegioLibrarySystem.Helpers
         }
         public Student GetStudentByUserId(int userId)
         {
-            string query = @"SELECT s.student_id, s.user_id, s.course, s.year_level
-                     FROM students s
-                     WHERE s.user_id = @UserId";
+            string query = @"SELECT s.student_id, s.user_id, s.course_id, c.course_name, s.year_level
+                             FROM students s
+                             JOIN courses c ON s.course_id = c.course_id
+                             WHERE s.user_id = @UserId";
 
             var parameters = new MySqlParameter[]
             {
-        new MySqlParameter("@UserId", userId)
+                new MySqlParameter("@UserId", userId)
             };
 
             DataTable dt = _databaseHelper.ExecuteQuery(query, parameters);
@@ -193,16 +194,20 @@ namespace ColegioLibrarySystem.Helpers
             {
                 StudentId = Convert.ToInt32(row["student_id"]),
                 UserId = Convert.ToInt32(row["user_id"]),
-                Program = row["course"].ToString(),
-                YearLevel = row["year_level"].ToString()
+                CourseID = Convert.ToInt32(row["course_id"]),
+                Program = row["course_name"].ToString(),
+                YearLevel = row["year_level"].ToString(),
+                User = MapUser(row)
             };
         }
         public List<Student> GetAllStudents()
         {
             string query = @"SELECT u.user_id, u.full_name, u.username, u.password, u.role_id,
-                            s.student_id, s.course, s.year_level
-                     FROM users u
-                     JOIN students s ON u.user_id = s.user_id";
+                            s.student_id, s.course_id, c.course_name, s.year_level
+                            FROM users u
+                            JOIN students s ON u.user_id = s.user_id
+                            JOIN courses c ON s.course_id = c.course_id";
+
 
             DataTable dt = _databaseHelper.ExecuteQuery(query);
             List<Student> students = new List<Student>();
@@ -212,7 +217,8 @@ namespace ColegioLibrarySystem.Helpers
                 {
                     UserId = Convert.ToInt32(row["user_id"]),
                     StudentId = Convert.ToInt32(row["student_id"]),
-                    Program = row["course"].ToString(),
+                    CourseID = Convert.ToInt32(row["course_id"]),
+                    Program = row["course_name"].ToString(),
                     YearLevel = row["year_level"].ToString(),
                     User = MapUser(row)
                 });
@@ -223,9 +229,10 @@ namespace ColegioLibrarySystem.Helpers
         public List<Instructor> GetAllInstructors()
         {
             string query = @"SELECT u.user_id, u.full_name, u.username, u.password, u.role_id,
-                            i.instructor_id, i.department
-                     FROM users u
-                     JOIN instructors i ON u.user_id = i.user_id";
+                            i.instructor_id, i.dept_id, d.dept_name
+                            FROM users u
+                            JOIN instructors i ON u.user_id = i.user_id
+                            JOIN departments d ON i.dept_id = d.department_id";
 
             DataTable dt = _databaseHelper.ExecuteQuery(query);
             List<Instructor> instructors = new List<Instructor>();
@@ -235,7 +242,8 @@ namespace ColegioLibrarySystem.Helpers
                 {
                     UserId = Convert.ToInt32(row["user_id"]),
                     InstructorId = Convert.ToInt32(row["instructor_id"]),
-                    Department = row["department"].ToString(),
+                    DepartmentId = Convert.ToInt32(row["dept_id"]),
+                    DepartmentName = row["department_name"].ToString(),
                     User = MapUser(row)
                 });
             }
@@ -244,13 +252,14 @@ namespace ColegioLibrarySystem.Helpers
 
         public Instructor GetInstructorByUserId(int userId)
         {
-            string query = @"SELECT i.instructor_id, i.user_id, i.department
+            string query = @"SELECT i.instructor_id, i.user_id, i.dept_id, d.department_name
                      FROM instructors i
+                     JOIN departments d ON i.dept_id = d.department_id
                      WHERE i.user_id = @UserId";
 
             var parameters = new MySqlParameter[]
             {
-        new MySqlParameter("@UserId", userId)
+                new MySqlParameter("@UserId", userId)
             };
 
             DataTable dt = _databaseHelper.ExecuteQuery(query, parameters);
@@ -261,7 +270,9 @@ namespace ColegioLibrarySystem.Helpers
             {
                 InstructorId = Convert.ToInt32(row["instructor_id"]),
                 UserId = Convert.ToInt32(row["user_id"]),
-                Department = row["department"].ToString()
+                DepartmentId = Convert.ToInt32(row["dept_id"]),
+                DepartmentName = row["department_name"].ToString(),
+                User = MapUser(row)
             };
         }
         public User GetUserByID(int id)
@@ -311,6 +322,40 @@ namespace ColegioLibrarySystem.Helpers
             if (dt.Rows.Count == 0) return null;
 
             return MapUser(dt.Rows[0]);
+        }
+        public List<Course> GetAllCourses()
+        {
+            string query = @"SELECT course_id, course_name FROM courses";
+
+            DataTable dt = _databaseHelper.ExecuteQuery(query);
+
+            List<Course> courses = new List<Course>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                courses.Add(new Course
+                {
+                    CourseId = Convert.ToInt32(row["course_id"]),
+                    CourseName = row["course_name"].ToString()
+                });
+            }
+
+            return courses;
+        }
+        public List<Department> GetAllDepartments()
+        {
+            string query = @"SELECT department_id, department_name FROM departments";
+            DataTable dt = _databaseHelper.ExecuteQuery(query);
+            List<Department> departments = new List<Department>();
+            foreach (DataRow row in dt.Rows)
+            {
+                departments.Add(new Department
+                {
+                    DepartmentId = Convert.ToInt32(row["department_id"]),
+                    DepartmentName = row["department_name"].ToString()
+                });
+            }
+            return departments;
         }
 
         private User MapUser(DataRow row)

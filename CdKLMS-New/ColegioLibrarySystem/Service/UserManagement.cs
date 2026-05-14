@@ -14,7 +14,7 @@ namespace ColegioLibrarySystem.Service
             _borrowDB = borrowDB;
         }
 
-        public bool RegisterStudent(string username, string password, string fullName, string program, string yearLevel)
+        public bool RegisterStudent(string username, string password, string fullName, int courseId, string yearLevel)
         {
             if (_userDB.GetUserByUsername(username) != null) throw new InvalidOperationException("Student already exists"); //if user already exists, exit function
 
@@ -32,7 +32,7 @@ namespace ColegioLibrarySystem.Service
                         RoleName = RoleEnum.Student //sets roleName to Student
                     }
                 },
-                Program = program,
+                CourseID = courseId,
                 YearLevel = yearLevel
             };
 
@@ -46,7 +46,7 @@ namespace ColegioLibrarySystem.Service
         {
             return _userDB.GetAllInstructors();
         }
-        public bool RegisterInstructor(string username, string password, string fullName, string department)
+        public bool RegisterInstructor(string username, string password, string fullName, int departmentId)
         {
             if (_userDB.GetUserByUsername(username) != null) throw new InvalidOperationException("Instructor already exists"); //if user already exists, exit function
 
@@ -64,7 +64,7 @@ namespace ColegioLibrarySystem.Service
                         RoleName = RoleEnum.Instructor //sets roleName to Student
                     }
                 },
-                Department = department
+                DepartmentId = departmentId
             };
 
             return _userDB.RegisterInstructor(newInstructor); //registers into DB
@@ -100,22 +100,9 @@ namespace ColegioLibrarySystem.Service
 
             return _userDB.DeleteUser(user.UserId); //delete from DB
         }
-        //public bool UpdateUser(int userID, string username, string password, string fullName, Roles role)
-        //{
-        //    User user = _userDB.GetUserByUsername(username); //creates a new user object that contains the information of username
-        //    if (user == null) return false; //if user does not exist, exit function
-        //    User updatedUser = new User //create a new user object with the new details to pass into our function
-        //    {
-        //        Username = username,
-        //        Password = password,
-        //        FullName = fullName,
-        //        Role = role
-        //    };
-        //    return _userDB.UpdateUser(updatedUser); //update to DB
-        //}
-        public bool UpdateStudent(string name, string username, string password, string program, string yearLevel, int id)
+        public bool UpdateStudent(string name, string username, string password, string yearLevel, int userId, int courseId)
         {
-            User user = _userDB.GetUserByID(id);
+            User user = _userDB.GetUserByID(userId);
                 if (user == null) throw new InvalidOperationException("User does not exist");
             Student updatedStudent = new Student
             {
@@ -132,7 +119,7 @@ namespace ColegioLibrarySystem.Service
                         RoleName = RoleEnum.Student
                     }
                 },
-                Program = program,
+                CourseID = courseId,
                 YearLevel = yearLevel
             };
             return _userDB.UpdateStudent(updatedStudent);
@@ -160,9 +147,9 @@ namespace ColegioLibrarySystem.Service
             };
             return _userDB.UpdateAdmin(updateAdmin);
         }
-        public bool UpdateInstructor(string username, string password, string fullName, string department, int id)
+        public bool UpdateInstructor(string username, string password, string fullName, int userId, int deptId)
         {
-            User user = _userDB.GetUserByID(id);
+            User user = _userDB.GetUserByID(userId);
                 if (user == null) throw new InvalidOperationException("User does not exist"); //if user already exists, exit function
 
             Instructor updatedInstructor = new Instructor //create new instructor object to pass into function
@@ -180,10 +167,19 @@ namespace ColegioLibrarySystem.Service
                         RoleName = RoleEnum.Instructor //sets roleName to Student
                     }
                 },
-                Department = department
+                DepartmentId = deptId,
+                DepartmentName = department
             };
 
             return _userDB.UpdateInstructor(updatedInstructor); //registers into DB
+        }
+        public List<Course> GetAllCourses()
+        {
+            return _userDB.GetAllCourses();
+        }
+        public List<Department> GetDepartments()
+        {
+            return _userDB.GetAllDepartments();
         }
         public Student GetStudentByUserId(int userId)
         {
