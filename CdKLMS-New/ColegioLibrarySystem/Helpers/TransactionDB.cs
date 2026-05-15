@@ -16,7 +16,7 @@ namespace ColegioLibrarySystem.Helpers
 
         private bool AddBorrowRecord(Transaction record)
         {
-            string query = @"INSERT INTO transactions (user_id, copy_id, borrow_date, due_date, date_returned)
+            string query = @"INSERT INTO transactions (user_id, copy_id, date_borrowed, due_date, date_returned)
                      VALUES (@UserId, @CopyId, @BorrowDate, @DueDate, NULL)";
 
             var parameters = new MySqlParameter[]
@@ -171,15 +171,15 @@ namespace ColegioLibrarySystem.Helpers
                                 b.book_title,
                                 b.isbn,
                                 COUNT(t.transaction_id) as quantity,
-                                t.borrow_date,
+                                t.date_borrowed,
                                 t.due_date,
                                 MAX(t.date_returned) as date_returned
                              FROM transactions t
                              JOIN book_copies bc ON t.copy_id = bc.copy_id
                              JOIN books b ON bc.book_id = b.book_id
                              WHERE t.user_id = @UserId
-                             GROUP BY b.book_title, b.isbn, t.borrow_date, t.due_date
-                             ORDER BY t.borrow_date DESC";
+                             GROUP BY b.book_title, b.isbn, t.date_borrowed, t.due_date
+                             ORDER BY t.date_borrowed DESC";
 
             var parameters = new MySqlParameter[]
             {
@@ -196,7 +196,7 @@ namespace ColegioLibrarySystem.Helpers
                 TransactionId = Convert.ToInt32(row["transaction_id"]),
                 UserID = Convert.ToInt32(row["user_id"]),
                 CopyID = Convert.ToInt32(row["copy_id"]),
-                BorrowDate = Convert.ToDateTime(row["borrow_date"]),
+                BorrowDate = Convert.ToDateTime(row["date_borrowed"]),
                 DueDate = Convert.ToDateTime(row["due_date"]),
                 DateReturned = row["date_returned"] == DBNull.Value
                                ? (DateTime?)null

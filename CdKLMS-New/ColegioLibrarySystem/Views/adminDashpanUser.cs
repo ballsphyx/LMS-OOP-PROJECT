@@ -54,10 +54,9 @@ namespace librarymanagement.views
                 "Student", "Instructor", "Admin"
             });
 
-            cmbCourse.Items.AddRange(new string[]
-            {
-                "BSIT","BSED","BSCRIM","BSN","BSHM"
-            });
+            cmbCourse.DataSource = _userManagement.GetAllCourses();
+            cmbCourse.DisplayMember = "ProgramName";
+            cmbCourse.ValueMember = "ProgramId";
 
             cmbYear.Items.AddRange(new string[]
             {
@@ -65,11 +64,10 @@ namespace librarymanagement.views
             });
 
 
-            cmbDept.Items.Add("Information Technology");
-            cmbDept.Items.Add("Education");
-            cmbDept.Items.Add("Nursing");
-            cmbDept.Items.Add("Criminology");
-            cmbDept.Items.Add("Hospital Management");
+            cmbDept.DataSource = _userManagement.GetDepartments();
+            cmbDept.DisplayMember = "DepartmentName";
+            cmbDept.ValueMember = "DepartmentId";
+
             cmbRole.DataSource = Enum.GetValues(typeof(RoleEnum));
             LoadUsers();
             dgvUsrAD.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -113,8 +111,8 @@ namespace librarymanagement.views
             string pass = txtPassAD.Text.Trim();
             var selectedRole = (RoleEnum)cmbRole.SelectedItem;
             var year = cmbYear.Text;
-            var dept = cmbDept.Text;
-            var course = cmbCourse.Text;
+            var dept = Convert.ToInt32(cmbDept.SelectedValue);
+            var courseid = Convert.ToInt32(cmbCourse.SelectedValue);
 
             string[] reqfields = { name, user, pass };
             foreach (var fields in reqfields)
@@ -144,15 +142,14 @@ namespace librarymanagement.views
                 }
                 else if (selectedRole == RoleEnum.Student)
                 {
-                    _userManagement.RegisterStudent(user, pass, name, course, year);
+                    _userManagement.RegisterStudent(user, pass, name, courseid, year);
                 }
                 MessageBox.Show("User Added");
                 LoadUsers();
             }
             catch (InvalidOperationException ex)
             {
-                MessageBox.Show("Service Layer Error: " + ex.Message, "ERROR!",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Failed to Register User: " + ex.Message, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             ClearFields();
         }
@@ -164,8 +161,8 @@ namespace librarymanagement.views
             string pass = txtPassAD.Text.Trim();
             var selectedRole = (RoleEnum)cmbRole.SelectedItem;
             var year = cmbYear.Text;
-            var dept = cmbDept.Text;
-            var course = cmbCourse.Text;
+            var dept = Convert.ToInt32(cmbDept.SelectedValue);
+            var courseId = Convert.ToInt32(cmbCourse.SelectedValue);
             var id = _selectedUserId;
             string[] reqfields = { name, user, pass };
             foreach (var fields in reqfields)
@@ -195,14 +192,14 @@ namespace librarymanagement.views
                 }
                 else
                 {
-                    _userManagement.UpdateStudent(name, user, pass, course, year, id);
+                    _userManagement.UpdateStudent(name, user, pass, year, id, courseId);
                 }
                 MessageBox.Show("User Updated");
                 LoadUsers();
             }
             catch (InvalidOperationException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Failed to Update User: " + ex.Message, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             ClearFields();
         }
@@ -214,8 +211,8 @@ namespace librarymanagement.views
             string pass = txtPassAD.Text.Trim();
             var selectedRole = (RoleEnum)cmbRole.SelectedItem;
             var year = cmbYear.Text;
-            var dept = cmbDept.Text;
-            var course = cmbCourse.Text;
+            var dept = Convert.ToInt32(cmbDept.SelectedValue);
+            var courseId = Convert.ToInt32(cmbCourse.SelectedValue);
             string[] reqfields = { name, user, pass };
             foreach (var fields in reqfields)
             {
@@ -246,7 +243,7 @@ namespace librarymanagement.views
                 }
                 catch (InvalidOperationException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Failed to Delete User: " + ex.Message, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             ClearFields();
@@ -256,11 +253,6 @@ namespace librarymanagement.views
             txtUsrnmAD.Clear();
             txtPassAD.Clear();
             txtNameAD.Clear();
-            cmbYear.SelectedIndex = -1;
-            cmbDept.SelectedIndex = -1;
-            cmbCourse.SelectedIndex = -1;
-            cmbRole.SelectedIndex = -1;
-
         }
 
         private void cmbRole_SelectedIndexChanged(object sender, EventArgs e)
@@ -325,21 +317,28 @@ namespace librarymanagement.views
 
             if (selected == "Student")
             {
-                dgvUsrAD.DataSource = _allStudents;
+                dgvUsrAD.DataSource = _allStudents.ToList();
                 dgvUsrAD.Columns["Program"].Visible = true;
                 dgvUsrAD.Columns["YearLevel"].Visible = true;
                 if (dgvUsrAD.Columns["Department"] != null)
                     dgvUsrAD.Columns["Department"].Visible = false;
                 dgvUsrAD.Columns["User"].Visible = false;
+                if (dgvUsrAD.Columns["program"] != null)
+                    dgvUsrAD.Columns["program"].Visible = false;
+                if (dgvUsrAD.Columns["programID"] != null)
+                    dgvUsrAD.Columns["programID"].Visible = false;
+
             }
             else if (selected == "Instructor")
             {
-                dgvUsrAD.DataSource = _allInstructors;
-                dgvUsrAD.Columns["Department"].Visible = true;
-                if (dgvUsrAD.Columns["Course"] != null)
-                    dgvUsrAD.Columns["Course"].Visible = false;
+                dgvUsrAD.DataSource = _allInstructors.ToList();
+                dgvUsrAD.Columns["DepartmentName"].Visible = true;
+                if (dgvUsrAD.Columns["Program"] != null)
+                    dgvUsrAD.Columns["Program"].Visible = false;
                 if (dgvUsrAD.Columns["YearLevel"] != null)
                     dgvUsrAD.Columns["YearLevel"].Visible = false;
+                if (dgvUsrAD.Columns["Department"] != null)
+                    dgvUsrAD.Columns["Department"].Visible = false;
                 dgvUsrAD.Columns["User"].Visible = false;
             }
             else if (selected == "Admin")
@@ -396,14 +395,14 @@ namespace librarymanagement.views
             {
                 grpStudentInfo.Visible = true;
                 grpInstructorInfo.Visible = false;
-                cmbCourse.SelectedItem = student.Program;
+                cmbCourse.SelectedValue = student.ProgramID; 
                 cmbYear.SelectedItem = student.YearLevel;
             }
             else if (instructor != null)
             {
                 grpStudentInfo.Visible = false;
                 grpInstructorInfo.Visible = true;
-                cmbDept.SelectedItem = instructor.Department;
+                cmbDept.SelectedValue = instructor.DepartmentId;
             }
             else
             {

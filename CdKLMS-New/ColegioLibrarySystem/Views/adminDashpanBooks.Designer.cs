@@ -109,7 +109,7 @@ namespace librarymanagement.views
             btnUpdtAD.TabIndex = 13;
             btnUpdtAD.Text = "UPDATE";
             btnUpdtAD.UseVisualStyleBackColor = false;
-            btnUpdtAD.Click += button3_Click;
+            btnUpdtAD.Click += UpdateBook;
             // 
             // txtCopies
             // 
@@ -309,6 +309,7 @@ namespace librarymanagement.views
             dateTimePicker.Location = new Point(11, 5);
             dateTimePicker.Name = "dateTimePicker";
             dateTimePicker.Size = new Size(146, 22);
+            dateTimePicker.ShowUpDown = true;
             dateTimePicker.TabIndex = 36;
             // 
             // btnClearAD

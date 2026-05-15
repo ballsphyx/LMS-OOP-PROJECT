@@ -154,9 +154,12 @@ namespace ColegioLibrarySystem.Helpers
 
         public List<Book> GetBooksByTitle(string title)
         {
-            string query = @"SELECT *
-                             FROM books
-                             WHERE book_title LIKE @Title";
+            string query = @"SELECT b.*, COUNT(bc.copy_id) AS TotalCopies, COUNT(CASE WHEN bc.status = 'Available' THEN 1 END) AS AvailableCopies
+                             FROM books b
+                             LEFT JOIN book_copies bc ON b.book_id = bc.book_id
+
+                             WHERE book_title LIKE @Title
+                             GROUP BY b.book_id";
 
             var parameters = new MySqlParameter[]
             {

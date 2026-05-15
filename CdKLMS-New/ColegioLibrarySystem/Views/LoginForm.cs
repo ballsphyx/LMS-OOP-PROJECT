@@ -75,27 +75,25 @@ namespace librarymanagement
 
         private void button1_Click(object sender, EventArgs e)
         {
-            User current = _userManagement.GetUserByCredentials(textBox1.Text, textBox2.Text);
-            if (current == null)
+            try
             {
-                MessageBox.Show("User not found");
-                textBox1.Clear();
-                textBox2.Clear();
-                return;
+                User current = _userManagement.GetUserByCredentials(textBox1.Text, textBox2.Text);
+                Session.Login(current);
+                if (current.Role.RoleName == RoleEnum.Admin)
+                {
+                    AdminDashboard ad = new AdminDashboard(_bookManagement, _userManagement, _transactionManagement);
+                    ad.Show();
+                }
+                else
+                {
+                    UserDashboard userD = new UserDashboard(_bookManagement, _userManagement, _transactionManagement);
+                    userD.Show();
+                }
+                    this.Hide();
             }
-            Session.Login(current);
-            if (current.Role.RoleName == RoleEnum.Admin)
+            catch (InvalidOperationException ex)
             {
-                AdminDashboard ad = new AdminDashboard(_bookManagement, _userManagement, _transactionManagement);
-                ad.Show();
-                this.Hide();
-            }
-            else
-            {
-                //MessageBox.Show("IsInstructor: " + Session.IsInstructor.ToString() + "\nIsStudent: " + Session.IsStudent.ToString());
-                UserDashboard userD = new UserDashboard(_bookManagement, _userManagement, _transactionManagement);
-                userD.Show();
-                this.Hide();
+                MessageBox.Show("Login Failure: " + ex.Message, "LOGIN ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);   
             }
         }
 

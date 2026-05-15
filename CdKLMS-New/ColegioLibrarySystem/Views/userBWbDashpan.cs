@@ -108,9 +108,9 @@ namespace librarymanagement.views
                 MessageBox.Show("Book borrowed");
                 LoadBooks();
             }
-            catch (Exception ex)
+            catch (InvalidOperationException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Failed to Borrow Book: " + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

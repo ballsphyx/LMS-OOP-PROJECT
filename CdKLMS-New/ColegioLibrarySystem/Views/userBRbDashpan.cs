@@ -60,7 +60,21 @@ namespace librarymanagement.views
 
         private void btnSearchBR_Click(object sender, EventArgs e)
         {
-            
+            List<Book> searchedBooks = new List<Book>();
+            if (String.IsNullOrEmpty(txtSearchBR.Text))
+            {
+                MessageBox.Show("Search must not be blank");
+                return;
+            }
+            try
+            {
+                searchedBooks = _bookManagement.GetBookByTitle(txtSearchBR.Text);
+                dtaGrdVBR.DataSource = searchedBooks;
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show("Search Failed" + ex.Message, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void cmbCtgryBR_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -93,7 +107,7 @@ namespace librarymanagement.views
                 dtaGrdVBR.DataSource = _books;
                 dtaGrdVBR.Columns["CatId"].Visible = false;
             }
-            catch (Exception ex)
+            catch (InvalidOperationException ex)
             {
                 MessageBox.Show("Failed to load books: " + ex.Message);
             }
