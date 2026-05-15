@@ -33,7 +33,7 @@ namespace librarymanagement.views
             LoadUserTransactions();
             dtaGrdVwTrnsc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            RoundPanel(panel2, 40);
+            RoundPanel(panel2, 20);
         }
         private void LoadUserTransactions()
         {
@@ -45,6 +45,11 @@ namespace librarymanagement.views
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

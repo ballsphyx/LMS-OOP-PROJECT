@@ -35,16 +35,16 @@
             label4 = new Label();
             panel1 = new Panel();
             btnLogout = new Button();
-            btnUser = new Button();
+            btnbrbook = new Button();
             label2 = new Label();
             btnBooks = new Button();
             panel3 = new Panel();
             label1 = new Label();
             pictureBox1 = new PictureBox();
             btnTrsnc = new Button();
+            label3 = new Label();
             button2 = new Button();
             button1 = new Button();
-            label3 = new Label();
             contentpnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -98,9 +98,9 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(247, 81, 117);
+            panel1.BackColor = Color.FromArgb(163, 54, 77);
             panel1.Controls.Add(btnLogout);
-            panel1.Controls.Add(btnUser);
+            panel1.Controls.Add(btnbrbook);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(btnBooks);
             panel1.Controls.Add(panel3);
@@ -128,23 +128,23 @@
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
             // 
-            // btnUser
+            // btnbrbook
             // 
-            btnUser.BackgroundImageLayout = ImageLayout.None;
-            btnUser.FlatAppearance.BorderSize = 0;
-            btnUser.FlatStyle = FlatStyle.Flat;
-            btnUser.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnUser.ForeColor = Color.White;
-            btnUser.Image = (Image)resources.GetObject("btnUser.Image");
-            btnUser.Location = new Point(3, 369);
-            btnUser.Name = "btnUser";
-            btnUser.RightToLeft = RightToLeft.Yes;
-            btnUser.Size = new Size(230, 59);
-            btnUser.TabIndex = 3;
-            btnUser.Text = "Borrow Book";
-            btnUser.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnUser.UseVisualStyleBackColor = true;
-            btnUser.Click += BorrowBooks;
+            btnbrbook.BackgroundImageLayout = ImageLayout.None;
+            btnbrbook.FlatAppearance.BorderSize = 0;
+            btnbrbook.FlatStyle = FlatStyle.Flat;
+            btnbrbook.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnbrbook.ForeColor = Color.White;
+            btnbrbook.Image = (Image)resources.GetObject("btnbrbook.Image");
+            btnbrbook.Location = new Point(3, 369);
+            btnbrbook.Name = "btnbrbook";
+            btnbrbook.RightToLeft = RightToLeft.Yes;
+            btnbrbook.Size = new Size(230, 59);
+            btnbrbook.TabIndex = 3;
+            btnbrbook.Text = "Borrow Book";
+            btnbrbook.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnbrbook.UseVisualStyleBackColor = true;
+            btnbrbook.Click += BorrowBooks;
             // 
             // label2
             // 
@@ -178,7 +178,7 @@
             // 
             // panel3
             // 
-            panel3.BackColor = Color.FromArgb(247, 81, 117);
+            panel3.BackColor = Color.FromArgb(163, 54, 77);
             panel3.Controls.Add(label1);
             panel3.Controls.Add(pictureBox1);
             panel3.Location = new Point(0, 3);
@@ -226,6 +226,18 @@
             btnTrsnc.UseVisualStyleBackColor = true;
             btnTrsnc.Click += Transactions;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(248, 12);
+            label3.Name = "label3";
+            label3.Size = new Size(193, 16);
+            label3.TabIndex = 22;
+            label3.Text = "Library Management System";
+            // 
             // button2
             // 
             button2.BackColor = Color.Transparent;
@@ -233,7 +245,7 @@
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Corbel", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button2.ForeColor = Color.White;
-            button2.Location = new Point(1089, -3);
+            button2.Location = new Point(1093, 0);
             button2.Name = "button2";
             button2.Size = new Size(52, 38);
             button2.TabIndex = 23;
@@ -248,7 +260,7 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Corbel", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(1032, -4);
+            button1.Location = new Point(1038, -2);
             button1.Name = "button1";
             button1.Size = new Size(52, 39);
             button1.TabIndex = 24;
@@ -256,29 +268,17 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click_1;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(249, 11);
-            label3.Name = "label3";
-            label3.Size = new Size(229, 19);
-            label3.TabIndex = 22;
-            label3.Text = "Library Management System";
-            // 
             // UserDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(247, 81, 117);
+            BackColor = Color.FromArgb(163, 54, 77);
             ClientSize = new Size(1154, 739);
-            Controls.Add(button2);
             Controls.Add(contentpnl);
             Controls.Add(button1);
             Controls.Add(label3);
             Controls.Add(panel1);
+            Controls.Add(button2);
             FormBorderStyle = FormBorderStyle.None;
             Name = "UserDashboard";
             StartPosition = FormStartPosition.CenterScreen;
@@ -301,7 +301,7 @@
         private Panel contentpnl;
         private Panel panel1;
         private Label label2;
-        private Button btnUser;
+        private Button btnbrbook;
         private Button btnBooks;
         private Panel panel3;
         private Label label1;

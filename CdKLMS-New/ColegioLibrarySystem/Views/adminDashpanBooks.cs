@@ -35,7 +35,7 @@ namespace librarymanagement.views
             PillButton(btnDltAD);
             PillButton(btnUpdtAD);
 
-            RoundPanel(panel5, 40);
+            //RoundPanel(panel5, 40);
         }
         private void PillButton(Button btn)
         {

@@ -39,5 +39,10 @@ namespace ColegioLibrarySystem.Views
             RoundPanel(panel2, 50);
             RoundPanel(panel3, 50);
         }
+
+        private void dgvRcntRtrnsAD_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

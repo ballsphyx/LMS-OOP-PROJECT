@@ -64,7 +64,8 @@ namespace librarymanagement.views
             LoadBooks();
 
             PillButton(btnBrw);
-            RoundPanel(panel4,40);
+            PillButton(btnRtrn);
+
         }
         private void LoadBooks()
         {
@@ -114,6 +115,16 @@ namespace librarymanagement.views
         }
 
         private void dtaGdVwBrw_SelectionChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void dtaGrdVBR_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dtaGdVwBrw_SelectionChanged_1(object sender, EventArgs e)
         {
             if (dtaGdVwBrw.SelectedRows.Count == 0) return;
 

@@ -92,7 +92,7 @@ namespace librarymanagement
             }
             else
             {
-                MessageBox.Show("IsInstructor: " + Session.IsInstructor.ToString() + "\nIsStudent: " + Session.IsStudent.ToString());
+                //MessageBox.Show("IsInstructor: " + Session.IsInstructor.ToString() + "\nIsStudent: " + Session.IsStudent.ToString());
                 UserDashboard userD = new UserDashboard(_bookManagement, _userManagement, _transactionManagement);
                 userD.Show();
                 this.Hide();

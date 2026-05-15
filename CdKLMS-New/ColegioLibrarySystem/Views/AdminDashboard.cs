@@ -123,6 +123,7 @@ namespace librarymanagement.views
             contentpnl.Controls.Add(b);
             b.BringToFront();
             b.Show();
+            SelectButton(btnBooks);
 
         }
 
@@ -133,6 +134,7 @@ namespace librarymanagement.views
             contentpnl.Controls.Add(u);
             u.BringToFront();
             u.Show();
+            SelectButton(btnUser);
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
@@ -142,6 +144,7 @@ namespace librarymanagement.views
             contentpnl.Controls.Add(u);
             u.BringToFront();
             u.Show();
+            SelectButton(btnDashboard);
         }
 
         private void btnlogout_Click_1(object sender, EventArgs e)
@@ -159,15 +162,29 @@ namespace librarymanagement.views
 
         private void AdminDashboard_Load(object sender, EventArgs e)
         {
-            RoundFormCorners(50);
-            RoundFormCorners(50);
+            RoundFormCorners(30);
+            RoundFormCorners(30);
 
             RoundButton(btnDashboard, 20);
             RoundButton(btnBooks, 20);
             RoundButton(btnUser, 20);
             RoundButton(btnlogout, 20);
 
-            RoundPanel(contentpnl, 50);
+            RoundPanel(contentpnl, 30);
+        }
+        private Button selectedButton = null;
+
+        private void SelectButton(Button btn)
+        {
+            // reset previous button
+            if (selectedButton != null)
+            {
+                selectedButton.BackColor = Color.FromArgb(163, 54, 77);
+            }
+
+            // highlight current button
+            selectedButton = btn;
+            selectedButton.BackColor = Color.FromArgb(247, 81, 117);
         }
 
         private void button2_Click_1(object sender, EventArgs e)
@@ -183,6 +200,21 @@ namespace librarymanagement.views
         private void label3_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnTrsncAD_Click(object sender, EventArgs e)
+        {
+            adminTrscDashpan u = new adminTrscDashpan();
+            u.TopLevel = false;
+            contentpnl.Controls.Add(u);
+            u.BringToFront();
+            u.Show();
+            SelectButton(btnTrsncAD);
         }
     }
 }

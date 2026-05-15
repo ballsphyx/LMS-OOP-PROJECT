@@ -29,7 +29,7 @@ namespace librarymanagement.views
 
             btn.FlatStyle = FlatStyle.Flat;
             btn.FlatAppearance.BorderSize = 0;
-            btn.BackColor = Color.HotPink;
+            btn.BackColor = Color.FromArgb(247, 81, 117);
             btn.ForeColor = Color.White;
 
             // smoother edges
@@ -60,23 +60,8 @@ namespace librarymanagement.views
 
         private void btnSearchBR_Click(object sender, EventArgs e)
         {
-            List<Book> searchedBooks = new List<Book>();
-            if (String.IsNullOrEmpty(txtSearchBR.Text))
-            {
-                MessageBox.Show("Search must not be blank");
-                return;
-            }
-            try
-            {
-                searchedBooks = _bookManagement.GetBookByTitle(txtSearchBR.Text);
-                dtaGrdVBR.DataSource = searchedBooks;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Failed" + ex.Message);
-            }
+            
         }
-
         private void cmbCtgryBR_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbCtgryBR.SelectedItem == null)
@@ -128,9 +113,38 @@ namespace librarymanagement.views
             dtaGrdVBR.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             LoadBooks();
 
-            RoundButton(btnSearchBR, 15);
+            RoundButton(btnSearchBR, 10);
 
-            RoundPanel(panel1,40);
+            //RoundPanel(panel1, 20);
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSearchBR_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSearchBR_Click_1(object sender, EventArgs e)
+        {
+            List<Book> searchedBooks = new List<Book>();
+            if (String.IsNullOrEmpty(txtSearchBR.Text))
+            {
+                MessageBox.Show("Search must not be blank");
+                return;
+            }
+            try
+            {
+                searchedBooks = _bookManagement.GetBookByTitle(txtSearchBR.Text);
+                dtaGrdVBR.DataSource = searchedBooks;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed" + ex.Message);
+            }
         }
     }
 }

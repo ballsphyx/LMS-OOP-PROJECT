@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            dgvUsrAD = new DataGridView();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             btnDlteUsrAD = new Button();
             btnUpdtUsrAD = new Button();
             btnAddUsrAD = new Button();
@@ -55,42 +54,11 @@
             btnClearAD = new Button();
             cmbFilter = new ComboBox();
             label6 = new Label();
-            panel5 = new Panel();
-            ((System.ComponentModel.ISupportInitialize)dgvUsrAD).BeginInit();
+            dgvUsrAD = new DataGridView();
             grpInstructorInfo.SuspendLayout();
             grpStudentInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvUsrAD).BeginInit();
             SuspendLayout();
-            // 
-            // dgvUsrAD
-            // 
-            dgvUsrAD.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dgvUsrAD.BackgroundColor = Color.Snow;
-            dgvUsrAD.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.HotPink;
-            dataGridViewCellStyle3.SelectionBackColor = Color.Pink;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvUsrAD.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dgvUsrAD.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.HotPink;
-            dataGridViewCellStyle4.SelectionBackColor = Color.Pink;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            dgvUsrAD.DefaultCellStyle = dataGridViewCellStyle4;
-            dgvUsrAD.GridColor = Color.FromArgb(251, 174, 210);
-            dgvUsrAD.Location = new Point(10, 291);
-            dgvUsrAD.Margin = new Padding(3, 2, 3, 2);
-            dgvUsrAD.Name = "dgvUsrAD";
-            dgvUsrAD.RowHeadersWidth = 51;
-            dgvUsrAD.Size = new Size(904, 402);
-            dgvUsrAD.TabIndex = 19;
-            dgvUsrAD.SelectionChanged += dgvUsrAD_SelectionChanged;
             // 
             // btnDlteUsrAD
             // 
@@ -358,7 +326,7 @@
             // cmbFilter
             // 
             cmbFilter.FormattingEnabled = true;
-            cmbFilter.Location = new Point(728, 257);
+            cmbFilter.Location = new Point(763, 264);
             cmbFilter.Margin = new Padding(3, 2, 3, 2);
             cmbFilter.Name = "cmbFilter";
             cmbFilter.Size = new Size(133, 23);
@@ -370,20 +338,46 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             label6.ForeColor = Color.FromArgb(247, 81, 117);
-            label6.Location = new Point(660, 264);
+            label6.Location = new Point(695, 271);
             label6.Name = "label6";
             label6.Size = new Size(62, 16);
             label6.TabIndex = 52;
             label6.Text = "Filter By:";
             label6.Click += label6_Click_1;
             // 
-            // panel5
+            // dgvUsrAD
             // 
-            panel5.BackColor = Color.LightPink;
-            panel5.Location = new Point(4, 283);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(917, 420);
-            panel5.TabIndex = 61;
+            dgvUsrAD.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvUsrAD.BackgroundColor = Color.Snow;
+            dgvUsrAD.BorderStyle = BorderStyle.None;
+            dgvUsrAD.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dgvUsrAD.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(247, 81, 117);
+            dataGridViewCellStyle1.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Snow;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Pink;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvUsrAD.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvUsrAD.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(247, 81, 117);
+            dataGridViewCellStyle2.SelectionBackColor = Color.Pink;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvUsrAD.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvUsrAD.EnableHeadersVisualStyles = false;
+            dgvUsrAD.GridColor = Color.FromArgb(251, 174, 210);
+            dgvUsrAD.Location = new Point(24, 292);
+            dgvUsrAD.Margin = new Padding(3, 2, 3, 2);
+            dgvUsrAD.Name = "dgvUsrAD";
+            dgvUsrAD.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvUsrAD.RowHeadersWidth = 51;
+            dgvUsrAD.Size = new Size(874, 390);
+            dgvUsrAD.TabIndex = 53;
             // 
             // adminDashpanUser
             // 
@@ -391,6 +385,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Snow;
             ClientSize = new Size(925, 704);
+            Controls.Add(dgvUsrAD);
             Controls.Add(label6);
             Controls.Add(cmbFilter);
             Controls.Add(btnClearAD);
@@ -410,23 +405,20 @@
             Controls.Add(btnDlteUsrAD);
             Controls.Add(btnUpdtUsrAD);
             Controls.Add(btnAddUsrAD);
-            Controls.Add(dgvUsrAD);
-            Controls.Add(panel5);
             FormBorderStyle = FormBorderStyle.None;
             Name = "adminDashpanUser";
             Text = "adminDashpanUser";
             Load += adminDashpanUser_Load;
-            ((System.ComponentModel.ISupportInitialize)dgvUsrAD).EndInit();
             grpInstructorInfo.ResumeLayout(false);
             grpInstructorInfo.PerformLayout();
             grpStudentInfo.ResumeLayout(false);
             grpStudentInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvUsrAD).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private DataGridView dgvUsrAD;
         private Button btnDlteUsrAD;
         private Button btnUpdtUsrAD;
         private Button btnAddUsrAD;
@@ -451,6 +443,6 @@
         private Button btnClearAD;
         private ComboBox cmbFilter;
         private Label label6;
-        private Panel panel5;
+        private DataGridView dgvUsrAD;
     }
 }

@@ -28,52 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(userBRbDashpan));
-            dtaGrdVBR = new DataGridView();
             cmbCtgryBR = new ComboBox();
             label1 = new Label();
             panel4 = new Panel();
             txtSearchBR = new TextBox();
-            btnSearchBR = new Button();
             label3 = new Label();
             label2 = new Label();
-            panel1 = new Panel();
-            label6 = new Label();
-            ((System.ComponentModel.ISupportInitialize)dtaGrdVBR).BeginInit();
+            dtaGrdVBR = new DataGridView();
+            btnSearchBR = new Button();
             panel4.SuspendLayout();
-            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dtaGrdVBR).BeginInit();
             SuspendLayout();
-            // 
-            // dtaGrdVBR
-            // 
-            dtaGrdVBR.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dtaGrdVBR.BackgroundColor = Color.Snow;
-            dtaGrdVBR.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.HotPink;
-            dataGridViewCellStyle3.SelectionBackColor = Color.Pink;
-            dataGridViewCellStyle3.SelectionForeColor = Color.Snow;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dtaGrdVBR.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dtaGrdVBR.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.HotPink;
-            dataGridViewCellStyle4.SelectionBackColor = Color.Pink;
-            dataGridViewCellStyle4.SelectionForeColor = Color.Snow;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            dtaGrdVBR.DefaultCellStyle = dataGridViewCellStyle4;
-            dtaGrdVBR.GridColor = Color.FromArgb(251, 174, 210);
-            dtaGrdVBR.Location = new Point(12, 246);
-            dtaGrdVBR.Name = "dtaGrdVBR";
-            dtaGrdVBR.RowHeadersWidth = 51;
-            dtaGrdVBR.Size = new Size(876, 434);
-            dtaGrdVBR.TabIndex = 23;
             // 
             // cmbCtgryBR
             // 
@@ -119,19 +87,7 @@
             txtSearchBR.Name = "txtSearchBR";
             txtSearchBR.Size = new Size(221, 16);
             txtSearchBR.TabIndex = 3;
-            // 
-            // btnSearchBR
-            // 
-            btnSearchBR.BackColor = Color.FromArgb(247, 81, 117);
-            btnSearchBR.FlatStyle = FlatStyle.Flat;
-            btnSearchBR.ForeColor = Color.Snow;
-            btnSearchBR.Image = (Image)resources.GetObject("btnSearchBR.Image");
-            btnSearchBR.Location = new Point(628, 89);
-            btnSearchBR.Name = "btnSearchBR";
-            btnSearchBR.Size = new Size(46, 32);
-            btnSearchBR.TabIndex = 24;
-            btnSearchBR.UseVisualStyleBackColor = false;
-            btnSearchBR.Click += btnSearchBR_Click;
+            txtSearchBR.TextChanged += txtSearchBR_TextChanged;
             // 
             // label3
             // 
@@ -148,32 +104,64 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(394, 9);
+            label2.ForeColor = Color.FromArgb(247, 81, 117);
+            label2.Location = new Point(418, 219);
             label2.Name = "label2";
             label2.Size = new Size(72, 19);
             label2.TabIndex = 28;
             label2.Text = "Book List";
+            label2.Click += label2_Click;
             // 
-            // panel1
+            // dtaGrdVBR
             // 
-            panel1.BackColor = Color.LightPink;
-            panel1.Controls.Add(label2);
-            panel1.Location = new Point(6, 213);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(889, 477);
-            panel1.TabIndex = 53;
+            dtaGrdVBR.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dtaGrdVBR.BackgroundColor = Color.Snow;
+            dtaGrdVBR.BorderStyle = BorderStyle.None;
+            dtaGrdVBR.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dtaGrdVBR.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(247, 81, 117);
+            dataGridViewCellStyle1.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Snow;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Pink;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dtaGrdVBR.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dtaGrdVBR.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(247, 81, 117);
+            dataGridViewCellStyle2.SelectionBackColor = Color.Pink;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dtaGrdVBR.DefaultCellStyle = dataGridViewCellStyle2;
+            dtaGrdVBR.EnableHeadersVisualStyles = false;
+            dtaGrdVBR.GridColor = Color.FromArgb(251, 174, 210);
+            dtaGrdVBR.Location = new Point(23, 278);
+            dtaGrdVBR.Margin = new Padding(3, 2, 3, 2);
+            dtaGrdVBR.Name = "dtaGrdVBR";
+            dtaGrdVBR.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dtaGrdVBR.RowHeadersWidth = 51;
+            dtaGrdVBR.Size = new Size(861, 390);
+            dtaGrdVBR.TabIndex = 54;
             // 
-            // label6
+            // btnSearchBR
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.FromArgb(247, 81, 117);
-            label6.Location = new Point(396, 9);
-            label6.Name = "label6";
-            label6.Size = new Size(94, 16);
-            label6.TabIndex = 52;
-            label6.Text = "Browse Books";
+            btnSearchBR.BackColor = Color.FromArgb(247, 81, 117);
+            btnSearchBR.BackgroundImageLayout = ImageLayout.Center;
+            btnSearchBR.FlatStyle = FlatStyle.Flat;
+            btnSearchBR.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSearchBR.ForeColor = Color.Snow;
+            btnSearchBR.Image = (Image)resources.GetObject("btnSearchBR.Image");
+            btnSearchBR.Location = new Point(627, 89);
+            btnSearchBR.Name = "btnSearchBR";
+            btnSearchBR.Size = new Size(39, 33);
+            btnSearchBR.TabIndex = 55;
+            btnSearchBR.TextAlign = ContentAlignment.MiddleLeft;
+            btnSearchBR.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnSearchBR.UseVisualStyleBackColor = false;
+            btnSearchBR.Click += btnSearchBR_Click_1;
             // 
             // userBRbDashpan
             // 
@@ -182,36 +170,31 @@
             BackColor = Color.Snow;
             ClientSize = new Size(900, 692);
             Controls.Add(btnSearchBR);
-            Controls.Add(label6);
+            Controls.Add(dtaGrdVBR);
+            Controls.Add(label2);
             Controls.Add(cmbCtgryBR);
             Controls.Add(label1);
             Controls.Add(panel4);
             Controls.Add(label3);
-            Controls.Add(dtaGrdVBR);
-            Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "userBRbDashpan";
             Text = "userBRbDashpan";
             Load += userBRbDashpan_Load;
-            ((System.ComponentModel.ISupportInitialize)dtaGrdVBR).EndInit();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dtaGrdVBR).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private DataGridView dtaGrdVBR;
         private ComboBox cmbCtgryBR;
         private Label label1;
         private Panel panel4;
-        private Button btnSearchBR;
         private TextBox txtSearchBR;
         private Label label3;
         private Label label2;
-        private Panel panel1;
-        private Label label6;
+        private DataGridView dtaGrdVBR;
+        private Button btnSearchBR;
     }
 }

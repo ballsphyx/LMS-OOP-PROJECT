@@ -30,10 +30,9 @@ namespace librarymanagement.views
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(adminDashpanBooks));
-            dgvBooksAD = new DataGridView();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             btnAddAD = new Button();
             btnDltAD = new Button();
             btnUpdtAD = new Button();
@@ -58,44 +57,11 @@ namespace librarymanagement.views
             btnClearAD = new Button();
             cmbCatFilter = new ComboBox();
             label8 = new Label();
-            panel5 = new Panel();
-            ((System.ComponentModel.ISupportInitialize)dgvBooksAD).BeginInit();
+            dgvBooksAD = new DataGridView();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvBooksAD).BeginInit();
             SuspendLayout();
-            // 
-            // dgvBooksAD
-            // 
-            dgvBooksAD.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dgvBooksAD.BackgroundColor = Color.Snow;
-            dgvBooksAD.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.HotPink;
-            dataGridViewCellStyle3.SelectionBackColor = Color.Pink;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvBooksAD.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dgvBooksAD.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.HotPink;
-            dataGridViewCellStyle4.SelectionBackColor = Color.Pink;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            dgvBooksAD.DefaultCellStyle = dataGridViewCellStyle4;
-            dgvBooksAD.GridColor = Color.FromArgb(251, 174, 210);
-            dgvBooksAD.Location = new Point(12, 293);
-            dgvBooksAD.Margin = new Padding(3, 2, 3, 2);
-            dgvBooksAD.Name = "dgvBooksAD";
-            dgvBooksAD.RowHeadersWidth = 51;
-            dgvBooksAD.Size = new Size(902, 400);
-            dgvBooksAD.TabIndex = 10;
-            dgvBooksAD.CellContentClick += dataGridView1_CellContentClick;
-            dgvBooksAD.SelectionChanged += dgvBooksAD_SelectionChanged;
             // 
             // btnAddAD
             // 
@@ -364,7 +330,7 @@ namespace librarymanagement.views
             // cmbCatFilter
             // 
             cmbCatFilter.FormattingEnabled = true;
-            cmbCatFilter.Location = new Point(765, 2);
+            cmbCatFilter.Location = new Point(770, 261);
             cmbCatFilter.Margin = new Padding(3, 2, 3, 2);
             cmbCatFilter.Name = "cmbCatFilter";
             cmbCatFilter.Size = new Size(116, 23);
@@ -376,21 +342,47 @@ namespace librarymanagement.views
             label8.AutoSize = true;
             label8.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.FromArgb(247, 81, 117);
-            label8.Location = new Point(697, 8);
+            label8.Location = new Point(693, 268);
             label8.Name = "label8";
             label8.Size = new Size(62, 16);
             label8.TabIndex = 59;
             label8.Text = "Filter By:";
             // 
-            // panel5
+            // dgvBooksAD
             // 
-            panel5.BackColor = Color.LightPink;
-            panel5.Controls.Add(label8);
-            panel5.Controls.Add(cmbCatFilter);
-            panel5.Location = new Point(6, 264);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(915, 436);
-            panel5.TabIndex = 60;
+            dgvBooksAD.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvBooksAD.BackgroundColor = Color.Snow;
+            dgvBooksAD.BorderStyle = BorderStyle.None;
+            dgvBooksAD.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dgvBooksAD.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(247, 81, 117);
+            dataGridViewCellStyle1.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Snow;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Pink;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvBooksAD.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvBooksAD.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(247, 81, 117);
+            dataGridViewCellStyle2.SelectionBackColor = Color.Pink;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvBooksAD.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvBooksAD.EnableHeadersVisualStyles = false;
+            dgvBooksAD.GridColor = Color.FromArgb(251, 174, 210);
+            dgvBooksAD.Location = new Point(26, 296);
+            dgvBooksAD.Margin = new Padding(3, 2, 3, 2);
+            dgvBooksAD.Name = "dgvBooksAD";
+            dgvBooksAD.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvBooksAD.RowHeadersWidth = 51;
+            dgvBooksAD.Size = new Size(874, 390);
+            dgvBooksAD.TabIndex = 10;
+            dgvBooksAD.CellContentClick += dataGridView1_CellContentClick;
+            dgvBooksAD.SelectionChanged += dgvBooksAD_SelectionChanged;
             // 
             // adminDashpanBooks
             // 
@@ -398,7 +390,10 @@ namespace librarymanagement.views
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Snow;
             ClientSize = new Size(925, 704);
+            Controls.Add(dgvBooksAD);
+            Controls.Add(label8);
             Controls.Add(txtCopies);
+            Controls.Add(cmbCatFilter);
             Controls.Add(label7);
             Controls.Add(cmbCategory);
             Controls.Add(txtISBN);
@@ -418,17 +413,13 @@ namespace librarymanagement.views
             Controls.Add(btnUpdtAD);
             Controls.Add(btnDltAD);
             Controls.Add(btnAddAD);
-            Controls.Add(dgvBooksAD);
-            Controls.Add(panel5);
             FormBorderStyle = FormBorderStyle.None;
             Name = "adminDashpanBooks";
             Text = "adminDashpan";
             Load += adminDashpan_Load;
-            ((System.ComponentModel.ISupportInitialize)dgvBooksAD).EndInit();
             panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvBooksAD).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -449,7 +440,6 @@ namespace librarymanagement.views
         }
 
         #endregion
-        private DataGridView dgvBooksAD;
         private Button btnAddAD;
         private Button btnDltAD;
         private Button btnUpdtAD;
@@ -474,6 +464,6 @@ namespace librarymanagement.views
         private Button btnClearAD;
         private ComboBox cmbCatFilter;
         private Label label8;
-        private Panel panel5;
+        private DataGridView dgvBooksAD;
     }
 }
