@@ -55,8 +55,8 @@ namespace librarymanagement.views
             });
 
             cmbCourse.DataSource = _userManagement.GetAllCourses();
-            cmbCourse.DisplayMember = "CourseName";
-            cmbCourse.ValueMember = "CourseId";
+            cmbCourse.DisplayMember = "ProgramName";
+            cmbCourse.ValueMember = "ProgramId";
 
             cmbYear.Items.AddRange(new string[]
             {
@@ -149,8 +149,7 @@ namespace librarymanagement.views
             }
             catch (InvalidOperationException ex)
             {
-                MessageBox.Show("Service Layer Error: " + ex.Message, "ERROR!",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Failed to Register User: " + ex.Message, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             ClearFields();
         }
@@ -200,7 +199,7 @@ namespace librarymanagement.views
             }
             catch (InvalidOperationException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Failed to Update User: " + ex.Message, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             ClearFields();
         }
@@ -244,7 +243,7 @@ namespace librarymanagement.views
                 }
                 catch (InvalidOperationException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Failed to Delete User: " + ex.Message, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             ClearFields();
@@ -254,11 +253,6 @@ namespace librarymanagement.views
             txtUsrnmAD.Clear();
             txtPassAD.Clear();
             txtNameAD.Clear();
-            //cmbYear.SelectedIndex = -1;
-            //cmbDept.SelectedIndex = -1;
-            //cmbCourse.SelectedIndex = -1;
-            //cmbRole.SelectedIndex = -1;
-
         }
 
         private void cmbRole_SelectedIndexChanged(object sender, EventArgs e)
@@ -323,21 +317,28 @@ namespace librarymanagement.views
 
             if (selected == "Student")
             {
-                dgvUsrAD.DataSource = _allStudents;
+                dgvUsrAD.DataSource = _allStudents.ToList();
                 dgvUsrAD.Columns["Program"].Visible = true;
                 dgvUsrAD.Columns["YearLevel"].Visible = true;
                 if (dgvUsrAD.Columns["Department"] != null)
                     dgvUsrAD.Columns["Department"].Visible = false;
                 dgvUsrAD.Columns["User"].Visible = false;
+                if (dgvUsrAD.Columns["program"] != null)
+                    dgvUsrAD.Columns["program"].Visible = false;
+                if (dgvUsrAD.Columns["programID"] != null)
+                    dgvUsrAD.Columns["programID"].Visible = false;
+
             }
             else if (selected == "Instructor")
             {
-                dgvUsrAD.DataSource = _allInstructors;
-                dgvUsrAD.Columns["Department"].Visible = true;
-                if (dgvUsrAD.Columns["Course"] != null)
-                    dgvUsrAD.Columns["Course"].Visible = false;
+                dgvUsrAD.DataSource = _allInstructors.ToList();
+                dgvUsrAD.Columns["DepartmentName"].Visible = true;
+                if (dgvUsrAD.Columns["Program"] != null)
+                    dgvUsrAD.Columns["Program"].Visible = false;
                 if (dgvUsrAD.Columns["YearLevel"] != null)
                     dgvUsrAD.Columns["YearLevel"].Visible = false;
+                if (dgvUsrAD.Columns["Department"] != null)
+                    dgvUsrAD.Columns["Department"].Visible = false;
                 dgvUsrAD.Columns["User"].Visible = false;
             }
             else if (selected == "Admin")
@@ -394,7 +395,7 @@ namespace librarymanagement.views
             {
                 grpStudentInfo.Visible = true;
                 grpInstructorInfo.Visible = false;
-                cmbCourse.SelectedValue = student.CourseID; 
+                cmbCourse.SelectedValue = student.ProgramID; 
                 cmbYear.SelectedItem = student.YearLevel;
             }
             else if (instructor != null)

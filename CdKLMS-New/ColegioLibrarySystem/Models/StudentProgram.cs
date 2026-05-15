@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ColegioLibrarySystem.Models
 {
-    public class Course
+    public class StudentProgram
     {
-        public int CourseId { get; set; }
-        public string CourseName { get; set; }
+        public int ProgramId { get; set; }
+        public string ProgramName { get; set; }
     }
 }

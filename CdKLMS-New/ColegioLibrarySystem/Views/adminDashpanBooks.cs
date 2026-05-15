@@ -66,7 +66,7 @@ namespace librarymanagement.views
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void UpdateBook(object sender, EventArgs e)
         {
             if (_selectedBookId == -1)
             {
@@ -119,7 +119,7 @@ namespace librarymanagement.views
             }
             catch (InvalidOperationException ex)
             {
-                MessageBox.Show("Service Layer Error: " + ex.Message);
+                MessageBox.Show("Failed to Update Book: " + ex.Message, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (!ValidateISBN()) return;
 
@@ -194,7 +194,7 @@ namespace librarymanagement.views
             }
             catch (InvalidOperationException ex)
             {
-                MessageBox.Show("Service layer error: " + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Failed to Add Book: " + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             if (!ValidateISBN()) return;
@@ -225,7 +225,7 @@ namespace librarymanagement.views
                 }
                 catch (InvalidOperationException ex)
                 {
-                    MessageBox.Show("Service layer error: " + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Failed to Delete Book: " + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             ClearFields();
