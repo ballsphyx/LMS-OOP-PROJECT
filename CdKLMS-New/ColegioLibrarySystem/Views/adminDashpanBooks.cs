@@ -121,7 +121,6 @@ namespace librarymanagement.views
             {
                 MessageBox.Show("Failed to Update Book: " + ex.Message, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            if (!ValidateISBN()) return;
 
             ClearFields();
         }
@@ -196,8 +195,6 @@ namespace librarymanagement.views
             {
                 MessageBox.Show("Failed to Add Book: " + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            if (!ValidateISBN()) return;
 
             ClearFields();
         }
@@ -324,16 +321,6 @@ namespace librarymanagement.views
                 e.Handled = true;
             }
           
-        }
-        private bool ValidateISBN()
-        {
-            if (txtISBN.Text.Length != 13)
-            {
-                MessageBox.Show("ISBN must be exactly 13 digits.");
-                return false;
-            }
-
-            return true;
         }
     }
 }

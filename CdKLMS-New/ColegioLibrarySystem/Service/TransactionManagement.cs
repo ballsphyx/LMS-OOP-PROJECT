@@ -30,7 +30,7 @@ namespace ColegioLibrarySystem.Service
                 quantity = 1;
                 if (_transactionDB.HasActiveBookBorrow(userId, book.BookID)) throw new InvalidOperationException("Student is currently borrowing a copy of this book");
             }
-            MessageBox.Show("quantity: " + quantity);
+            if (quantity <= 0) throw new InvalidOperationException("Borrow quantity must be greater than zero");
             int availableCount = _bookDB.CountAvailableCopies(book.BookID);
             if (availableCount < quantity) throw new InvalidOperationException("Borrow quantity is greater than available copies");
 
