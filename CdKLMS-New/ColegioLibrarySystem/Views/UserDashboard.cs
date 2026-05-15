@@ -94,6 +94,7 @@ namespace librarymanagement.views
             contentpnl.Controls.Add(b);
             b.BringToFront();
             b.Show();
+            SelectButton(btnBooks);
         }
 
         private void BorrowBooks(object sender, EventArgs e)
@@ -103,6 +104,7 @@ namespace librarymanagement.views
             contentpnl.Controls.Add(b);
             b.BringToFront();
             b.Show();
+            SelectButton(btnbrbook);
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -117,6 +119,7 @@ namespace librarymanagement.views
             contentpnl.Controls.Add(b);
             b.BringToFront();
             b.Show();
+            SelectButton(btnTrsnc);
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -136,14 +139,28 @@ namespace librarymanagement.views
 
         private void UserDashboard_Load(object sender, EventArgs e)
         {
-            RoundFormCorners(50);
-            RoundFormCorners(50);
-            RoundPanel(contentpnl, 50);
+            RoundFormCorners(30);
+            RoundFormCorners(30);
+            RoundPanel(contentpnl, 30);
 
-            RoundButton(btnUser, 10);
+            RoundButton(btnbrbook, 10);
             RoundButton(btnTrsnc, 10);
             RoundButton(btnBooks, 10);
             RoundButton(btnLogout, 10);
+        }
+        private Button selectedButton = null;
+
+        private void SelectButton(Button btn)
+        {
+            // reset previous button
+            if (selectedButton != null)
+            {
+                selectedButton.BackColor = Color.FromArgb(163, 54, 77);
+            }
+
+            // highlight current button
+            selectedButton = btn;
+            selectedButton.BackColor = Color.FromArgb(247, 81, 117);
         }
 
         private void button2_Click(object sender, EventArgs e)

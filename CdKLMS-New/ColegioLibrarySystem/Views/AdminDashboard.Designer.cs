@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboard));
             panel1 = new Panel();
+            label4 = new Label();
+            btnTrsncAD = new Button();
             panel3 = new Panel();
             pnlContent = new Panel();
             label1 = new Label();
@@ -39,10 +41,10 @@
             label2 = new Label();
             btnUser = new Button();
             btnBooks = new Button();
+            label3 = new Label();
             contentpnl = new Panel();
             button1 = new Button();
             button2 = new Button();
-            label3 = new Label();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -51,7 +53,9 @@
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            panel1.BackColor = Color.FromArgb(247, 81, 117);
+            panel1.BackColor = Color.FromArgb(163, 54, 77);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(btnTrsncAD);
             panel1.Controls.Add(panel3);
             panel1.Controls.Add(btnlogout);
             panel1.Controls.Add(btnDashboard);
@@ -62,10 +66,41 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(224, 739);
             panel1.TabIndex = 0;
+            panel1.Paint += panel1_Paint;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Century Gothic", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Pink;
+            label4.Location = new Point(10, 656);
+            label4.Name = "label4";
+            label4.Size = new Size(205, 16);
+            label4.TabIndex = 10;
+            label4.Text = "──────────────────────";
+            label4.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // btnTrsncAD
+            // 
+            btnTrsncAD.BackgroundImageLayout = ImageLayout.None;
+            btnTrsncAD.FlatAppearance.BorderSize = 0;
+            btnTrsncAD.FlatStyle = FlatStyle.Flat;
+            btnTrsncAD.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnTrsncAD.ForeColor = Color.White;
+            btnTrsncAD.Image = (Image)resources.GetObject("btnTrsncAD.Image");
+            btnTrsncAD.Location = new Point(0, 511);
+            btnTrsncAD.Name = "btnTrsncAD";
+            btnTrsncAD.RightToLeft = RightToLeft.Yes;
+            btnTrsncAD.Size = new Size(224, 59);
+            btnTrsncAD.TabIndex = 9;
+            btnTrsncAD.Text = "Transactions";
+            btnTrsncAD.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnTrsncAD.UseVisualStyleBackColor = true;
+            btnTrsncAD.Click += btnTrsncAD_Click;
             // 
             // panel3
             // 
-            panel3.BackColor = Color.FromArgb(247, 81, 117);
+            panel3.BackColor = Color.FromArgb(163, 54, 77);
             panel3.Controls.Add(pnlContent);
             panel3.Controls.Add(label1);
             panel3.Controls.Add(pictureBox1);
@@ -189,11 +224,24 @@
             btnBooks.UseVisualStyleBackColor = true;
             btnBooks.Click += btnBooks_Click;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(230, 9);
+            label3.Name = "label3";
+            label3.Size = new Size(193, 16);
+            label3.TabIndex = 5;
+            label3.Text = "Library Management System";
+            label3.Click += label3_Click_1;
+            // 
             // contentpnl
             // 
             contentpnl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             contentpnl.BackColor = Color.Snow;
-            contentpnl.Location = new Point(224, 33);
+            contentpnl.Location = new Point(224, 31);
             contentpnl.Name = "contentpnl";
             contentpnl.Size = new Size(925, 704);
             contentpnl.TabIndex = 2;
@@ -205,7 +253,7 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Corbel", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(1032, -6);
+            button1.Location = new Point(1036, -5);
             button1.Name = "button1";
             button1.Size = new Size(52, 39);
             button1.TabIndex = 16;
@@ -220,7 +268,7 @@
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Corbel", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button2.ForeColor = Color.White;
-            button2.Location = new Point(1089, -5);
+            button2.Location = new Point(1091, -3);
             button2.Name = "button2";
             button2.Size = new Size(52, 38);
             button2.TabIndex = 15;
@@ -228,30 +276,17 @@
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click_1;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(237, 8);
-            label3.Name = "label3";
-            label3.Size = new Size(217, 18);
-            label3.TabIndex = 5;
-            label3.Text = "Library Management System";
-            label3.Click += label3_Click_1;
-            // 
             // AdminDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(247, 81, 117);
+            BackColor = Color.FromArgb(163, 54, 77);
             ClientSize = new Size(1154, 739);
-            Controls.Add(button2);
-            Controls.Add(button1);
             Controls.Add(panel1);
             Controls.Add(contentpnl);
+            Controls.Add(button2);
             Controls.Add(label3);
+            Controls.Add(button1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "AdminDashboard";
             StartPosition = FormStartPosition.CenterScreen;
@@ -282,5 +317,7 @@
         private Button button1;
         private Button button2;
         private Label label3;
+        private Button btnTrsncAD;
+        private Label label4;
     }
 }

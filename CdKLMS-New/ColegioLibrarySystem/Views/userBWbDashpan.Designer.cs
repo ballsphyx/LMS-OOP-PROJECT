@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(userBKbDashpan));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(userBKbDashpan));
-            dtaGdVwBrw = new DataGridView();
             nbQntyBW = new NumericUpDown();
             label5 = new Label();
             btnBrw = new Button();
@@ -45,58 +44,29 @@
             label2 = new Label();
             panel2 = new Panel();
             label1 = new Label();
-            label6 = new Label();
-            panel4 = new Panel();
-            ((System.ComponentModel.ISupportInitialize)dtaGdVwBrw).BeginInit();
+            dtaGdVwBrw = new DataGridView();
+            grpInstructorInfo = new Panel();
+            btnRtrn = new Button();
             ((System.ComponentModel.ISupportInitialize)nbQntyBW).BeginInit();
-            panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dtaGdVwBrw).BeginInit();
+            grpInstructorInfo.SuspendLayout();
             SuspendLayout();
-            // 
-            // dtaGdVwBrw
-            // 
-            dtaGdVwBrw.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dtaGdVwBrw.BackgroundColor = Color.Snow;
-            dtaGdVwBrw.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.HotPink;
-            dataGridViewCellStyle1.SelectionBackColor = Color.Pink;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dtaGdVwBrw.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dtaGdVwBrw.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.HotPink;
-            dataGridViewCellStyle2.SelectionBackColor = Color.Pink;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dtaGdVwBrw.DefaultCellStyle = dataGridViewCellStyle2;
-            dtaGdVwBrw.GridColor = Color.FromArgb(251, 174, 210);
-            dtaGdVwBrw.Location = new Point(499, 38);
-            dtaGdVwBrw.Name = "dtaGdVwBrw";
-            dtaGdVwBrw.RowHeadersWidth = 51;
-            dtaGdVwBrw.Size = new Size(383, 639);
-            dtaGdVwBrw.TabIndex = 34;
-            dtaGdVwBrw.SelectionChanged += dtaGdVwBrw_SelectionChanged;
             // 
             // nbQntyBW
             // 
             nbQntyBW.BackColor = Color.Snow;
             nbQntyBW.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             nbQntyBW.ForeColor = Color.HotPink;
-            nbQntyBW.Location = new Point(179, 307);
+            nbQntyBW.Location = new Point(165, 305);
             nbQntyBW.Name = "nbQntyBW";
-            nbQntyBW.Size = new Size(116, 23);
+            nbQntyBW.Size = new Size(141, 23);
             nbQntyBW.TabIndex = 50;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.ForeColor = Color.Pink;
-            label5.Location = new Point(88, 344);
+            label5.Location = new Point(74, 342);
             label5.Name = "label5";
             label5.Size = new Size(208, 30);
             label5.TabIndex = 49;
@@ -111,7 +81,7 @@
             btnBrw.ForeColor = Color.Snow;
             btnBrw.Image = (Image)resources.GetObject("btnBrw.Image");
             btnBrw.ImageAlign = ContentAlignment.MiddleRight;
-            btnBrw.Location = new Point(179, 408);
+            btnBrw.Location = new Point(168, 402);
             btnBrw.Name = "btnBrw";
             btnBrw.Size = new Size(114, 34);
             btnBrw.TabIndex = 48;
@@ -127,9 +97,9 @@
             txtAvblBrw.BorderStyle = BorderStyle.None;
             txtAvblBrw.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtAvblBrw.ForeColor = Color.FromArgb(228, 0, 124);
-            txtAvblBrw.Location = new Point(188, 254);
+            txtAvblBrw.Location = new Point(174, 252);
             txtAvblBrw.Name = "txtAvblBrw";
-            txtAvblBrw.Size = new Size(59, 19);
+            txtAvblBrw.Size = new Size(84, 19);
             txtAvblBrw.TabIndex = 46;
             // 
             // panel3
@@ -137,9 +107,9 @@
             panel3.BackColor = Color.White;
             panel3.BorderStyle = BorderStyle.FixedSingle;
             panel3.ForeColor = Color.FromArgb(212, 155, 255);
-            panel3.Location = new Point(179, 275);
+            panel3.Location = new Point(165, 273);
             panel3.Name = "panel3";
-            panel3.Size = new Size(75, 1);
+            panel3.Size = new Size(100, 1);
             panel3.TabIndex = 47;
             // 
             // txtTTBrw
@@ -148,9 +118,9 @@
             txtTTBrw.BorderStyle = BorderStyle.None;
             txtTTBrw.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtTTBrw.ForeColor = Color.FromArgb(228, 0, 124);
-            txtTTBrw.Location = new Point(188, 176);
+            txtTTBrw.Location = new Point(174, 174);
             txtTTBrw.Name = "txtTTBrw";
-            txtTTBrw.Size = new Size(262, 19);
+            txtTTBrw.Size = new Size(287, 19);
             txtTTBrw.TabIndex = 44;
             // 
             // panel1
@@ -158,9 +128,9 @@
             panel1.BackColor = Color.White;
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.ForeColor = Color.FromArgb(212, 155, 255);
-            panel1.Location = new Point(179, 197);
+            panel1.Location = new Point(165, 195);
             panel1.Name = "panel1";
-            panel1.Size = new Size(278, 1);
+            panel1.Size = new Size(303, 1);
             panel1.TabIndex = 45;
             // 
             // txtBkIDBrw
@@ -169,9 +139,9 @@
             txtBkIDBrw.BorderStyle = BorderStyle.None;
             txtBkIDBrw.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtBkIDBrw.ForeColor = Color.FromArgb(228, 0, 124);
-            txtBkIDBrw.Location = new Point(188, 214);
+            txtBkIDBrw.Location = new Point(174, 212);
             txtBkIDBrw.Name = "txtBkIDBrw";
-            txtBkIDBrw.Size = new Size(114, 19);
+            txtBkIDBrw.Size = new Size(139, 19);
             txtBkIDBrw.TabIndex = 39;
             // 
             // label4
@@ -179,7 +149,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold);
             label4.ForeColor = Color.FromArgb(247, 81, 117);
-            label4.Location = new Point(88, 312);
+            label4.Location = new Point(74, 310);
             label4.Name = "label4";
             label4.Size = new Size(74, 18);
             label4.TabIndex = 41;
@@ -190,7 +160,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold);
             label3.ForeColor = Color.FromArgb(247, 81, 117);
-            label3.Location = new Point(88, 261);
+            label3.Location = new Point(74, 259);
             label3.Name = "label3";
             label3.Size = new Size(83, 18);
             label3.TabIndex = 42;
@@ -201,7 +171,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.FromArgb(247, 81, 117);
-            label2.Location = new Point(88, 183);
+            label2.Location = new Point(74, 181);
             label2.Name = "label2";
             label2.Size = new Size(40, 18);
             label2.TabIndex = 43;
@@ -212,9 +182,9 @@
             panel2.BackColor = SystemColors.Window;
             panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.ForeColor = Color.FromArgb(228, 0, 124);
-            panel2.Location = new Point(179, 235);
+            panel2.Location = new Point(165, 233);
             panel2.Name = "panel2";
-            panel2.Size = new Size(130, 1);
+            panel2.Size = new Size(155, 1);
             panel2.TabIndex = 40;
             // 
             // label1
@@ -222,32 +192,75 @@
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold);
             label1.ForeColor = Color.FromArgb(247, 81, 117);
-            label1.Location = new Point(88, 221);
+            label1.Location = new Point(74, 219);
             label1.Name = "label1";
             label1.Size = new Size(69, 18);
             label1.TabIndex = 38;
             label1.Text = "Book ID:";
             // 
-            // label6
+            // dtaGdVwBrw
             // 
-            label6.AutoSize = true;
-            label6.BackColor = Color.Transparent;
-            label6.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(158, 7);
-            label6.Name = "label6";
-            label6.Size = new Size(93, 16);
-            label6.TabIndex = 51;
-            label6.Text = "Borrow Books";
+            dtaGdVwBrw.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dtaGdVwBrw.BackgroundColor = Color.Snow;
+            dtaGdVwBrw.BorderStyle = BorderStyle.None;
+            dtaGdVwBrw.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dtaGdVwBrw.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(247, 81, 117);
+            dataGridViewCellStyle1.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Snow;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Pink;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dtaGdVwBrw.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dtaGdVwBrw.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(247, 81, 117);
+            dataGridViewCellStyle2.SelectionBackColor = Color.Pink;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dtaGdVwBrw.DefaultCellStyle = dataGridViewCellStyle2;
+            dtaGdVwBrw.EnableHeadersVisualStyles = false;
+            dtaGdVwBrw.GridColor = Color.FromArgb(251, 174, 210);
+            dtaGdVwBrw.Location = new Point(476, 25);
+            dtaGdVwBrw.Margin = new Padding(3, 2, 3, 2);
+            dtaGdVwBrw.Name = "dtaGdVwBrw";
+            dtaGdVwBrw.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dtaGdVwBrw.RowHeadersWidth = 51;
+            dtaGdVwBrw.Size = new Size(404, 638);
+            dtaGdVwBrw.TabIndex = 55;
+            dtaGdVwBrw.CellContentClick += dtaGrdVBR_CellContentClick;
+            dtaGdVwBrw.SelectionChanged += dtaGdVwBrw_SelectionChanged_1;
             // 
-            // panel4
+            // grpInstructorInfo
             // 
-            panel4.BackColor = Color.LightPink;
-            panel4.Controls.Add(label6);
-            panel4.Location = new Point(489, 12);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(403, 676);
-            panel4.TabIndex = 52;
+            grpInstructorInfo.BackgroundImageLayout = ImageLayout.Center;
+            grpInstructorInfo.Controls.Add(btnRtrn);
+            grpInstructorInfo.ForeColor = Color.Snow;
+            grpInstructorInfo.Location = new Point(153, 479);
+            grpInstructorInfo.Name = "grpInstructorInfo";
+            grpInstructorInfo.Size = new Size(144, 62);
+            grpInstructorInfo.TabIndex = 56;
+            // 
+            // btnRtrn
+            // 
+            btnRtrn.BackColor = Color.FromArgb(247, 81, 117);
+            btnRtrn.BackgroundImageLayout = ImageLayout.Center;
+            btnRtrn.FlatStyle = FlatStyle.Flat;
+            btnRtrn.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRtrn.ForeColor = Color.Snow;
+            btnRtrn.Image = (Image)resources.GetObject("btnRtrn.Image");
+            btnRtrn.ImageAlign = ContentAlignment.MiddleRight;
+            btnRtrn.Location = new Point(14, 14);
+            btnRtrn.Name = "btnRtrn";
+            btnRtrn.Size = new Size(114, 34);
+            btnRtrn.TabIndex = 57;
+            btnRtrn.Text = "Return";
+            btnRtrn.TextAlign = ContentAlignment.MiddleLeft;
+            btnRtrn.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnRtrn.UseVisualStyleBackColor = false;
             // 
             // userBKbDashpan
             // 
@@ -255,6 +268,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Snow;
             ClientSize = new Size(900, 692);
+            Controls.Add(grpInstructorInfo);
+            Controls.Add(dtaGdVwBrw);
             Controls.Add(nbQntyBW);
             Controls.Add(label5);
             Controls.Add(btnBrw);
@@ -268,22 +283,18 @@
             Controls.Add(label2);
             Controls.Add(panel2);
             Controls.Add(label1);
-            Controls.Add(dtaGdVwBrw);
-            Controls.Add(panel4);
             FormBorderStyle = FormBorderStyle.None;
             Name = "userBKbDashpan";
             Text = "userBKbDashpan";
             Load += userBKbDashpan_Load;
-            ((System.ComponentModel.ISupportInitialize)dtaGdVwBrw).EndInit();
             ((System.ComponentModel.ISupportInitialize)nbQntyBW).EndInit();
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dtaGdVwBrw).EndInit();
+            grpInstructorInfo.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private DataGridView dtaGdVwBrw;
         private NumericUpDown nbQntyBW;
         private Label label5;
         private Button btnBrw;
@@ -297,7 +308,8 @@
         private Label label2;
         private Panel panel2;
         private Label label1;
-        private Label label6;
-        private Panel panel4;
+        private DataGridView dtaGdVwBrw;
+        private Panel grpInstructorInfo;
+        private Button btnRtrn;
     }
 }
