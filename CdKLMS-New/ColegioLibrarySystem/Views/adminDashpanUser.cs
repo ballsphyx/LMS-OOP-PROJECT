@@ -28,8 +28,8 @@ namespace librarymanagement.views
             });
 
             cmbCourse.DataSource = _userManagement.GetAllCourses();
-            cmbCourse.DisplayMember = "CourseName";
-            cmbCourse.ValueMember = "CourseId";
+            cmbCourse.DisplayMember = "ProgramName";
+            cmbCourse.ValueMember = "ProgramId";
 
             cmbYear.Items.AddRange(new string[]
             {
@@ -211,11 +211,6 @@ namespace librarymanagement.views
             txtUsrnmAD.Clear();
             txtPassAD.Clear();
             txtNameAD.Clear();
-            //cmbYear.SelectedIndex = -1;
-            //cmbDept.SelectedIndex = -1;
-            //cmbCourse.SelectedIndex = -1;
-            //cmbRole.SelectedIndex = -1;
-
         }
 
         private void cmbRole_SelectedIndexChanged(object sender, EventArgs e)
@@ -286,10 +281,10 @@ namespace librarymanagement.views
                 if (dgvUsrAD.Columns["Department"] != null)
                     dgvUsrAD.Columns["Department"].Visible = false;
                 dgvUsrAD.Columns["User"].Visible = false;
-                if (dgvUsrAD.Columns["Course"] != null)
-                    dgvUsrAD.Columns["Course"].Visible = false;
-                if (dgvUsrAD.Columns["CourseID"] != null)
-                    dgvUsrAD.Columns["CourseID"].Visible = false;
+                if (dgvUsrAD.Columns["program"] != null)
+                    dgvUsrAD.Columns["program"].Visible = false;
+                if (dgvUsrAD.Columns["programID"] != null)
+                    dgvUsrAD.Columns["programID"].Visible = false;
 
             }
             else if (selected == "Instructor")
@@ -358,7 +353,7 @@ namespace librarymanagement.views
             {
                 grpStudentInfo.Visible = true;
                 grpInstructorInfo.Visible = false;
-                cmbCourse.SelectedValue = student.CourseID; 
+                cmbCourse.SelectedValue = student.ProgramID; 
                 cmbYear.SelectedItem = student.YearLevel;
             }
             else if (instructor != null)

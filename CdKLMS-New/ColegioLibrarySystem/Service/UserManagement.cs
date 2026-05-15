@@ -14,7 +14,7 @@ namespace ColegioLibrarySystem.Service
             _borrowDB = borrowDB;
         }
 
-        public bool RegisterStudent(string username, string password, string fullName, int courseId, string yearLevel)
+        public bool RegisterStudent(string username, string password, string fullName, int programId, string yearLevel)
         {
             if (_userDB.GetUserByUsername(username) != null) throw new InvalidOperationException("Student already exists"); //if user already exists, exit function
 
@@ -32,7 +32,7 @@ namespace ColegioLibrarySystem.Service
                         RoleName = RoleEnum.Student //sets roleName to Student
                     }
                 },
-                CourseID = courseId,
+                ProgramID = programId,
                 YearLevel = yearLevel
             };
 
@@ -100,7 +100,7 @@ namespace ColegioLibrarySystem.Service
 
             return _userDB.DeleteUser(user.UserId); //delete from DB
         }
-        public bool UpdateStudent(string name, string username, string password, string yearLevel, int userId, int courseId)
+        public bool UpdateStudent(string name, string username, string password, string yearLevel, int userId, int programId)
         {
             User user = _userDB.GetUserByID(userId);
                 if (user == null) throw new InvalidOperationException("User does not exist");
@@ -119,7 +119,7 @@ namespace ColegioLibrarySystem.Service
                         RoleName = RoleEnum.Student
                     }
                 },
-                CourseID = courseId,
+                ProgramID = programId,
                 YearLevel = yearLevel
             };
             return _userDB.UpdateStudent(updatedStudent);
@@ -172,7 +172,7 @@ namespace ColegioLibrarySystem.Service
 
             return _userDB.UpdateInstructor(updatedInstructor); //registers into DB
         }
-        public List<Course> GetAllCourses()
+        public List<StudentProgram> GetAllCourses()
         {
             return _userDB.GetAllCourses();
         }
