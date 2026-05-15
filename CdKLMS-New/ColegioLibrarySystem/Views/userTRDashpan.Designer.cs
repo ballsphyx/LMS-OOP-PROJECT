@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(userTRDashpan));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel2 = new Panel();
-            dtaGrdVwTrnsc = new DataGridView();
             label1 = new Label();
+            btnRtrn = new Button();
+            dtaGrdVwTrnsc = new DataGridView();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtaGrdVwTrnsc).BeginInit();
             SuspendLayout();
@@ -41,10 +43,43 @@
             // 
             panel2.BackColor = Color.LightPink;
             panel2.Controls.Add(dtaGrdVwTrnsc);
-            panel2.Location = new Point(21, 92);
+            panel2.Location = new Point(24, 123);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(861, 582);
+            panel2.Size = new Size(984, 776);
             panel2.TabIndex = 54;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Century Gothic", 12.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(247, 81, 117);
+            label1.Location = new Point(437, 55);
+            label1.Name = "label1";
+            label1.Size = new Size(183, 26);
+            label1.TabIndex = 0;
+            label1.Text = "My Transactions";
+            // 
+            // btnRtrn
+            // 
+            btnRtrn.BackColor = Color.FromArgb(247, 81, 117);
+            btnRtrn.BackgroundImageLayout = ImageLayout.Center;
+            btnRtrn.FlatStyle = FlatStyle.Flat;
+            btnRtrn.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRtrn.ForeColor = Color.Snow;
+            btnRtrn.Image = (Image)resources.GetObject("btnRtrn.Image");
+            btnRtrn.ImageAlign = ContentAlignment.MiddleRight;
+            btnRtrn.Location = new Point(72, 70);
+            btnRtrn.Margin = new Padding(3, 4, 3, 4);
+            btnRtrn.Name = "btnRtrn";
+            btnRtrn.Size = new Size(130, 45);
+            btnRtrn.TabIndex = 58;
+            btnRtrn.Text = "Return";
+            btnRtrn.TextAlign = ContentAlignment.MiddleLeft;
+            btnRtrn.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnRtrn.UseVisualStyleBackColor = false;
+            btnRtrn.Click += btnReturn_Click;
             // 
             // dtaGrdVwTrnsc
             // 
@@ -72,35 +107,25 @@
             dtaGrdVwTrnsc.DefaultCellStyle = dataGridViewCellStyle2;
             dtaGrdVwTrnsc.EnableHeadersVisualStyles = false;
             dtaGrdVwTrnsc.GridColor = Color.FromArgb(251, 174, 210);
-            dtaGrdVwTrnsc.Location = new Point(3, 2);
-            dtaGrdVwTrnsc.Margin = new Padding(3, 2, 3, 2);
+            dtaGrdVwTrnsc.Location = new Point(3, 3);
             dtaGrdVwTrnsc.Name = "dtaGrdVwTrnsc";
             dtaGrdVwTrnsc.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dtaGrdVwTrnsc.RowHeadersWidth = 51;
-            dtaGrdVwTrnsc.Size = new Size(855, 578);
+            dtaGrdVwTrnsc.Size = new Size(977, 771);
             dtaGrdVwTrnsc.TabIndex = 56;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Century Gothic", 12.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.FromArgb(247, 81, 117);
-            label1.Location = new Point(382, 41);
-            label1.Name = "label1";
-            label1.Size = new Size(139, 19);
-            label1.TabIndex = 0;
-            label1.Text = "My Transactions";
+            dtaGrdVwTrnsc.SelectionChanged += dtaGrdVwTrnsc_SelectionChanged;
             // 
             // userTRDashpan
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Snow;
-            ClientSize = new Size(900, 692);
+            ClientSize = new Size(1029, 923);
+            Controls.Add(btnRtrn);
             Controls.Add(label1);
             Controls.Add(panel2);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "userTRDashpan";
             Text = "userTRDashpan";
             Load += userTRDashpan_Load;
@@ -113,6 +138,7 @@
         #endregion
         private Panel panel2;
         private Label label1;
+        private Button btnRtrn;
         private DataGridView dtaGrdVwTrnsc;
     }
 }

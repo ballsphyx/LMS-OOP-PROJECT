@@ -42,9 +42,10 @@
             // 
             panel2.BackColor = Color.LightPink;
             panel2.Controls.Add(dtaGrdVwTrnsc);
-            panel2.Location = new Point(28, 90);
+            panel2.Location = new Point(32, 120);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(870, 590);
+            panel2.Size = new Size(994, 787);
             panel2.TabIndex = 56;
             // 
             // dtaGrdVwTrnsc
@@ -72,8 +73,7 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dtaGrdVwTrnsc.DefaultCellStyle = dataGridViewCellStyle2;
             dtaGrdVwTrnsc.GridColor = Color.FromArgb(251, 174, 210);
-            dtaGrdVwTrnsc.Location = new Point(3, 3);
-            dtaGrdVwTrnsc.Margin = new Padding(3, 2, 3, 2);
+            dtaGrdVwTrnsc.Location = new Point(3, 4);
             dtaGrdVwTrnsc.Name = "dtaGrdVwTrnsc";
             dtaGrdVwTrnsc.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -85,7 +85,7 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             dtaGrdVwTrnsc.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dtaGrdVwTrnsc.RowHeadersWidth = 51;
-            dtaGrdVwTrnsc.Size = new Size(864, 586);
+            dtaGrdVwTrnsc.Size = new Size(987, 781);
             dtaGrdVwTrnsc.TabIndex = 58;
             // 
             // label1
@@ -94,23 +94,25 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Century Gothic", 12.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(247, 81, 117);
-            label1.Location = new Point(404, 38);
+            label1.Location = new Point(462, 51);
             label1.Name = "label1";
-            label1.Size = new Size(109, 19);
+            label1.Size = new Size(144, 26);
             label1.TabIndex = 57;
             label1.Text = "Transactions";
             // 
             // adminTrscDashpan
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Snow;
-            ClientSize = new Size(925, 704);
+            ClientSize = new Size(1057, 939);
             Controls.Add(label1);
             Controls.Add(panel2);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "adminTrscDashpan";
             Text = "adminTrscDashpan";
+            Load += adminTrscDashpan_Load;
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtaGrdVwTrnsc).EndInit();
             ResumeLayout(false);

@@ -168,18 +168,17 @@ namespace ColegioLibrarySystem.Helpers
         public DataTable GetBorrowsByUser(int userId)
         {
             string query = @"SELECT 
-                                b.book_title,
-                                b.isbn,
-                                COUNT(t.transaction_id) as quantity,
-                                t.date_borrowed,
-                                t.due_date,
-                                MAX(t.date_returned) as date_returned
-                             FROM transactions t
-                             JOIN book_copies bc ON t.copy_id = bc.copy_id
-                             JOIN books b ON bc.book_id = b.book_id
-                             WHERE t.user_id = @UserId
-                             GROUP BY b.book_title, b.isbn, t.date_borrowed, t.due_date
-                             ORDER BY t.date_borrowed DESC";
+                        t.transaction_id,
+                        b.book_title,
+                        b.isbn,
+                        t.date_borrowed,
+                        t.due_date,
+                        t.date_returned
+                     FROM transactions t
+                     JOIN book_copies bc ON t.copy_id = bc.copy_id
+                     JOIN books b ON bc.book_id = b.book_id
+                     WHERE t.user_id = @UserId
+                     ORDER BY t.date_borrowed DESC";
 
             var parameters = new MySqlParameter[]
             {

@@ -209,7 +209,7 @@ namespace librarymanagement.views
 
         private void btnTrsncAD_Click(object sender, EventArgs e)
         {
-            adminTrscDashpan u = new adminTrscDashpan();
+            adminTrscDashpan u = new adminTrscDashpan(_transactionManagement);
             u.TopLevel = false;
             contentpnl.Controls.Add(u);
             u.BringToFront();

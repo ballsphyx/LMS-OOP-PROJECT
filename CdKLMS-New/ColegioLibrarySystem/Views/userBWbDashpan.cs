@@ -64,7 +64,6 @@ namespace librarymanagement.views
             LoadBooks();
 
             PillButton(btnBrw);
-            PillButton(btnRtrn);
 
         }
         private void LoadBooks()
