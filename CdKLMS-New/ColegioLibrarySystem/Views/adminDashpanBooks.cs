@@ -241,7 +241,7 @@ namespace librarymanagement.views
             txtTitleAD.Clear();
             txtCopies.Clear();
             txtISBN.Clear();
-            cmbCategory.SelectedIndex = -1;
+            //cmbCategory.SelectedIndex = -1;
             _selectedBookId = -1;
         }
 
