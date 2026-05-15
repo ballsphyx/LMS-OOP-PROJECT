@@ -1,4 +1,5 @@
-﻿using ColegioLibrarySystem.Helpers;
+﻿using ColegioLibrarySystem.GlobalEnums;
+using ColegioLibrarySystem.Helpers;
 using ColegioLibrarySystem.Service;
 
 namespace ColegioLibrarySystem
@@ -22,6 +23,8 @@ namespace ColegioLibrarySystem
             TransactionManagement transactionManagement = new TransactionManagement(transactionDB, bookDB);
 
             Application.Run(new librarymanagement.LoginForm(userManagement,bookManagement, transactionManagement));
+
+           
         }
     }
 }

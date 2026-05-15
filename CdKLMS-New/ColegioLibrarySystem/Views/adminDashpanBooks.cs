@@ -1,6 +1,7 @@
 ﻿using ColegioLibrarySystem.GlobalEnums;
 using ColegioLibrarySystem.Models;
 using ColegioLibrarySystem.Service;
+using System.Drawing.Drawing2D;
 using System.Text.RegularExpressions;
 
 namespace librarymanagement.views
@@ -28,6 +29,31 @@ namespace librarymanagement.views
             cmbCatFilter.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbCatFilter.SelectedIndexChanged += cmbCatFilter_SelectedIndexChanged;
             LoadBooks();
+
+            PillButton(btnAddAD);
+            PillButton(btnClearAD);
+            PillButton(btnDltAD);
+            PillButton(btnUpdtAD);
+
+            RoundPanel(panel5, 40);
+        }
+        private void PillButton(Button btn)
+        {
+            GraphicsPath path = new GraphicsPath();
+
+            int radius = btn.Height;
+
+            path.StartFigure();
+            path.AddArc(0, 0, radius, radius, 90, 180);
+            path.AddArc(btn.Width - radius, 0, radius, radius, 270, 180);
+            path.CloseFigure();
+
+            btn.Region = new Region(path);
+
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.BorderSize = 0;
+
+            btn.Cursor = Cursors.Hand;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -95,6 +121,8 @@ namespace librarymanagement.views
             {
                 MessageBox.Show("Service Layer Error: " + ex.Message);
             }
+            if (!ValidateISBN()) return;
+
             ClearFields();
         }
 
@@ -168,6 +196,9 @@ namespace librarymanagement.views
             {
                 MessageBox.Show("Service layer error: " + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            if (!ValidateISBN()) return;
+
             ClearFields();
         }
 
@@ -246,6 +277,21 @@ namespace librarymanagement.views
             dateTimePicker.Value = new DateTime(selected.PublicationYear, 1, 1);
             txtCopies.Text = selected.TotalCopies.ToString();
         }
+        private void RoundPanel(Panel pnl, int radius)
+        {
+            GraphicsPath path = new GraphicsPath();
+
+            path.StartFigure();
+
+            path.AddArc(new Rectangle(0, 0, radius, radius), 180, 90);
+            path.AddArc(new Rectangle(pnl.Width - radius, 0, radius, radius), 270, 90);
+            path.AddArc(new Rectangle(pnl.Width - radius, pnl.Height - radius, radius, radius), 0, 90);
+            path.AddArc(new Rectangle(0, pnl.Height - radius, radius, radius), 90, 90);
+
+            path.CloseFigure();
+
+            pnl.Region = new Region(path);
+        }
 
         private void cmbCatFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -269,6 +315,25 @@ namespace librarymanagement.views
 
             dgvBooksAD.DataSource = null;
             dgvBooksAD.DataSource = filteredBooks;
+        }
+
+        private void txtISBN_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+          
+        }
+        private bool ValidateISBN()
+        {
+            if (txtISBN.Text.Length != 13)
+            {
+                MessageBox.Show("ISBN must be exactly 13 digits.");
+                return false;
+            }
+
+            return true;
         }
     }
 }
