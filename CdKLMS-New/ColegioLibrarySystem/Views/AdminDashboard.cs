@@ -12,8 +12,11 @@ namespace librarymanagement.views
         public AdminDashboard(BookManagement bm, UserManagement um, TransactionManagement tm)
         {
             InitializeComponent();
-            adminDashpan adp = new adminDashpan();
 
+            _bookManagement = bm;
+            _userManagement = um;
+            _transactionManagement = tm;
+            adminDashpan adp = new adminDashpan(_transactionManagement);
             adp.TopLevel = false;
             adp.Dock = DockStyle.Fill;
 
@@ -22,9 +25,6 @@ namespace librarymanagement.views
 
             adp.BringToFront();
             adp.Show();
-            _bookManagement = bm;
-            _userManagement = um;
-            _transactionManagement = tm;
         }
         private void RoundFormCorners(int radius)
         {
@@ -139,7 +139,7 @@ namespace librarymanagement.views
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            adminDashpan u = new adminDashpan();
+            adminDashpan u = new adminDashpan(_transactionManagement);
             u.TopLevel = false;
             contentpnl.Controls.Add(u);
             u.BringToFront();
@@ -215,6 +215,17 @@ namespace librarymanagement.views
             u.BringToFront();
             u.Show();
             SelectButton(btnTrsncAD);
+        }
+        private void LoadRecentTransactions()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

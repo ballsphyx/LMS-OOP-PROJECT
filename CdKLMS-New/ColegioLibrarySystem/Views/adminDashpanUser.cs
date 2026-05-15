@@ -355,6 +355,20 @@ namespace librarymanagement.views
 
         private void dgvUsrAD_SelectionChanged(object sender, EventArgs e)
         {
+
+        }
+        private void btnClearAD_Click(object sender, EventArgs e)
+        {
+            ClearFields();
+        }
+
+        private void label6_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvUsrAD_SelectionChanged_1(object sender, EventArgs e)
+        {
             if (dgvUsrAD.SelectedRows.Count == 0) return;
 
             var item = dgvUsrAD.SelectedRows[0].DataBoundItem;
@@ -395,7 +409,7 @@ namespace librarymanagement.views
             {
                 grpStudentInfo.Visible = true;
                 grpInstructorInfo.Visible = false;
-                cmbCourse.SelectedValue = student.ProgramID; 
+                cmbCourse.SelectedValue = student.ProgramID;
                 cmbYear.SelectedItem = student.YearLevel;
             }
             else if (instructor != null)
@@ -409,15 +423,6 @@ namespace librarymanagement.views
                 grpStudentInfo.Visible = false;
                 grpInstructorInfo.Visible = false;
             }
-        }
-        private void btnClearAD_Click(object sender, EventArgs e)
-        {
-            ClearFields();
-        }
-
-        private void label6_Click_1(object sender, EventArgs e)
-        {
-
         }
     }
 }

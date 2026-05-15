@@ -28,6 +28,7 @@ namespace ColegioLibrarySystem.Views
             dtaGrdVwTrnsc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtaGrdVwTrnsc.Columns["User"].Visible = false;
             dtaGrdVwTrnsc.Columns["BookCopy"].Visible = false;
+            dtaGrdVwTrnsc.Columns["Quantity"].Visible = false;
         }
         private void LoadTransactions()
         {

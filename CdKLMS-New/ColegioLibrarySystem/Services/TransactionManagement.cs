@@ -65,7 +65,10 @@ namespace ColegioLibrarySystem.Service
 
             return _transactionDB.ReturnBook(transactionId, copyId);
         }
-
+        public DataTable GetTodaysTransactions()
+        {
+            return _transactionDB.GetTodayTransactions();
+        }
         public List<Transaction> GetAllBorrows()
         {
             return _transactionDB.GetAllBorrows();

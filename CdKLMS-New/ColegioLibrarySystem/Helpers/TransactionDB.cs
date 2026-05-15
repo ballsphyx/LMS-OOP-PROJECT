@@ -187,6 +187,24 @@ namespace ColegioLibrarySystem.Helpers
 
             return _databaseHelper.ExecuteQuery(query, parameters);
         }
+        public DataTable GetTodayTransactions()
+        {
+            string query = @"SELECT
+                                t.transaction_id,
+                                u.full_name,
+                                b.book_title,
+                                b.isbn,
+                                t.date_borrowed,
+                                t.due_date,
+                                t.date_returned
+                            FROM transactions t
+                            JOIN users u ON t.user_id = u.user_id
+                            JOIN book_copies bc ON t.copy_id = bc.copy_id
+                            JOIN books b ON bc.book_id = b.book_id
+                            WHERE DATE (t.date_borrowed) = CURDATE()
+                            ORDER BY t.date_borrowed DESC";
+            return _databaseHelper.ExecuteQuery(query);
+        }
 
         private Transaction MapTransaction(DataRow row)
         {

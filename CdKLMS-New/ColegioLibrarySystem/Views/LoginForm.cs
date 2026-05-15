@@ -20,6 +20,7 @@ namespace librarymanagement
             _userManagement = userManagement;
             _transactionManagement = transactionManagement;
             _bookManagement = bookManagement;
+            this.AcceptButton = button1;
         }
         private void RoundFormCorners(int radius)
         {
