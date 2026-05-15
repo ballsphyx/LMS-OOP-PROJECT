@@ -19,7 +19,8 @@ namespace ColegioLibrarySystem.Service
         {
             if (!Session.IsLoggedIn) return false;
 
-            int userId = Session.CurrentUser.UserId;
+            //Gets the current users info//
+            int userId = Session.CurrentUser.UserId; 
             Roles role = Session.CurrentUser.Role;
 
             Book book = _bookDB.GetBookByID(bookID);
@@ -30,9 +31,9 @@ namespace ColegioLibrarySystem.Service
                 quantity = 1;
                 if (_transactionDB.HasActiveBookBorrow(userId, book.BookID)) throw new InvalidOperationException("Student is currently borrowing a copy of this book");
             }
-            if (quantity <= 0) throw new InvalidOperationException("Borrow quantity must be greater than zero");
+            if (quantity <= 0) throw new InvalidOperationException("Borrow quantity must be greater than zero"); //If ang gi input nila is greater than zero, exit function//
             int availableCount = _bookDB.CountAvailableCopies(book.BookID);
-            if (availableCount < quantity) throw new InvalidOperationException("Borrow quantity is greater than available copies");
+            if (availableCount < quantity) throw new InvalidOperationException("Borrow quantity is greater than available copies"); //if kulang ang available copies sa gusto nila, exit function//
 
             List<int> copyIds = _bookDB.GetAvailableCopyIds(book.BookID, quantity);
             if (copyIds.Count < quantity) return false;

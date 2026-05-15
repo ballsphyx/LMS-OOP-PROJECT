@@ -103,7 +103,7 @@ namespace ColegioLibrarySystem.Service
         public bool UpdateStudent(string name, string username, string password, string yearLevel, int userId, int programId)
         {
             User user = _userDB.GetUserByID(userId);
-                if (user == null) throw new InvalidOperationException("User does not exist");
+                if (user == null) throw new InvalidOperationException("User does not exist"); //if dele makita ang userID, then exit function//
             Student updatedStudent = new Student
             {
                 User = new User()
@@ -128,7 +128,7 @@ namespace ColegioLibrarySystem.Service
         {
 
             User user = _userDB.GetUserByID(id);
-            if (user == null) throw new InvalidOperationException("User does not exist");
+            if (user == null) throw new InvalidOperationException("User does not exist"); //if dele makita ang userID, then exit function//
             Admin updateAdmin = new Admin
             {
                 User = new User
@@ -150,7 +150,7 @@ namespace ColegioLibrarySystem.Service
         public bool UpdateInstructor(string username, string password, string fullName, int userId, int deptId)
         {
             User user = _userDB.GetUserByID(userId);
-                if (user == null) throw new InvalidOperationException("User does not exist"); //if user already exists, exit function
+                if (user == null) throw new InvalidOperationException("User does not exist"); //if dele makita ang userID, then exit function//
 
             Instructor updatedInstructor = new Instructor //create new instructor object to pass into function
             {
@@ -196,7 +196,7 @@ namespace ColegioLibrarySystem.Service
         public User GetUserByCredentials(string username, string password)
         {
             User user = _userDB.GetUserByCredentials(username, password);
-            if (user == null) throw new InvalidOperationException("User does not exist");
+            if (user == null) throw new InvalidOperationException("User does not exist"); //if dele makita ang userID, then exit function//
             return user;
         }
         public User GetUserByID(int userID)
